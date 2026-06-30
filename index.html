@@ -1476,7 +1476,7 @@ function buildNotableMissions() {
     return `
       <div class="mission-card" onclick="openModal('${n.name.replace(/'/g,"\\'")}')">
         <div class="mission-card-img">
-          ${imgUrl ? `<img src="${imgUrl}" alt="${n.name}" onerror="this.parentNode.innerHTML='<div class=\\"img-placeholder\\">${n.icon}</div>'">` : `<div class="img-placeholder">${n.icon}</div>`}
+          ${imgUrl ? `<img src="${imgUrl}" alt="${n.name}" onerror="this.parentNode.innerHTML='<div class=&quot;img-placeholder&quot;>${n.icon}</div>'">` : `<div class="img-placeholder">${n.icon}</div>`}
         </div>
         <div class="mission-card-body">
           <div class="mission-card-name">${n.name}</div>
@@ -1631,7 +1631,7 @@ function renderMissionsTable() {
       return `
         <div class="mission-card" onclick="openModal('${(m['Mission Name']||'').replace(/'/g,"\\'")}')">
           <div class="mission-card-img">
-            ${imgUrl ? `<img src="${imgUrl}" alt="${m['Mission Name']}" onerror="this.parentNode.innerHTML='<div class=\\"img-placeholder\\">${icon}</div>'">` : `<div class="img-placeholder">${icon}</div>`}
+            ${imgUrl ? `<img src="${imgUrl}" alt="${m['Mission Name']}" onerror="this.parentNode.innerHTML='<div class=&quot;img-placeholder&quot;>${icon}</div>'">` : `<div class="img-placeholder">${icon}</div>`}
           </div>
           <div class="mission-card-body">
             <div class="mission-card-name">${m['Mission Name']}</div>
