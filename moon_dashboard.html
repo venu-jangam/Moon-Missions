@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌕 Lunar Exploration Dashboard | LUNEX</title>
+<meta name="description" content="Comprehensive Moon Mission and Lunar Rover Dashboard – explore all missions from 1958 to the future.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --regolith-50:  #fdf8f0;
+    --regolith-100: #f5edd8;
+    --regolith-200: #ead9b5;
+    --regolith-300: #d9be8a;
+    --regolith-400: #c89e5e;
+    --regolith-500: #b8843e;
+    --regolith-600: #9a6a2f;
+    --regolith-700: #7c5225;
+    --regolith-800: #5e3c1b;
+    --regolith-900: #3d2610;
+    --lunar-gray:   #8b8680;
+    --crater-gray:  #6b6560;
+    --sky-blue:     #4a7fa5;
+    --apollo-gold:  #c9973a;
+    --success-green:#3a9b6a;
+    --fail-red:     #c94444;
+    --partial-amber:#c97b3a;
+    --planned-blue: #4a7fa5;
+    --active-teal:  #3a9b8a;
+    --text-primary: #2a2015;
+    --text-secondary:#5a4e3a;
+    --text-muted:   #8b7d6b;
+    --border:       #d4c4a8;
+    --shadow-sm:    0 1px 4px rgba(60,40,10,0.08);
+    --shadow-md:    0 4px 16px rgba(60,40,10,0.12);
+    --shadow-lg:    0 8px 32px rgba(60,40,10,0.16);
+    --radius-sm:    8px;
+    --radius-md:    12px;
+    --radius-lg:    20px;
+    --radius-xl:    28px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body {
+    font-family:'Outfit',sans-serif;
+    background: linear-gradient(135deg, var(--regolith-50) 0%, #f0e8d5 50%, var(--regolith-100) 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    background-attachment: fixed;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #2a1f0e 0%, #3d2e16 40%, #1a1208 100%);
+    color: white;
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 70px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--regolith-200);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .logo-moon {
+    font-size: 2rem;
+    animation: moonGlow 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255,220,120,0.6));
+  }
+  @keyframes moonGlow {
+    0%,100%{filter:drop-shadow(0 0 6px rgba(255,220,120,0.5));}
+    50%{filter:drop-shadow(0 0 16px rgba(255,220,120,0.9));}
+  }
+  .logo-sub { font-size:0.65rem; font-weight:400; color: var(--regolith-400); letter-spacing:0.15em; text-transform:uppercase; display:block; }
+  .header-search {
+    flex:1;
+    position:relative;
+  }
+  .header-search input {
+    width:100%;
+    padding: 0.55rem 1rem 0.55rem 2.8rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-family:'Outfit',sans-serif;
+    font-size:0.9rem;
+    outline:none;
+    transition: all 0.2s;
+  }
+  .header-search input::placeholder { color:rgba(255,255,255,0.4); }
+  .header-search input:focus { background:rgba(255,255,255,0.14); border-color:rgba(255,220,120,0.5); box-shadow:0 0 0 3px rgba(255,220,120,0.12); }
+  .search-icon { position:absolute; left:0.9rem; top:50%; transform:translateY(-50%); color:rgba(255,255,255,0.4); font-size:1rem; }
+  .search-results-dropdown {
+    position:absolute; top:110%; left:0; right:0;
+    background:#2a1f0e;
+    border:1px solid rgba(255,220,120,0.2);
+    border-radius: var(--radius-md);
+    max-height:360px;
+    overflow-y:auto;
+    z-index:200;
+    display:none;
+    box-shadow: var(--shadow-lg);
+  }
+  .search-result-item {
+    padding:0.7rem 1rem;
+    cursor:pointer;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+    transition:background 0.15s;
+  }
+  .search-result-item:hover { background:rgba(255,220,120,0.1); }
+  .search-result-item .sr-name { color:var(--regolith-200); font-weight:600; font-size:0.9rem; }
+  .search-result-item .sr-meta { color:var(--regolith-400); font-size:0.75rem; margin-top:2px; }
+  .search-result-item .sr-badge {
+    display:inline-block; padding:1px 8px; border-radius:50px; font-size:0.65rem; font-weight:600; margin-left:6px;
+  }
+  .header-stats {
+    display:flex; gap:1.5rem; align-items:center;
+  }
+  .hstat {
+    text-align:center;
+    font-size:0.75rem;
+    color:var(--regolith-400);
+  }
+  .hstat strong { display:block; font-size:1.1rem; color:var(--regolith-200); font-weight:700; }
+  .ai-btn {
+    background: linear-gradient(135deg, var(--apollo-gold), #e8b84b);
+    color: #2a1f0e;
+    border:none;
+    padding:0.5rem 1.1rem;
+    border-radius:50px;
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:0.85rem;
+    cursor:pointer;
+    transition:all 0.2s;
+    white-space:nowrap;
+    display:flex; align-items:center; gap:0.4rem;
+  }
+  .ai-btn:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(201,151,58,0.4); }
+
+  /* ── TABS ── */
+  .tabs-bar {
+    background:white;
+    border-bottom: 2px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    position:sticky; top:70px; z-index:90;
+  }
+  .tabs-inner {
+    max-width:1600px;
+    margin:0 auto;
+    display:flex;
+    padding:0 2rem;
+    gap:0;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .tab-btn {
+    padding:1rem 1.6rem;
+    background:none;
+    border:none;
+    border-bottom:3px solid transparent;
+    margin-bottom:-2px;
+    font-family:'Outfit',sans-serif;
+    font-size:0.9rem;
+    font-weight:600;
+    color:var(--text-muted);
+    cursor:pointer;
+    transition:all 0.2s;
+    white-space:nowrap;
+    display:flex; align-items:center; gap:0.5rem;
+  }
+  .tab-btn:hover { color:var(--text-primary); }
+  .tab-btn.active { color:var(--apollo-gold); border-bottom-color:var(--apollo-gold); }
+  .tab-count {
+    background:var(--regolith-100);
+    color:var(--text-muted);
+    font-size:0.7rem;
+    padding:1px 7px;
+    border-radius:50px;
+    font-weight:700;
+  }
+  .tab-btn.active .tab-count { background:rgba(201,151,58,0.15); color:var(--apollo-gold); }
+
+  /* ── MAIN LAYOUT ── */
+  .main-content { max-width:1600px; margin:0 auto; padding:2rem; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:1.2rem 1.5rem;
+    margin-bottom:1.5rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.75rem;
+    align-items:center;
+    box-shadow: var(--shadow-sm);
+  }
+  .filter-label { font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; }
+  .filter-select {
+    padding:0.45rem 0.9rem;
+    border:1.5px solid var(--border);
+    border-radius:50px;
+    background:var(--regolith-50);
+    font-family:'Outfit',sans-serif;
+    font-size:0.85rem;
+    color:var(--text-primary);
+    cursor:pointer;
+    outline:none;
+    transition:all 0.2s;
+  }
+  .filter-select:focus { border-color:var(--apollo-gold); box-shadow:0 0 0 3px rgba(201,151,58,0.1); }
+  .filter-chip {
+    padding:0.4rem 0.9rem;
+    border:1.5px solid var(--border);
+    border-radius:50px;
+    background:white;
+    font-family:'Outfit',sans-serif;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--text-secondary);
+    cursor:pointer;
+    transition:all 0.2s;
+  }
+  .filter-chip:hover { border-color:var(--apollo-gold); color:var(--apollo-gold); }
+  .filter-chip.active { background:var(--apollo-gold); color:white; border-color:var(--apollo-gold); }
+  .filter-reset {
+    margin-left:auto;
+    padding:0.4rem 1rem;
+    background:none;
+    border:1.5px solid var(--border);
+    border-radius:50px;
+    font-family:'Outfit',sans-serif;
+    font-size:0.8rem;
+    color:var(--text-muted);
+    cursor:pointer;
+    transition:all 0.2s;
+  }
+  .filter-reset:hover { border-color:var(--fail-red); color:var(--fail-red); }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:1rem;
+    margin-bottom:1.5rem;
+  }
+  .kpi-card {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    padding:1.25rem 1.25rem 1rem;
+    box-shadow: var(--shadow-sm);
+    position:relative;
+    overflow:hidden;
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .kpi-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .kpi-card::before {
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:3px;
+    background: linear-gradient(90deg, var(--apollo-gold), var(--regolith-400));
+  }
+  .kpi-icon { font-size:1.8rem; margin-bottom:0.5rem; }
+  .kpi-value { font-size:2rem; font-weight:800; color:var(--text-primary); line-height:1; }
+  .kpi-label { font-size:0.75rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin-top:0.3rem; }
+  .kpi-sub { font-size:0.7rem; color:var(--text-muted); margin-top:0.25rem; }
+
+  /* ── CHARTS GRID ── */
+  .charts-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:1.25rem;
+    margin-bottom:1.5rem;
+  }
+  .chart-card {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    padding:1.5rem;
+    box-shadow:var(--shadow-sm);
+    transition:box-shadow 0.2s;
+  }
+  .chart-card:hover { box-shadow:var(--shadow-md); }
+  .chart-card.wide { grid-column: 1 / -1; }
+  .chart-title {
+    font-size:0.9rem;
+    font-weight:700;
+    color:var(--text-primary);
+    margin-bottom:1rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .chart-title span { font-size:1.1rem; }
+  .chart-wrap { position:relative; height:240px; }
+  .chart-wrap.tall { height:320px; }
+
+  /* ── TIMELINE ── */
+  .timeline-card {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    padding:1.5rem;
+    box-shadow:var(--shadow-sm);
+    margin-bottom:1.5rem;
+    overflow-x:auto;
+  }
+  .timeline-scroll {
+    min-width:900px;
+    position:relative;
+    padding: 2rem 0 1rem;
+  }
+  .timeline-axis {
+    height:4px;
+    background: linear-gradient(90deg, var(--regolith-300), var(--apollo-gold), var(--regolith-300));
+    border-radius:2px;
+    position:relative;
+  }
+  .timeline-era {
+    position:absolute;
+    top:-30px;
+    font-size:0.65rem;
+    font-weight:700;
+    color:var(--text-muted);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    transform:translateX(-50%);
+  }
+  .timeline-dot {
+    position:absolute;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:10px; height:10px;
+    border-radius:50%;
+    border:2px solid white;
+    cursor:pointer;
+    transition:all 0.2s;
+    z-index:2;
+  }
+  .timeline-dot:hover { transform:translate(-50%,-50%) scale(1.8); z-index:10; }
+  .timeline-dot.success { background:var(--success-green); }
+  .timeline-dot.fail { background:var(--fail-red); }
+  .timeline-dot.partial { background:var(--partial-amber); }
+  .timeline-dot.planned { background:var(--planned-blue); }
+  .timeline-tooltip {
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#2a1f0e;
+    color:white;
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:0.7rem;
+    white-space:nowrap;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity 0.2s;
+    z-index:20;
+  }
+  .timeline-dot:hover .timeline-tooltip { opacity:1; }
+
+  /* ── MISSIONS TABLE ── */
+  .table-container {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    box-shadow:var(--shadow-sm);
+    margin-bottom:1.5rem;
+  }
+  .table-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1rem 1.5rem;
+    border-bottom:1px solid var(--border);
+    background:var(--regolith-50);
+  }
+  .table-title { font-size:0.95rem; font-weight:700; color:var(--text-primary); }
+  .table-count { font-size:0.8rem; color:var(--text-muted); }
+  .view-toggle {
+    display:flex; gap:0.4rem;
+  }
+  .view-btn {
+    background:none; border:1.5px solid var(--border); border-radius:var(--radius-sm);
+    padding:0.3rem 0.6rem; cursor:pointer; color:var(--text-muted); font-size:0.85rem; transition:all 0.2s;
+  }
+  .view-btn.active { background:var(--apollo-gold); border-color:var(--apollo-gold); color:white; }
+  .table-scroll { overflow-x:auto; max-height:600px; overflow-y:auto; }
+  table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+  thead th {
+    padding:0.75rem 1rem;
+    text-align:left;
+    font-size:0.72rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--text-muted);
+    background:var(--regolith-50);
+    position:sticky;top:0;z-index:2;
+    cursor:pointer;
+    user-select:none;
+    border-bottom:1px solid var(--border);
+    white-space:nowrap;
+  }
+  thead th:hover { color:var(--apollo-gold); }
+  thead th .sort-icon { margin-left:4px; opacity:0.4; }
+  thead th.sorted .sort-icon { opacity:1; color:var(--apollo-gold); }
+  tbody tr { border-bottom:1px solid var(--regolith-100); transition:background 0.15s; }
+  tbody tr:hover { background:var(--regolith-50); cursor:pointer; }
+  td { padding:0.7rem 1rem; vertical-align:middle; }
+  .mission-name-cell {
+    font-weight:600;
+    color:var(--text-primary);
+    max-width:180px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .mission-link { color: var(--sky-blue); text-decoration:none; font-size:0.75rem; display:inline-flex; align-items:center; gap:3px; margin-top:2px; }
+  .mission-link:hover { text-decoration:underline; }
+
+  /* ── STATUS BADGES ── */
+  .badge {
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    padding:2px 10px;
+    border-radius:50px;
+    font-size:0.7rem;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .badge-success { background:rgba(58,155,106,0.12); color:#2d7a55; }
+  .badge-fail { background:rgba(201,68,68,0.1); color:#a03030; }
+  .badge-partial { background:rgba(201,123,58,0.1); color:#9a5e20; }
+  .badge-planned { background:rgba(74,127,165,0.1); color:#3a6585; }
+  .badge-active { background:rgba(58,155,138,0.12); color:#2d7a6f; }
+  .badge-development { background:rgba(130,80,200,0.1); color:#7040b0; }
+
+  /* ── MISSION MODAL ── */
+  .modal-overlay {
+    position:fixed;inset:0;
+    background:rgba(0,0,0,0.5);
+    z-index:1000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:1rem;
+    backdrop-filter:blur(4px);
+  }
+  .modal-overlay.open { display:flex; }
+  .modal {
+    background:white;
+    border-radius:var(--radius-xl);
+    max-width:800px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    box-shadow:0 20px 60px rgba(0,0,0,0.2);
+    animation:modalIn 0.2s ease-out;
+  }
+  @keyframes modalIn { from{opacity:0;transform:scale(0.95) translateY(20px);} to{opacity:1;transform:scale(1) translateY(0);} }
+  .modal-header {
+    padding:2rem 2rem 1.5rem;
+    border-bottom:1px solid var(--border);
+    background: linear-gradient(135deg, #2a1f0e, #3d2e16);
+    border-radius:var(--radius-xl) var(--radius-xl) 0 0;
+    color:white;
+    position:relative;
+  }
+  .modal-close {
+    position:absolute;top:1.2rem;right:1.2rem;
+    background:rgba(255,255,255,0.1);
+    border:none;color:white;
+    width:36px;height:36px;
+    border-radius:50%;
+    font-size:1.1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background 0.15s;
+  }
+  .modal-close:hover { background:rgba(255,255,255,0.2); }
+  .modal-mission-name { font-size:1.6rem; font-weight:800; margin-bottom:0.5rem; }
+  .modal-body { padding:1.5rem 2rem; }
+  .modal-image-row {
+    display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;
+  }
+  .modal-image {
+    flex:1;min-width:200px;max-width:300px;
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--regolith-100);
+  }
+  .modal-image img {
+    width:100%;height:180px;
+    object-fit:cover;
+    display:block;
+  }
+  .modal-image .img-caption {
+    font-size:0.7rem;
+    color:var(--text-muted);
+    padding:0.4rem 0.6rem;
+    text-align:center;
+  }
+  .modal-info-grid {
+    display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;
+  }
+  .modal-info-item { }
+  .modal-info-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); margin-bottom:0.25rem; }
+  .modal-info-value { font-size:0.9rem; font-weight:600; color:var(--text-primary); }
+  .modal-section { margin-bottom:1.25rem; }
+  .modal-section-title { font-size:0.85rem; font-weight:700; color:var(--text-primary); margin-bottom:0.5rem; padding-bottom:0.3rem; border-bottom:1px solid var(--border); }
+  .modal-section-text { font-size:0.85rem; color:var(--text-secondary); line-height:1.6; }
+  .modal-links { display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1.5rem; }
+  .modal-link-btn {
+    display:inline-flex; align-items:center; gap:0.4rem;
+    padding:0.5rem 1rem;
+    border-radius:50px;
+    font-size:0.8rem;
+    font-weight:600;
+    text-decoration:none;
+    transition:all 0.2s;
+    border:1.5px solid;
+  }
+  .modal-link-btn.primary { background:var(--sky-blue); color:white; border-color:var(--sky-blue); }
+  .modal-link-btn.primary:hover { background:#3a6f95; }
+  .modal-link-btn.secondary { background:white; color:var(--text-secondary); border-color:var(--border); }
+  .modal-link-btn.secondary:hover { border-color:var(--apollo-gold); color:var(--apollo-gold); }
+
+  /* ── CARDS GRID VIEW ── */
+  .cards-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:1rem;
+    padding:1rem;
+  }
+  .mission-card {
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    cursor:pointer;
+    transition:all 0.2s;
+    background:white;
+  }
+  .mission-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
+  .mission-card-img {
+    width:100%;height:140px;
+    background:var(--regolith-100);
+    overflow:hidden;position:relative;
+  }
+  .mission-card-img img { width:100%;height:100%;object-fit:cover; transition:transform 0.3s; }
+  .mission-card:hover .mission-card-img img { transform:scale(1.05); }
+  .mission-card-img .img-placeholder {
+    width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:3rem;
+    background:linear-gradient(135deg,var(--regolith-200),var(--regolith-300));
+  }
+  .mission-card-body { padding:1rem; }
+  .mission-card-name { font-size:0.95rem; font-weight:700; color:var(--text-primary); margin-bottom:0.3rem; }
+  .mission-card-meta { font-size:0.78rem; color:var(--text-muted); margin-bottom:0.5rem; }
+  .mission-card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:0.75rem; }
+
+  /* ── ROVERS TAB ── */
+  .rovers-hero {
+    background: linear-gradient(135deg, #1a1208 0%, #2d2010 40%, #1a1208 100%);
+    border-radius:var(--radius-lg);
+    padding:2rem 2.5rem;
+    margin-bottom:1.5rem;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:2rem;
+    overflow:hidden;
+    position:relative;
+  }
+  .rovers-hero::before {
+    content:'🌑';
+    position:absolute;
+    right:2rem;
+    font-size:8rem;
+    opacity:0.08;
+  }
+  .rovers-hero h2 { font-size:2rem; font-weight:800; margin-bottom:0.5rem; }
+  .rovers-hero p { color:rgba(255,255,255,0.6); font-size:0.9rem; max-width:500px; line-height:1.6; }
+  .rovers-stats { display:flex; gap:2rem; margin-top:1rem; }
+  .rover-stat { text-align:center; }
+  .rover-stat strong { display:block; font-size:1.5rem; font-weight:800; color:var(--apollo-gold); }
+  .rover-stat span { font-size:0.7rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.05em; }
+  .rovers-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:1.25rem;
+  }
+  .rover-card {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    cursor:pointer;
+    transition:all 0.2s;
+    box-shadow:var(--shadow-sm);
+  }
+  .rover-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-lg); }
+  .rover-card-top {
+    background:linear-gradient(135deg,#2a1f0e,#4a3520);
+    padding:1.25rem;
+    color:white;
+    position:relative;
+  }
+  .rover-card-img {
+    width:60px;height:60px;
+    border-radius:var(--radius-sm);
+    overflow:hidden;
+    border:2px solid rgba(255,255,255,0.2);
+    margin-bottom:0.75rem;
+    background:rgba(255,255,255,0.1);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.8rem;
+  }
+  .rover-card-img img { width:100%;height:100%;object-fit:cover; }
+  .rover-card-name { font-size:1.1rem; font-weight:800; margin-bottom:0.25rem; }
+  .rover-card-mission { font-size:0.8rem; color:var(--regolith-400); }
+  .rover-status-badge {
+    position:absolute; top:1rem; right:1rem;
+    padding:3px 10px;border-radius:50px;font-size:0.68rem;font-weight:700;
+  }
+  .rover-card-body { padding:1.25rem; }
+  .rover-specs {
+    display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;
+  }
+  .rover-spec { }
+  .rover-spec-label { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); }
+  .rover-spec-value { font-size:0.82rem; font-weight:600; color:var(--text-primary); }
+  .rover-distance-bar {
+    height:6px;background:var(--regolith-100);border-radius:3px;overflow:hidden;margin-top:0.75rem;
+  }
+  .rover-distance-fill {
+    height:100%;background:linear-gradient(90deg,var(--apollo-gold),var(--success-green));
+    border-radius:3px;transition:width 0.8s ease-out;
+  }
+
+  /* ── OVERVIEW CHARTS ── */
+  .overview-img-grid {
+    display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;
+  }
+  .overview-img-card {
+    background:white;border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);
+  }
+  .overview-img-card img { width:100%;display:block; }
+  .overview-img-card .img-title { font-size:0.8rem;font-weight:700;color:var(--text-primary);padding:0.75rem 1rem 0.5rem; }
+  .overview-img-card .img-sub { font-size:0.72rem;color:var(--text-muted);padding:0 1rem 0.75rem; }
+
+  /* ── AI ASSISTANT ── */
+  .ai-panel {
+    position:fixed;
+    bottom:1.5rem; right:1.5rem;
+    z-index:500;
+  }
+  .ai-toggle {
+    width:56px;height:56px;
+    background:linear-gradient(135deg,var(--apollo-gold),#e8b84b);
+    border:none;border-radius:50%;
+    font-size:1.5rem;
+    cursor:pointer;
+    box-shadow:0 4px 20px rgba(201,151,58,0.4);
+    transition:all 0.2s;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ai-toggle:hover { transform:scale(1.1); }
+  .ai-window {
+    position:absolute;
+    bottom:70px; right:0;
+    width:380px;
+    max-height:520px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-lg);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+  }
+  .ai-window.open { display:flex; }
+  .ai-header {
+    background:linear-gradient(135deg,#2a1f0e,#3d2e16);
+    padding:1rem 1.2rem;
+    display:flex;align-items:center;gap:0.75rem;
+    color:white;
+  }
+  .ai-avatar { font-size:1.5rem; }
+  .ai-header-text h4 { font-size:0.9rem; font-weight:700; }
+  .ai-header-text p { font-size:0.72rem; color:rgba(255,255,255,0.5); }
+  .ai-close { margin-left:auto;background:none;border:none;color:rgba(255,255,255,0.5);font-size:1.1rem;cursor:pointer;transition:color 0.15s; }
+  .ai-close:hover { color:white; }
+  .ai-messages {
+    flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;
+    max-height:340px;
+  }
+  .ai-message { display:flex; gap:0.5rem; }
+  .ai-message.user { flex-direction:row-reverse; }
+  .ai-msg-bubble {
+    max-width:80%;
+    padding:0.65rem 0.9rem;
+    border-radius:16px;
+    font-size:0.82rem;
+    line-height:1.5;
+  }
+  .ai-message.assistant .ai-msg-bubble { background:var(--regolith-50); border:1px solid var(--border); color:var(--text-primary); border-radius:4px 16px 16px 16px; }
+  .ai-message.user .ai-msg-bubble { background:var(--apollo-gold); color:white; border-radius:16px 4px 16px 16px; }
+  .ai-input-row { 
+    padding:0.75rem;
+    border-top:1px solid var(--border);
+    display:flex;gap:0.5rem;
+  }
+  .ai-input {
+    flex:1;
+    padding:0.5rem 0.75rem;
+    border:1.5px solid var(--border);
+    border-radius:50px;
+    font-family:'Outfit',sans-serif;
+    font-size:0.82rem;
+    outline:none;
+    transition:border-color 0.2s;
+  }
+  .ai-input:focus { border-color:var(--apollo-gold); }
+  .ai-send {
+    width:36px;height:36px;
+    background:var(--apollo-gold);
+    border:none;border-radius:50%;
+    color:white;font-size:1rem;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:all 0.2s;flex-shrink:0;
+  }
+  .ai-send:hover { background:#b8843e; }
+  .ai-suggestions { padding:0 0.75rem 0.75rem; display:flex; gap:0.4rem; flex-wrap:wrap; }
+  .ai-suggestion {
+    font-size:0.72rem;padding:0.3rem 0.7rem;border-radius:50px;background:var(--regolith-100);
+    color:var(--text-secondary);cursor:pointer;border:1px solid var(--border);transition:all 0.15s;white-space:nowrap;
+  }
+  .ai-suggestion:hover { background:var(--apollo-gold);color:white;border-color:var(--apollo-gold); }
+  .typing-dots {
+    display:flex;gap:3px;align-items:center;padding:2px 0;
+  }
+  .typing-dots span {
+    width:6px;height:6px;background:var(--text-muted);border-radius:50%;
+    animation:typingBounce 1s infinite;
+  }
+  .typing-dots span:nth-child(2){animation-delay:0.15s;}
+  .typing-dots span:nth-child(3){animation-delay:0.3s;}
+  @keyframes typingBounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-5px);}}
+
+  /* ── PAGINATION ── */
+  .pagination {
+    display:flex;align-items:center;justify-content:center;gap:0.5rem;
+    padding:1rem;
+    border-top:1px solid var(--border);
+  }
+  .page-btn {
+    width:34px;height:34px;
+    border:1.5px solid var(--border);border-radius:var(--radius-sm);
+    background:white;color:var(--text-secondary);font-size:0.85rem;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:all 0.15s;
+  }
+  .page-btn:hover { border-color:var(--apollo-gold);color:var(--apollo-gold); }
+  .page-btn.active { background:var(--apollo-gold);border-color:var(--apollo-gold);color:white; }
+  .page-btn:disabled { opacity:0.4;cursor:not-allowed; }
+
+  /* ── LOADING ── */
+  .img-loading {
+    width:100%;height:100%;
+    background:linear-gradient(90deg,var(--regolith-100),var(--regolith-200),var(--regolith-100));
+    background-size:200% 100%;
+    animation:shimmer 1.5s infinite;
+  }
+  @keyframes shimmer { to{background-position:-200% 0;} }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:768px){
+    .header-stats,.header-search{display:none;}
+    .header-inner{gap:1rem;}
+    .main-content{padding:1rem;}
+    .charts-grid{grid-template-columns:1fr;}
+    .overview-img-grid{grid-template-columns:1fr;}
+    .modal-info-grid{grid-template-columns:1fr;}
+    .rovers-grid{grid-template-columns:1fr;}
+    .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  
+  /* Scrollbar */
+  ::-webkit-scrollbar{width:6px;height:6px;}
+  ::-webkit-scrollbar-track{background:var(--regolith-100);}
+  ::-webkit-scrollbar-thumb{background:var(--regolith-300);border-radius:3px;}
+  ::-webkit-scrollbar-thumb:hover{background:var(--regolith-400);}
+
+  .fade-in { animation:fadeIn 0.4s ease-out; }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  .section-header {
+    display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;
+  }
+  .section-title { font-size:1.2rem;font-weight:800;color:var(--text-primary);display:flex;align-items:center;gap:0.5rem; }
+  .section-sub { font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem; }
+  .era-badge {
+    display:inline-block;padding:2px 10px;border-radius:50px;font-size:0.68rem;font-weight:700;
+    background:rgba(201,151,58,0.12);color:var(--apollo-gold);margin-left:0.5rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="header">
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <span class="logo-moon">🌕</span>
+      <div>
+        LUNEX
+        <span class="logo-sub">Lunar Exploration Dashboard</span>
+      </div>
+    </a>
+
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="globalSearch" placeholder="Search missions, rovers, agencies, years…" autocomplete="off">
+      <div class="search-results-dropdown" id="searchDropdown"></div>
+    </div>
+
+    <div class="header-stats">
+      <div class="hstat"><strong id="hTotalMissions">172</strong>Missions</div>
+      <div class="hstat"><strong id="hSuccessRate">--</strong>Success Rate</div>
+      <div class="hstat"><strong id="hCountries">--</strong>Nations</div>
+      <div class="hstat"><strong id="hRovers">35</strong>Rovers</div>
+    </div>
+
+    <button class="ai-btn" onclick="toggleAI()">🤖 AI Analyst</button>
+  </div>
+</header>
+
+<!-- ══ TABS ══ -->
+<div class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('overview','this')" id="tab-overview">🌍 Overview <span class="tab-count" id="tc-overview">172</span></button>
+    <button class="tab-btn" onclick="showTab('missions','this')" id="tab-missions">🚀 All Missions <span class="tab-count" id="tc-missions">172</span></button>
+    <button class="tab-btn" onclick="showTab('rovers','this')" id="tab-rovers">🤖 Lunar Rovers <span class="tab-count" id="tc-rovers">35</span></button>
+    <button class="tab-btn" onclick="showTab('timeline','this')" id="tab-timeline">📅 Timeline</button>
+    <button class="tab-btn" onclick="showTab('analytics','this')" id="tab-analytics">📊 Analytics</button>
+  </div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div class="main-content">
+
+  <!-- ═══ OVERVIEW TAB ═══ -->
+  <div class="tab-panel active" id="panel-overview">
+    <!-- KPIs -->
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <!-- Charts Row -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title"><span>🌏</span> Missions by Country/Agency</div>
+        <div class="chart-wrap"><canvas id="chartCountry"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>✅</span> Mission Outcomes</div>
+        <div class="chart-wrap"><canvas id="chartOutcome"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>🛸</span> Mission Types Distribution</div>
+        <div class="chart-wrap"><canvas id="chartTypes"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>📈</span> Missions Per Decade</div>
+        <div class="chart-wrap"><canvas id="chartDecade"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Dataset Images -->
+    <div class="section-header">
+      <div>
+        <div class="section-title">📊 Dataset Charts</div>
+        <div class="section-sub">Visualizations from your dataset analysis</div>
+      </div>
+    </div>
+    <div class="overview-img-grid" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="overview-img-card">
+        <div class="img-title">Moon Missions Overview</div>
+        <div class="img-sub">Breakdown by type and outcome</div>
+        <img src="Moon_Missions_Overview_Charts.png" alt="Moon Missions Overview Charts" style="max-height:250px;object-fit:contain;background:#f5edd8;">
+      </div>
+      <div class="overview-img-card">
+        <div class="img-title">Moon Missions Timeline</div>
+        <div class="img-sub">Historical timeline 1958 – 2026+</div>
+        <img src="Moon_Missions_Timeline.png" alt="Moon Missions Timeline" style="max-height:250px;object-fit:contain;background:#f5edd8;">
+      </div>
+      <div class="overview-img-card">
+        <div class="img-title">Lunar Rovers Analysis</div>
+        <div class="img-sub">Rovers comparison and stats</div>
+        <img src="Lunar_Rovers_Charts.png" alt="Lunar Rovers Charts" style="max-height:250px;object-fit:contain;background:#f5edd8;">
+      </div>
+    </div>
+
+    <!-- Recent / Notable Missions -->
+    <div class="section-header">
+      <div>
+        <div class="section-title">⭐ Notable Milestones</div>
+        <div class="section-sub">Key firsts and landmark missions in lunar exploration</div>
+      </div>
+    </div>
+    <div id="notableMissions" class="cards-grid" style="padding:0;"></div>
+  </div>
+
+  <!-- ═══ MISSIONS TAB ═══ -->
+  <div class="tab-panel" id="panel-missions">
+    <!-- Filters -->
+    <div class="filter-bar">
+      <span class="filter-label">🔽 Filter by:</span>
+      <select class="filter-select" id="fOutcome" onchange="applyFilters()">
+        <option value="">All Outcomes</option>
+      </select>
+      <select class="filter-select" id="fType" onchange="applyFilters()">
+        <option value="">All Types</option>
+      </select>
+      <select class="filter-select" id="fCountry" onchange="applyFilters()">
+        <option value="">All Countries</option>
+      </select>
+      <select class="filter-select" id="fEra" onchange="applyFilters()">
+        <option value="">All Eras</option>
+        <option value="1958-1969">Space Race (1958–69)</option>
+        <option value="1970-1979">Apollo Era (1970s)</option>
+        <option value="1980-1999">Gap Years (1980–99)</option>
+        <option value="2000-2012">Revival (2000–12)</option>
+        <option value="2013-2019">New Space (2013–19)</option>
+        <option value="2020-2030">Artemis Era (2020+)</option>
+      </select>
+      <button class="filter-reset" onclick="resetFilters()">✕ Reset</button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+      <div class="table-header">
+        <div>
+          <div class="table-title">🚀 All Moon Missions</div>
+          <div class="table-count" id="missionTableCount"></div>
+        </div>
+        <div class="view-toggle">
+          <button class="view-btn active" id="viewTable" onclick="setView('table')">☰ Table</button>
+          <button class="view-btn" id="viewCards" onclick="setView('cards')">⊞ Cards</button>
+        </div>
+      </div>
+      <div id="missionsTableWrapper">
+        <div class="table-scroll">
+          <table id="missionsTable">
+            <thead>
+              <tr>
+                <th onclick="sortTable('S.No')" class="" data-col="S.No">#<span class="sort-icon">↕</span></th>
+                <th onclick="sortTable('Mission Name')" data-col="Mission Name">Mission<span class="sort-icon">↕</span></th>
+                <th onclick="sortTable('Country/Agency')" data-col="Country/Agency">Country/Agency<span class="sort-icon">↕</span></th>
+                <th onclick="sortTable('Launch Date')" data-col="Launch Date">Launch<span class="sort-icon">↕</span></th>
+                <th onclick="sortTable('Mission Type')" data-col="Mission Type">Type<span class="sort-icon">↕</span></th>
+                <th onclick="sortTable('Outcome')" data-col="Outcome">Outcome<span class="sort-icon">↕</span></th>
+                <th>Launch Vehicle</th>
+                <th>Cost</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="missionsTableBody"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="missionsPagination"></div>
+      </div>
+      <div id="missionsCardsWrapper" style="display:none;">
+        <div class="cards-grid" id="missionsCardsGrid"></div>
+        <div class="pagination" id="missionsCardsPagination"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ROVERS TAB ═══ -->
+  <div class="tab-panel" id="panel-rovers">
+    <!-- Hero -->
+    <div class="rovers-hero">
+      <div>
+        <h2>🤖 Lunar Rovers</h2>
+        <p>From the Soviet Lunokhod to China's Yutu-2 and India's Pragyan – explore every wheeled, walking, and hopping explorer that has touched lunar soil.</p>
+        <div class="rovers-stats">
+          <div class="rover-stat"><strong>35</strong><span>Total Rovers</span></div>
+          <div class="rover-stat"><strong id="rActiveCount">--</strong><span>Active</span></div>
+          <div class="rover-stat"><strong id="rCompletedCount">--</strong><span>Completed</span></div>
+          <div class="rover-stat"><strong id="rPlannedCount">--</strong><span>Planned</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rover Filters -->
+    <div class="filter-bar">
+      <span class="filter-label">🔽 Filter Rovers:</span>
+      <select class="filter-select" id="rfType" onchange="filterRovers()">
+        <option value="">All Types</option>
+        <option value="Robotic">Robotic</option>
+        <option value="Crewed">Crewed</option>
+        <option value="Hopper">Hopper</option>
+        <option value="Walking">Walking</option>
+      </select>
+      <select class="filter-select" id="rfStatus" onchange="filterRovers()">
+        <option value="">All Status</option>
+        <option value="ACTIVE">Active</option>
+        <option value="Completed">Completed</option>
+        <option value="Planned">Planned</option>
+        <option value="In Development">In Development</option>
+        <option value="Lost">Lost</option>
+      </select>
+      <select class="filter-select" id="rfCountry" onchange="filterRovers()">
+        <option value="">All Countries</option>
+      </select>
+      <button class="filter-reset" onclick="resetRoverFilters()">✕ Reset</button>
+    </div>
+
+    <!-- Rover Charts -->
+    <div class="charts-grid" style="margin-bottom:1.5rem;">
+      <div class="chart-card">
+        <div class="chart-title"><span>📏</span> Distance Traveled (km)</div>
+        <div class="chart-wrap tall"><canvas id="chartRoverDist"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>⚖️</span> Rover Mass (kg)</div>
+        <div class="chart-wrap tall"><canvas id="chartRoverMass"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>🔋</span> Power Sources</div>
+        <div class="chart-wrap"><canvas id="chartRoverPower"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>🌍</span> Rovers by Country</div>
+        <div class="chart-wrap"><canvas id="chartRoverCountry"></canvas></div>
+      </div>
+    </div>
+
+    <div class="rovers-grid" id="roversGrid"></div>
+  </div>
+
+  <!-- ═══ TIMELINE TAB ═══ -->
+  <div class="tab-panel" id="panel-timeline">
+    <div class="section-header">
+      <div>
+        <div class="section-title">📅 Mission Timeline <span class="era-badge">1958 → 2035+</span></div>
+        <div class="section-sub">Hover over dots to see mission details. Color indicates outcome.</div>
+      </div>
+      <div style="display:flex;gap:1rem;align-items:center;font-size:0.78rem;color:var(--text-muted);">
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--success-green);margin-right:4px;"></span>Success</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--fail-red);margin-right:4px;"></span>Fail</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--partial-amber);margin-right:4px;"></span>Partial</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--planned-blue);margin-right:4px;"></span>Planned</span>
+      </div>
+    </div>
+
+    <div class="timeline-card" id="timelineCard">
+      <div class="chart-title"><span>📅</span> Full Mission Timeline – Interactive</div>
+      <div class="chart-wrap" style="height:450px;"><canvas id="chartTimeline"></canvas></div>
+    </div>
+
+    <!-- Era breakdown -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title"><span>🏁</span> Space Race Era (1958–1969)</div>
+        <div id="era1960" style="max-height:280px;overflow-y:auto;"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>🌕</span> Apollo Era (1970–1979)</div>
+        <div id="era1970" style="max-height:280px;overflow-y:auto;"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>🌑</span> New Space Era (2000+)</div>
+        <div id="era2000" style="max-height:280px;overflow-y:auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ANALYTICS TAB ═══ -->
+  <div class="tab-panel" id="panel-analytics">
+    <div class="section-header">
+      <div class="section-title">📊 Deep Analytics</div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card wide">
+        <div class="chart-title"><span>📈</span> Mission Launches Per Year (1958–2035)</div>
+        <div class="chart-wrap tall"><canvas id="chartYearly"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>✅</span> Success Rate by Country</div>
+        <div class="chart-wrap tall"><canvas id="chartSuccessRate"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>🛸</span> Mission Type Evolution</div>
+        <div class="chart-wrap tall"><canvas id="chartTypeEvo"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>💰</span> Mission Costs Comparison</div>
+        <div class="chart-wrap"><canvas id="chartCost"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><span>🌍</span> Missions by Destination Type</div>
+        <div class="chart-wrap"><canvas id="chartDestination"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Stats Table -->
+    <div class="table-container">
+      <div class="table-header">
+        <div class="table-title">📋 Country Statistics</div>
+      </div>
+      <div class="table-scroll">
+        <table id="countryStatsTable">
+          <thead>
+            <tr>
+              <th>Country/Agency</th>
+              <th>Total Missions</th>
+              <th>Success</th>
+              <th>Failures</th>
+              <th>Partial</th>
+              <th>Planned/Dev</th>
+              <th>Success Rate</th>
+              <th>Latest Mission</th>
+            </tr>
+          </thead>
+          <tbody id="countryStatsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end main-content -->
+
+<!-- ══ MISSION MODAL ══ -->
+<div class="modal-overlay" id="missionModal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      <div class="modal-mission-name" id="modalMissionName">Mission Name</div>
+      <div id="modalBadge"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image-row" id="modalImages"></div>
+      <div class="modal-info-grid" id="modalInfoGrid"></div>
+      <div class="modal-section">
+        <div class="modal-section-title">🎯 Objectives</div>
+        <div class="modal-section-text" id="modalObjectives"></div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">🔭 Instruments & Systems</div>
+        <div class="modal-section-text" id="modalInstruments"></div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">📝 Notes</div>
+        <div class="modal-section-text" id="modalNotes"></div>
+      </div>
+      <div class="modal-links" id="modalLinks"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ROVER MODAL ══ -->
+<div class="modal-overlay" id="roverModal" onclick="closeRoverModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeRoverModalDirect()">✕</button>
+      <div class="modal-mission-name" id="roverModalName">Rover Name</div>
+      <div id="roverModalBadge"></div>
+    </div>
+    <div class="modal-body" id="roverModalBody"></div>
+  </div>
+</div>
+
+<!-- ══ AI ASSISTANT ══ -->
+<div class="ai-panel">
+  <div class="ai-window" id="aiWindow">
+    <div class="ai-header">
+      <div class="ai-avatar">🤖</div>
+      <div class="ai-header-text">
+        <h4>Luna AI</h4>
+        <p>Lunar data analyst • Ask me anything</p>
+      </div>
+      <button class="ai-close" onclick="toggleAI()">✕</button>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message assistant">
+        <div class="ai-msg-bubble">
+          👋 Hello! I'm <strong>Luna AI</strong>, your lunar data analyst.<br><br>
+          I have full access to <strong>172 moon missions</strong> and <strong>35 rovers</strong>. Ask me anything about the data!
+        </div>
+      </div>
+    </div>
+    <div class="ai-suggestions" id="aiSuggestions">
+      <div class="ai-suggestion" onclick="askAI('What was the overall success rate?')">Success rate?</div>
+      <div class="ai-suggestion" onclick="askAI('Which country launched the most missions?')">Top country?</div>
+      <div class="ai-suggestion" onclick="askAI('Tell me about Artemis missions')">Artemis?</div>
+      <div class="ai-suggestion" onclick="askAI('Which rover traveled the farthest?')">Farthest rover?</div>
+      <div class="ai-suggestion" onclick="askAI('Compare Lunokhod and Yutu-2')">Lunokhod vs Yutu-2?</div>
+    </div>
+    <div class="ai-input-row">
+      <input class="ai-input" id="aiInput" type="text" placeholder="Ask about missions or rovers…" onkeydown="if(event.key==='Enter')sendAI()">
+      <button class="ai-send" onclick="sendAI()">➤</button>
+    </div>
+  </div>
+  <button class="ai-toggle" onclick="toggleAI()" title="Luna AI Analyst">🤖</button>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// DATA – embedded from Excel exports
+// ══════════════════════════════════════════════════════
+const MISSIONS_DATA = [{"S.No":1,"Mission Name":"Pioneer 0","Country/Agency":"USA (NASA)","Launch Date":"1958-08-17","Arrival/Landing Date":"N/A","Mission Type":"Orbiter","Outcome":"Unsuccessful","Launch Vehicle":"Thor-Able","Mission Duration":"N/A","Objectives":"First attempted lunar mission; test lunar orbit capabilities","Special Systems/Instruments":"Thor-Able rocket","Cost (USD)":"~$10M","Notes":"First US lunar attempt, exploded at T+77s"},{"S.No":2,"Mission Name":"Luna E-1 No.1","Country/Agency":"USSR","Launch Date":"1958-09-23","Arrival/Landing Date":"N/A","Mission Type":"Impact","Outcome":"Unsuccessful","Launch Vehicle":"R-7/Semyorka","Mission Duration":"N/A","Objectives":"First Soviet lunar attempt; impact the Moon","Special Systems/Instruments":"R-7 ICBM derived launcher","Cost (USD)":"~$5M","Notes":"Launch failure at T+92s"},{"S.No":3,"Mission Name":"Pioneer 1","Country/Agency":"USA (NASA)","Launch Date":"1958-10-11","Arrival/Landing Date":"N/A","Mission Type":"Orbiter","Outcome":"Unsuccessful","Launch Vehicle":"Thor-Able","Mission Duration":"N/A","Objectives":"Lunar orbit test; measure radiation","Special Systems/Instruments":"Thor-Able rocket, magnetometer","Cost (USD)":"~$10M","Notes":"Reached 113,800 km but fell back to Earth"},{"S.No":4,"Mission Name":"Luna 1","Country/Agency":"USSR","Launch Date":"1959-01-02","Arrival/Landing Date":"1959-01-04","Mission Type":"Flyby","Outcome":"SUCCESS","Launch Vehicle":"Luna 8K72","Mission Duration":"62 hours","Objectives":"First spacecraft to reach lunar vicinity; study radiation, cosmic rays","Special Systems/Instruments":"Magnetometer, ion trap, gas discharge counters","Cost (USD)":"~$5M","Notes":"FIRST spacecraft to escape Earth's gravity; discovered solar wind"},{"S.No":5,"Mission Name":"Pioneer 4","Country/Agency":"USA (NASA)","Launch Date":"1959-03-03","Arrival/Landing Date":"1959-03-04","Mission Type":"Flyby","Outcome":"SUCCESS","Launch Vehicle":"Juno II","Mission Duration":"82 hours","Objectives":"First US spacecraft to escape Earth; flyby Moon; measure radiation","Special Systems/Instruments":"Geiger-Müller tube","Cost (USD)":"~$10M","Notes":"First successful US lunar probe; passed within 60,000 km"},{"S.No":6,"Mission Name":"Luna 2","Country/Agency":"USSR","Launch Date":"1959-09-12","Arrival/Landing Date":"1959-09-14","Mission Type":"Impact","Outcome":"SUCCESS","Launch Vehicle":"Luna 8K72","Mission Duration":"33.5 hours","Objectives":"First spacecraft to impact the Moon; study radiation","Special Systems/Instruments":"Scintillation counters, magnetometer, Geiger counters","Cost (USD)":"~$5M","Notes":"FIRST spacecraft to reach surface of another world"},{"S.No":7,"Mission Name":"Luna 3","Country/Agency":"USSR","Launch Date":"1959-10-04","Arrival/Landing Date":"1959-10-07","Mission Type":"Flyby","Outcome":"SUCCESS","Launch Vehicle":"Luna 8K72","Mission Duration":"~40 days","Objectives":"First photographs of lunar far side","Special Systems/Instruments":"Phototelevision system (2 cameras), geophysical instruments","Cost (USD)":"~$5M","Notes":"FIRST images of lunar far side ever seen by humans"},{"S.No":8,"Mission Name":"Ranger 7","Country/Agency":"USA (NASA)","Launch Date":"1964-07-28","Arrival/Landing Date":"1964-07-31","Mission Type":"Impact","Outcome":"SUCCESS","Launch Vehicle":"Atlas-Agena B","Mission Duration":"68.6 hours","Objectives":"First close-up images of lunar surface before impact","Special Systems/Instruments":"6 television cameras","Cost (USD)":"~$80M","Notes":"Returned 4,316 photos before impact; first successful US lunar impact"},{"S.No":9,"Mission Name":"Luna 9","Country/Agency":"USSR","Launch Date":"1966-01-31","Arrival/Landing Date":"1966-02-03","Mission Type":"Lander","Outcome":"SUCCESS","Launch Vehicle":"Molniya-M","Mission Duration":"75 hours","Objectives":"First soft landing on Moon; prove surface could support spacecraft","Special Systems/Instruments":"TV cameras, radiation detectors","Cost (USD)":"~$20M","Notes":"FIRST spacecraft to land softly on Moon; proved surface is solid"},{"S.No":10,"Mission Name":"Surveyor 1","Country/Agency":"USA (NASA)","Launch Date":"1966-05-30","Arrival/Landing Date":"1966-06-02","Mission Type":"Lander","Outcome":"SUCCESS","Launch Vehicle":"Atlas-Centaur","Mission Duration":"6 weeks","Objectives":"First US soft landing; test lunar surface for Apollo; soil mechanics","Special Systems/Instruments":"TV camera, soil bearing strength instruments","Cost (USD)":"~$150M","Notes":"Returned 11,237 photos; confirmed lunar soil can support astronaut"},{"S.No":11,"Mission Name":"Lunar Orbiter 1","Country/Agency":"USA (NASA)","Launch Date":"1966-08-10","Arrival/Landing Date":"1966-08-14","Mission Type":"Orbiter","Outcome":"SUCCESS","Launch Vehicle":"Atlas-Agena D","Mission Duration":"80 days","Objectives":"Map Moon for Apollo landing sites","Special Systems/Instruments":"Dual lens camera system","Cost (USD)":"~$160M","Notes":"First US spacecraft to orbit Moon; returned first photo of Earth from Moon"},{"S.No":12,"Mission Name":"Apollo 8","Country/Agency":"USA (NASA)","Launch Date":"1968-12-21","Arrival/Landing Date":"1968-12-24","Mission Type":"Human Orbiter","Outcome":"SUCCESS","Launch Vehicle":"Saturn V","Mission Duration":"6 days 3 hours","Objectives":"First crewed flight to Moon; orbit Moon 10 times; test Saturn V","Special Systems/Instruments":"Command Service Module, 3 astronauts (Borman, Lovell, Anders)","Cost (USD)":"~$375M","Notes":"FIRST humans to orbit Moon; Earthrise photo taken; read Genesis"},{"S.No":13,"Mission Name":"Apollo 11","Country/Agency":"USA (NASA)","Launch Date":"1969-07-16","Arrival/Landing Date":"1969-07-20","Mission Type":"Human Orbiter/Lander","Outcome":"SUCCESS","Launch Vehicle":"Saturn V","Mission Duration":"8 days 3 hours","Objectives":"First crewed Moon landing; lunar EVA; sample return; flag planting","Special Systems/Instruments":"LM Eagle, CM Columbia, ALSEP, TV camera, 21.7 kg samples","Cost (USD)":"~$355M","Notes":"FIRST humans on Moon: Armstrong & Aldrin; 'That's one small step'"},{"S.No":14,"Mission Name":"Apollo 13","Country/Agency":"USA (NASA)","Launch Date":"1970-04-11","Arrival/Landing Date":"N/A","Mission Type":"Human Orbiter","Outcome":"Partial Success","Launch Vehicle":"Saturn V","Mission Duration":"5 days 22 hours","Objectives":"Lunar landing attempt (aborted); return crew safely","Special Systems/Instruments":"LM Aquarius used as lifeboat","Cost (USD)":"~$375M","Notes":"Oxygen tank exploded; crew safely returned; 'Houston, we've had a problem'"},{"S.No":15,"Mission Name":"Apollo 15","Country/Agency":"USA (NASA)","Launch Date":"1971-07-26","Arrival/Landing Date":"1971-07-30","Mission Type":"Crewed Rover","Outcome":"SUCCESS","Launch Vehicle":"Saturn V","Mission Duration":"12 days 7 hours","Objectives":"First lunar rover (LRV); geological traverse; deep space subsatellite","Special Systems/Instruments":"Lunar Roving Vehicle, 77 kg samples, ALSEP","Cost (USD)":"~$445M","Notes":"First use of Lunar Roving Vehicle; Scott drove 27.9 km; Genesis Rock found"},{"S.No":16,"Mission Name":"Apollo 16","Country/Agency":"USA (NASA)","Launch Date":"1972-04-16","Arrival/Landing Date":"1972-04-21","Mission Type":"Crewed Rover","Outcome":"SUCCESS","Launch Vehicle":"Saturn V","Mission Duration":"11 days 1 hour","Objectives":"Descartes Highlands exploration; first UV camera on Moon; far-side mapping","Special Systems/Instruments":"LRV, Far Ultraviolet Camera/Spectrograph, 95.7 kg samples","Cost (USD)":"~$450M","Notes":"Young and Duke; first lunar astronomical observations"},{"S.No":17,"Mission Name":"Apollo 17","Country/Agency":"USA (NASA)","Launch Date":"1972-12-07","Arrival/Landing Date":"1972-12-11","Mission Type":"Crewed Rover","Outcome":"SUCCESS","Launch Vehicle":"Saturn V","Mission Duration":"12 days 13 hours","Objectives":"Final Apollo mission; deepest drilling; Taurus-Littrow geology","Special Systems/Instruments":"LRV, ALSEP, 110.5 kg samples, LROC","Cost (USD)":"~$460M","Notes":"Last humans on Moon (Cernan & Schmitt); 35.7 km rover record; blue marble photo"},{"S.No":18,"Mission Name":"Luna 16","Country/Agency":"USSR","Launch Date":"1970-09-12","Arrival/Landing Date":"1970-09-20","Mission Type":"Sample Return","Outcome":"SUCCESS","Launch Vehicle":"Proton-K/D","Mission Duration":"~20 days","Objectives":"First robotic sample return from Moon; 101 g of regolith","Special Systems/Instruments":"Drill, sample return capsule","Cost (USD)":"~$50M","Notes":"First successful robotic sample return; 101 grams from Mare Fecunditatis"},{"S.No":19,"Mission Name":"Luna 17 / Lunokhod 1","Country/Agency":"USSR","Launch Date":"1970-11-10","Arrival/Landing Date":"1970-11-17","Mission Type":"Lander/Heavy Rover","Outcome":"SUCCESS","Launch Vehicle":"Proton-K/D","Mission Duration":"322 days","Objectives":"First robotic rover; soil analysis; surface photography","Special Systems/Instruments":"Lunokhod 1 rover, X-ray spectrometer, laser retroreflector","Cost (USD)":"~$50M","Notes":"FIRST robotic lunar rover; Lunokhod 1 drove 10.54 km"},{"S.No":20,"Mission Name":"Clementine","Country/Agency":"USA (NASA)","Launch Date":"1994-01-25","Arrival/Landing Date":"1994-02-19","Mission Type":"Orbiter","Outcome":"SUCCESS","Launch Vehicle":"Titan II G","Mission Duration":"14 months","Objectives":"Map lunar surface; test sensors; first hints of water ice at poles","Special Systems/Instruments":"UV/VIS cameras, NIR cameras, LIDAR, charged particle telescope","Cost (USD)":"~$80M","Notes":"First comprehensive lunar map; found possible water ice at south pole"},{"S.No":21,"Mission Name":"Lunar Prospector","Country/Agency":"USA (NASA)","Launch Date":"1998-01-06","Arrival/Landing Date":"1998-01-11","Mission Type":"Orbiter","Outcome":"SUCCESS","Launch Vehicle":"Athena II","Mission Duration":"19 months","Objectives":"Map lunar gravity, magnetic field; confirm water ice at poles","Special Systems/Instruments":"Neutron spectrometer, gamma-ray spectrometer, magnetometer","Cost (USD)":"~$63M","Notes":"Confirmed hydrogen at poles (water ice likelihood); intentional impact 1999"},{"S.No":22,"Mission Name":"SMART-1","Country/Agency":"ESA","Launch Date":"2003-09-27","Arrival/Landing Date":"2004-11-15","Mission Type":"Orbiter","Outcome":"SUCCESS","Launch Vehicle":"Ariane 5G+","Mission Duration":"~3 years","Objectives":"Test solar electric propulsion; map Moon with X-ray/IR","Special Systems/Instruments":"AMIE camera, SIR spectrometer, DANTE X-ray spectrometer, EPDP","Cost (USD)":"~$110M","Notes":"ESA's first lunar mission; demonstrated ion propulsion for planetary science"},{"S.No":23,"Mission Name":"SELENE (Kaguya)","Country/Agency":"Japan (JAXA)","Launch Date":"2007-09-14","Arrival/Landing Date":"2007-10-04","Mission Type":"Orbiter","Outcome":"SUCCESS","Launch Vehicle":"H-IIA","Mission Duration":"~21 months","Objectives":"Comprehensive lunar mapping; gravity field; mineral mapping; HD video","Special Systems/Instruments":"14 instruments including HDTV, LRS, VRAD, GRS, terrain camera","Cost (USD)":"~$480M","Notes":"Most comprehensive lunar mapping; captured stunning HD video of Moon"},{"S.No":24,"Mission Name":"Chang'e 1","Country/Agency":"China (CNSA)","Launch Date":"2007-10-24","Arrival/Landing Date":"2007-11-05","Mission Type":"Orbiter","Outcome":"SUCCESS","Launch Vehicle":"Long March 3A","Mission Duration":"16 months","Objectives":"First Chinese lunar mission; 3D map of lunar surface; analyze surface elements","Special Systems/Instruments":"CCD stereo camera, imaging spectrometer, gamma/X-ray spectrometer, laser altimeter","Cost (USD)":"~$180M","Notes":"China's first lunar mission; successfully mapped entire Moon; impacted 2009"},{"S.No":25,"Mission Name":"Chandrayaan-1","Country/Agency":"India (ISRO)","Launch Date":"2008-10-22","Arrival/Landing Date":"2008-11-08","Mission Type":"Orbiter","Outcome":"SUCCESS","Launch Vehicle":"PSLV-C11","Mission Duration":"312 days","Objectives":"Lunar mapping; mineral and chemical characterization; search for water","Special Systems/Instruments":"11 instruments including Moon Mineralogy Mapper (M3), miniSAR","Cost (USD)":"~$79M","Notes":"India's first lunar mission; M3 confirmed water molecules on lunar surface"},{"S.No":26,"Mission Name":"LRO/LCROSS","Country/Agency":"USA (NASA)","Launch Date":"2009-06-18","Arrival/Landing Date":"2009-06-23","Mission Type":"Orbiter + Impactor","Outcome":"SUCCESS","Launch Vehicle":"Atlas V","Mission Duration":"LRO still active","Objectives":"Map lunar surface in detail; impact Cabeus crater to search for water","Special Systems/Instruments":"7 instruments (LRO); LCROSS impactor found water ice in plume","Cost (USD)":"~$583M","Notes":"LCROSS confirmed water ice in permanently shadowed crater; LRO still mapping"},{"S.No":27,"Mission Name":"Chang'e 2","Country/Agency":"China (CNSA)","Launch Date":"2010-10-01","Arrival/Landing Date":"2010-10-06","Mission Type":"Orbiter","Outcome":"SUCCESS","Launch Vehicle":"Long March 3C","Mission Duration":"14 months at Moon","Objectives":"Improve lunar map resolution; scout Chang'e 3 landing site","Special Systems/Instruments":"Higher resolution camera (1.3m), X-ray spectrometer, laser altimeter","Cost (USD)":"~$200M","Notes":"Scouted Sinus Iridum; then flew to L2 and asteroid Toutatis"},{"S.No":28,"Mission Name":"GRAIL","Country/Agency":"USA (NASA)","Launch Date":"2011-09-10","Arrival/Landing Date":"2012-01-01","Mission Type":"Orbiter (Gravity)","Outcome":"SUCCESS","Launch Vehicle":"Delta II","Mission Duration":"~1 year","Objectives":"Map lunar gravity field in unprecedented detail","Special Systems/Instruments":"GRAIL-A & GRAIL-B twin spacecraft; MoonKAM student cameras","Cost (USD)":"~$496M","Notes":"Most detailed lunar gravity map ever; revealed ancient impact basins"},{"S.No":29,"Mission Name":"Chang'e 3","Country/Agency":"China (CNSA)","Launch Date":"2013-12-01","Arrival/Landing Date":"2013-12-14","Mission Type":"Lander/Rover","Outcome":"SUCCESS","Launch Vehicle":"Long March 3B","Mission Duration":"~3 years","Objectives":"First Chinese lunar landing; deploy Yutu rover; study regolith","Special Systems/Instruments":"Yutu rover, panoramic cameras, ground-penetrating radar, UV telescope","Cost (USD)":"~$200M","Notes":"First lunar soft landing in 37 years; Yutu survived 3 lunar nights; still transmitting"},{"S.No":30,"Mission Name":"LADEE","Country/Agency":"USA (NASA)","Launch Date":"2013-09-07","Arrival/Landing Date":"2013-10-06","Mission Type":"Orbiter","Outcome":"SUCCESS","Launch Vehicle":"Minotaur V","Mission Duration":"192 days","Objectives":"Study lunar exosphere, dust environment; test laser comms","Special Systems/Instruments":"NMS, UVS, LDEX, LLCD laser comms","Cost (USD)":"~$280M","Notes":"First deep space laser communications; studied dust levitation mystery"},{"S.No":31,"Mission Name":"Chang'e 4","Country/Agency":"China (CNSA)","Launch Date":"2018-12-07","Arrival/Landing Date":"2019-01-03","Mission Type":"Lander/Rover","Outcome":"SUCCESS (Active)","Launch Vehicle":"Long March 3B","Mission Duration":"2600+ days (ongoing)","Objectives":"First far side landing; grow plants; Yutu-2 rover; relay via Queqiao","Special Systems/Instruments":"Yutu-2 rover, LPR, PCAM, VNIS, ASAN, LND, NCLE (Netherlands)","Cost (USD)":"~$200M","Notes":"FIRST far side lunar landing; Yutu-2 longest running rover; found gel substance"},{"S.No":32,"Mission Name":"Chandrayaan-2","Country/Agency":"India (ISRO)","Launch Date":"2019-07-22","Arrival/Landing Date":"2019-09-06","Mission Type":"Orbiter/Lander","Outcome":"Partial Success","Launch Vehicle":"GSLV Mk III","Mission Duration":"Orbiter active","Objectives":"First south pole lander; Vikram lander; Pragyan rover","Special Systems/Instruments":"Vikram lander (crashed), Pragyan rover (lost), orbiter (active)","Cost (USD)":"~$140M","Notes":"Vikram lander crashed Sep 6, 2019; orbiter still operational mapping Moon"},{"S.No":33,"Mission Name":"Chang'e 5","Country/Agency":"China (CNSA)","Launch Date":"2020-11-23","Arrival/Landing Date":"2020-12-01","Mission Type":"Sample Return","Outcome":"SUCCESS","Launch Vehicle":"Long March 5","Mission Duration":"23 days","Objectives":"Return 1.731 kg Moon rocks from Mons Rümker; youngest lunar samples","Special Systems/Instruments":"Drill, sample container, ascent vehicle, re-entry capsule","Cost (USD)":"~$2.5B","Notes":"First lunar sample return in 44 years; 1.731 kg from Oceanus Procellarum; new minerals"},{"S.No":34,"Mission Name":"Artemis I","Country/Agency":"USA (NASA)","Launch Date":"2022-11-16","Arrival/Landing Date":"2022-11-21","Mission Type":"Human Orbiter/Dress Rehearsal","Outcome":"SUCCESS","Launch Vehicle":"SLS Block 1","Mission Duration":"25.5 days","Objectives":"Uncrewed test of Orion + SLS; distant retrograde orbit; CubeSats","Special Systems/Instruments":"Orion capsule, ESA service module, 10 CubeSats, Moonkin mannequins","Cost (USD)":"~$4.1B","Notes":"Most distant Orion mission; SLS debut success; paved way for Artemis II"},{"S.No":35,"Mission Name":"SLIM","Country/Agency":"Japan (JAXA)","Launch Date":"2023-09-07","Arrival/Landing Date":"2024-01-19","Mission Type":"Lander/Rovers","Outcome":"SUCCESS","Launch Vehicle":"H-IIA","Mission Duration":"Active","Objectives":"Precision landing (<100m); LEV-1 & LEV-2 rovers; analyze rocks","Special Systems/Instruments":"LEV-1, LEV-2/SORA-Q, MBC camera, SSCP crushables, ONC","Cost (USD)":"~$100M","Notes":"FIRST Japanese lunar landing; world's most precise landing; landed tilted"},{"S.No":36,"Mission Name":"Chandrayaan-3","Country/Agency":"India (ISRO)","Launch Date":"2023-07-14","Arrival/Landing Date":"2023-08-23","Mission Type":"Lander/Rover","Outcome":"SUCCESS","Launch Vehicle":"LVM3-M4","Mission Duration":"14 days","Objectives":"First soft landing near south pole; Pragyan rover; surface analysis","Special Systems/Instruments":"Vikram lander, Pragyan rover, LIBS, APXS, ILSA, RAMBHA, ChaSTE","Cost (USD)":"~$75M","Notes":"FIRST successful south pole landing; detected sulfur; cost $75M (cheaper than many movies!)"},{"S.No":37,"Mission Name":"IM-1 (Odysseus)","Country/Agency":"USA (Intuitive Machines)","Launch Date":"2024-02-15","Arrival/Landing Date":"2024-02-22","Mission Type":"Commercial Lander","Outcome":"SUCCESS","Launch Vehicle":"Falcon 9","Mission Duration":"14 days","Objectives":"First commercial lunar lander; demonstrate CLPS; 6 NASA payloads","Special Systems/Instruments":"RFMG, ROLSES, LN-1, NDL, SCALPSS, EagleCam","Cost (USD)":"~$118M","Notes":"FIRST commercial lunar lander; tipped on side but operated; near south pole"},{"S.No":38,"Mission Name":"Chang'e 6","Country/Agency":"China (CNSA)","Launch Date":"2024-05-03","Arrival/Landing Date":"2024-06-01","Mission Type":"Sample Return + Rover","Outcome":"SUCCESS","Launch Vehicle":"Long March 5","Mission Duration":"53 days","Objectives":"First far side sample return; 1.9 kg from Apollo crater","Special Systems/Instruments":"Drill, sample container, Jinchan mini rover, French/Italian/Pakistani/Swedish payloads","Cost (USD)":"~$3B","Notes":"FIRST ever far side sample return; 1.9 kg from Apollo crater; 4-nation payloads"},{"S.No":39,"Mission Name":"Artemis II","Country/Agency":"USA (NASA)","Launch Date":"2026 (planned)","Arrival/Landing Date":"N/A","Mission Type":"Human Orbiter","Outcome":"Planned","Launch Vehicle":"SLS Block 1","Mission Duration":"10 days (planned)","Objectives":"First crewed Orion/SLS flight; lunar flyby; prove crew systems","Special Systems/Instruments":"Orion with 4 crew (Reid Wiseman, Victor Glover, Christina Koch, Jeremy Hansen)","Cost (USD)":"~$4B","Notes":"First crewed lunar mission since Apollo 17 (1972); includes first woman and first Canadian near Moon"},{"S.No":40,"Mission Name":"Artemis III","Country/Agency":"USA (NASA)","Launch Date":"2027 (planned)","Arrival/Landing Date":"2027 (planned)","Mission Type":"Human Lander","Outcome":"Planned","Launch Vehicle":"SLS Block 1B","Mission Duration":"~30 days (planned)","Objectives":"First crewed Moon landing since 1972; south pole landing; SpaceX HLS","Special Systems/Instruments":"Starship HLS, Orion, 4 crew, scientific experiments","Cost (USD)":"~$25B+ (Artemis program)","Notes":"First woman and person of color on Moon; 2 astronauts on surface; 6.5 day surface stay"},{"S.No":41,"Mission Name":"Chang'e 7","Country/Agency":"China (CNSA)","Launch Date":"2026 (planned)","Arrival/Landing Date":"2026 (planned)","Mission Type":"Lander/Rover/Hopper","Outcome":"Planned","Launch Vehicle":"Long March 5","Mission Duration":"Several months","Objectives":"South pole survey; water ice search; hopper into shadowed craters","Special Systems/Instruments":"Orbiter, relay satellite, lander, rover, flying probe/hopper","Cost (USD)":"~$3B (est.)","Notes":"Complex 5-component mission; hopper will enter permanently shadowed craters"},{"S.No":42,"Mission Name":"Luna 25","Country/Agency":"Russia (Roscosmos)","Launch Date":"2023-08-11","Arrival/Landing Date":"2023-08-19","Mission Type":"Lander","Outcome":"Unsuccessful","Launch Vehicle":"Soyuz-2.1b","Mission Duration":"N/A","Objectives":"First Russian lunar lander since 1976; south pole landing","Special Systems/Instruments":"LASMA, ADRON-LR, ARIES-L, PML, THERMO, TV cameras","Cost (USD)":"~$200M","Notes":"Crashed on Moon Aug 19, 2023; just days before Chandrayaan-3 success"},{"S.No":43,"Mission Name":"Firefly Blue Ghost M1","Country/Agency":"USA (Firefly Aerospace)","Launch Date":"2025-01-15","Arrival/Landing Date":"2025-03-02","Mission Type":"Commercial Lander","Outcome":"SUCCESS","Launch Vehicle":"Falcon 9","Mission Duration":"~30 days","Objectives":"Commercial CLPS lander; 10 NASA payloads; LuGRE navigation test","Special Systems/Instruments":"LuGRE, LISTER drill, EDS, NGLR retroreflector, LEXI X-ray imager","Cost (USD)":"~$101M","Notes":"FIRST fully successful commercial lunar lander; 10 NASA payloads; operated for full lunar day"},{"S.No":44,"Mission Name":"IM-2 (Athena)","Country/Agency":"USA (Intuitive Machines)","Launch Date":"2025-02-27","Arrival/Landing Date":"2025-03-06","Mission Type":"Commercial Lander/Rover","Outcome":"Partial Success","Launch Vehicle":"Falcon 9","Mission Duration":"~13 hours","Objectives":"South pole CLPS; MAPP rover; drill for ice; LTV demo","Special Systems/Instruments":"MAPP rover, PRIME-1 drill, μNova hopper, SpaceBit walker, AstroAnt","Cost (USD)":"~$116M","Notes":"Tipped on side after landing; limited ops; MAPP rover barely deployed; near Mons Mouton"}];
+
+const ROVERS_DATA = [{"S.No":1,"Rover Name":"Lunokhod 1","Mission":"Luna 17","Country/Agency":"USSR (NPO Lavochkin)","Year":1970,"Type":"Robotic (Remote Controlled)","Mass":"756 kg","Power Source":"Solar panels + Batteries","Mobility System":"8 wheels (independent suspension, motors)","Landing Site":"Mare Imbrium (38.28°N, 35.00°W)","Operational Duration":"322 days (Nov 17, 1970 - Oct 4, 1971)","Distance Traveled":"10.54 km","Status":"Completed","Key Instruments":"2 TV cameras, X-ray fluorescence spectrometer, penetrometer, laser retroreflector, radiation detectors","Objectives":"First robotic rover on another world; soil analysis; surface photography","Cost":"~$30M","Notes":"Controlled from Earth by 5-person team; soil density 0.8 g/cm³; FIRST successful lunar rover"},{"S.No":2,"Rover Name":"Apollo LRV-1","Mission":"Apollo 15","Country/Agency":"USA (NASA/Boeing)","Year":1971,"Type":"Crewed (Human-driven)","Mass":"210 kg","Power Source":"Silver-zinc batteries","Mobility System":"4 wheels (wire mesh tires)","Landing Site":"Hadley-Apennine (26.13°N, 3.63°E)","Operational Duration":"~3 days","Distance Traveled":"27.9 km","Status":"Completed","Key Instruments":"TV camera, sample collection bags, hand tools","Objectives":"Extend astronaut range; geological traverse","Cost":"~$38M","Notes":"Max speed 13 km/h; FIRST crewed planetary rover"},{"S.No":3,"Rover Name":"Apollo LRV-2","Mission":"Apollo 16","Country/Agency":"USA (NASA/Boeing)","Year":1972,"Type":"Crewed (Human-driven)","Mass":"210 kg","Power Source":"Silver-zinc batteries","Mobility System":"4 wheels (wire mesh tires)","Landing Site":"Descartes Highlands (8.97°S, 15.51°E)","Operational Duration":"~3 days","Distance Traveled":"26.9 km","Status":"Completed","Key Instruments":"TV camera, sampling tools","Objectives":"Geological traverse of Descartes Highlands","Cost":"~$38M","Notes":"Young and Duke drove; collected 95.7 kg samples"},{"S.No":4,"Rover Name":"Apollo LRV-3","Mission":"Apollo 17","Country/Agency":"USA (NASA/Boeing)","Year":1972,"Type":"Crewed (Human-driven)","Mass":"210 kg","Power Source":"Silver-zinc batteries","Mobility System":"4 wheels (wire mesh tires)","Landing Site":"Taurus-Littrow (20.19°N, 30.77°E)","Operational Duration":"~3 days","Distance Traveled":"35.7 km","Status":"Completed","Key Instruments":"TV camera, sampling tools","Objectives":"Final Apollo exploration; geological traverse","Cost":"~$38M","Notes":"Max speed 17.7 km/h (speed record); LAST crewed lunar rover to date"},{"S.No":5,"Rover Name":"Lunokhod 2","Mission":"Luna 21","Country/Agency":"USSR (NPO Lavochkin)","Year":1973,"Type":"Robotic (Remote Controlled)","Mass":"840 kg","Power Source":"Solar panels + Batteries","Mobility System":"8 wheels (improved suspension)","Landing Site":"Le Monnier crater (25.85°N, 30.45°E)","Operational Duration":"117 days","Distance Traveled":"39 km","Status":"Completed","Key Instruments":"3 TV cameras, X-ray spectrometer, solar X-ray telescope, magnetometer","Objectives":"Extended lunar exploration; soil and surface analysis","Cost":"~$30M","Notes":"Improved over Lunokhod 1; distance record until 2022; laser retroreflector still used"},{"S.No":6,"Rover Name":"Yutu (Jade Rabbit)","Mission":"Chang'e 3","Country/Agency":"China (CNSA)","Year":2013,"Type":"Robotic (Semi-autonomous)","Mass":"140 kg","Power Source":"Solar panels + RHU","Mobility System":"6 wheels (rocker-bogie)","Landing Site":"Mare Imbrium (44.12°N, 19.51°W)","Operational Duration":"973 days total","Distance Traveled":"114.8 meters","Status":"Completed","Key Instruments":"Panoramic camera, VIS/NIR spectrometer, APXS, ground-penetrating radar","Objectives":"First Chinese lunar rover; composition analysis; subsurface study","Cost":"~$50M","Notes":"FIRST lunar rover in 40 years; found 9 subsurface layers; 'Yutu' means Jade Rabbit"},{"S.No":7,"Rover Name":"Yutu-2","Mission":"Chang'e 4","Country/Agency":"China (CNSA)","Year":2019,"Type":"Robotic (Semi-autonomous)","Mass":"140 kg","Power Source":"Solar panels + RHU","Mobility System":"6 wheels (rocker-bogie, improved)","Landing Site":"Von Kármán crater, far side (45.45°S, 177.60°E)","Operational Duration":"2735+ days (Active)","Distance Traveled":"1.455+ km","Status":"ACTIVE","Key Instruments":"Panoramic camera, VIS/NIR spectrometer, APXS, ground-penetrating radar, lunar neutron dosimeter","Objectives":"Far side exploration; composition analysis; radiation environment","Cost":"~$50M","Notes":"LONGEST operating lunar rover EVER (7+ years); discovered gel-like substance; found new mineral Changesite-(Y)"},{"S.No":8,"Rover Name":"Pragyan (Chandrayaan-3)","Mission":"Chandrayaan-3","Country/Agency":"India (ISRO)","Year":2023,"Type":"Robotic (Semi-autonomous)","Mass":"26 kg","Power Source":"Solar panels","Mobility System":"6 wheels (rocker-bogie)","Landing Site":"Shiv Shakti Point (69.37°S) near south pole","Operational Duration":"12 days","Distance Traveled":"101.4 meters","Status":"Completed","Key Instruments":"APXS, LIBS","Objectives":"First rover near lunar south pole; elemental composition analysis","Cost":"~$20M","Notes":"Detected sulfur, aluminium, calcium, iron; FIRST rover near south pole; 'Pragyan' means Wisdom"},{"S.No":9,"Rover Name":"Pragyan (Chandrayaan-2)","Mission":"Chandrayaan-2","Country/Agency":"India (ISRO)","Year":2019,"Type":"Robotic (Semi-autonomous)","Mass":"27 kg","Power Source":"Solar panels","Mobility System":"6 wheels","Landing Site":"N/A (lost with lander)","Operational Duration":"0 days","Distance Traveled":"0 km","Status":"Lost","Key Instruments":"APXS, LIBS","Objectives":"South pole exploration","Cost":"~$20M","Notes":"Lost when Vikram lander crashed Sep 6, 2019"},{"S.No":10,"Rover Name":"LEV-1","Mission":"SLIM","Country/Agency":"Japan (JAXA)","Year":2024,"Type":"Robotic (Autonomous)","Mass":"2.1 kg","Power Source":"Solar panels + Battery","Mobility System":"2 wheels + hopping mechanism","Landing Site":"Shioli crater (13.32°S, 25.25°E)","Operational Duration":"1 hour 51 min","Distance Traveled":"~10 meters","Status":"Completed","Key Instruments":"Wide-angle camera, thermometer, radiation monitor","Objectives":"Technology demonstration; autonomous exploration","Cost":"~$5M","Notes":"FIRST Japanese lunar surface rover; hopped across surface"},{"S.No":11,"Rover Name":"LEV-2 / SORA-Q","Mission":"SLIM","Country/Agency":"Japan (JAXA/TOMY/Sony)","Year":2024,"Type":"Robotic (Fully Autonomous)","Mass":"250 grams","Power Source":"Solar + Battery","Mobility System":"Transformable sphere → wheels","Landing Site":"Shioli crater (13.32°S, 25.25°E)","Operational Duration":"~2 hours","Distance Traveled":"~5 meters","Status":"Completed","Key Instruments":"2 cameras, temperature sensor","Objectives":"World's smallest lunar rover; autonomous exploration","Cost":"~$3M","Notes":"WORLD'S smallest lunar rover (80mm sphere); took iconic image of SLIM lander"},{"S.No":12,"Rover Name":"Jinchan (Golden Toad)","Mission":"Chang'e 6","Country/Agency":"China (CNSA)","Year":2024,"Type":"Robotic (Semi-autonomous)","Mass":"~5 kg","Power Source":"Solar panels","Mobility System":"4 wheels","Landing Site":"Apollo crater, far side","Operational Duration":"~3 days","Distance Traveled":"~20 meters","Status":"Completed","Key Instruments":"Camera, infrared spectrometer","Objectives":"Far side imaging; sample context documentation","Cost":"~$5M","Notes":"Small rover deployed by Chang'e 6; took images of lander"},{"S.No":13,"Rover Name":"Rashid","Mission":"Hakuto-R M1","Country/Agency":"UAE (MBRSC)","Year":2023,"Type":"Robotic (Semi-autonomous)","Mass":"10 kg","Power Source":"Solar panels","Mobility System":"4 wheels","Landing Site":"N/A (lost with lander)","Operational Duration":"0 days","Distance Traveled":"0 km","Status":"Lost","Key Instruments":"CAMS microscopic camera, Langmuir probe, thermal camera","Objectives":"UAE's first lunar mission; study surface properties","Cost":"~$15M","Notes":"FIRST Arab lunar rover attempt; lost with Hakuto-R M1 crash"},{"S.No":14,"Rover Name":"MAPP Rover","Mission":"IM-2 (Athena)","Country/Agency":"USA (Lunar Outpost)","Year":2025,"Type":"Robotic (Autonomous)","Mass":"5 kg","Power Source":"Solar + Battery","Mobility System":"4 wheels","Landing Site":"Mons Mouton (~85°S)","Operational Duration":"~13 hours","Distance Traveled":"~2 meters","Status":"Partial Success","Key Instruments":"RESOURCE stereo camera, AstroAnt miniature rover, thermal sensors","Objectives":"Commercial lunar surface exploration; autonomous prospecting","Cost":"~$5M","Notes":"FIRST commercial US lunar rover on surface; limited by lander tipping"},{"S.No":15,"Rover Name":"VIPER","Mission":"Blue Origin CLPS","Country/Agency":"USA (NASA/Blue Origin)","Year":"2027 (planned)","Type":"Robotic (Autonomous)","Mass":"450 kg","Power Source":"Solar + Battery","Mobility System":"4 wheels (independent steering)","Landing Site":"Nobile region, south pole","Operational Duration":"~100 days","Distance Traveled":"~25 km","Status":"In Development","Key Instruments":"NSS neutron spectrometer, NIRVSS, MSolo mass spectrometer, TRIDENT 1m drill","Objectives":"Map water ice distribution; characterize volatiles; support Artemis","Cost":"$640M","Notes":"CANCELLED July 2024, REVIVED Sept 2025 with Blue Origin; critical for Artemis"},{"S.No":16,"Rover Name":"Lunar Terrain Vehicle (LTV)","Mission":"Artemis V+","Country/Agency":"USA (Intuitive Machines)","Year":"2028 (planned)","Type":"Crewed + Teleoperated","Mass":"~1500 kg","Power Source":"Solar + Batteries","Mobility System":"4 large wheels","Landing Site":"Lunar south pole","Operational Duration":"10+ years","Distance Traveled":"20+ km per sortie","Status":"In Development","Key Instruments":"Cameras, comms, cargo carriers, science mounts","Objectives":"Transport astronauts; remote operation; cargo","Cost":"$1.692B","Notes":"$1.692B IM contract; operates remotely when crew absent; 800 kg cargo"},{"S.No":17,"Rover Name":"Chang'e 7 Rover","Mission":"Chang'e 7","Country/Agency":"China (CNSA)","Year":"2026 (planned)","Type":"Robotic (Semi-autonomous)","Mass":"~150 kg","Power Source":"Solar + RHU","Mobility System":"6 wheels (rocker-bogie)","Landing Site":"Shackleton crater (>85°S)","Operational Duration":"Several lunar days","Distance Traveled":"~5 km","Status":"Planned","Key Instruments":"Panoramic camera, spectrometer, radar, APXS, LIBS","Objectives":"Search water ice; south pole environment","Cost":"~$30M","Notes":"Part of complex Chang'e 7 mission with orbiter+lander+hopper"},{"S.No":18,"Rover Name":"LUPEX","Mission":"JAXA/ISRO","Country/Agency":"Japan/India (JAXA/ISRO)","Year":"2028+ (planned)","Type":"Robotic (Semi-autonomous)","Mass":"~350 kg","Power Source":"Solar + RTG","Mobility System":"6 wheels","Landing Site":"Lunar south pole","Operational Duration":"~6 months","Distance Traveled":"~20 km","Status":"Planned","Key Instruments":"1.5m drill, neutron spectrometer, radar, camera suite","Objectives":"Japan-India joint; water ice exploration; ISRU demo","Cost":"~$500M","Notes":"Joint JAXA-ISRO mission; significant international cooperation"},{"S.No":19,"Rover Name":"Rashid 2","Mission":"TBD","Country/Agency":"UAE (MBRSC)","Year":"TBD","Type":"Robotic (Semi-autonomous)","Mass":"~15 kg","Power Source":"Solar panels","Mobility System":"4 wheels","Landing Site":"South pole (target)","Operational Duration":"Several lunar days","Distance Traveled":"~2 km","Status":"Planned","Key Instruments":"Enhanced cameras, Langmuir probe, thermal camera, radar","Objectives":"Second UAE lunar rover; improved design; water ice search","Cost":"~$25M","Notes":"Lessons from Rashid failure incorporated"},{"S.No":20,"Rover Name":"Canada Lunar Rover","Mission":"CLPS/Artemis","Country/Agency":"Canada (CSA/Canadensys)","Year":"2026 (planned)","Type":"Robotic (Autonomous)","Mass":"~30 kg","Power Source":"Solar + Battery","Mobility System":"4-6 wheels","Landing Site":"South pole","Operational Duration":"~14 days","Distance Traveled":"~5 km","Status":"In Development","Key Instruments":"Camera, spectrometer, ice-prospecting instruments","Objectives":"Canada's first lunar rover; ice prospecting","Cost":"~$25M","Notes":"Canadian Artemis contribution; rides on CLPS lander"}];
+
+// ══════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════
+let filteredMissions = [...MISSIONS_DATA];
+let filteredRovers = [...ROVERS_DATA];
+let missionPage = 1;
+let missionView = 'table';
+const MISSIONS_PER_PAGE = 20;
+let sortCol = 'S.No', sortAsc = true;
+
+// Wikipedia / external links for major missions
+const MISSION_LINKS = {
+  "Apollo 11": "https://en.wikipedia.org/wiki/Apollo_11",
+  "Apollo 13": "https://en.wikipedia.org/wiki/Apollo_13",
+  "Apollo 15": "https://en.wikipedia.org/wiki/Apollo_15",
+  "Apollo 16": "https://en.wikipedia.org/wiki/Apollo_16",
+  "Apollo 17": "https://en.wikipedia.org/wiki/Apollo_17",
+  "Apollo 8": "https://en.wikipedia.org/wiki/Apollo_8",
+  "Luna 1": "https://en.wikipedia.org/wiki/Luna_1",
+  "Luna 2": "https://en.wikipedia.org/wiki/Luna_2",
+  "Luna 3": "https://en.wikipedia.org/wiki/Luna_3",
+  "Luna 9": "https://en.wikipedia.org/wiki/Luna_9",
+  "Chandrayaan-1": "https://en.wikipedia.org/wiki/Chandrayaan-1",
+  "Chandrayaan-2": "https://en.wikipedia.org/wiki/Chandrayaan-2",
+  "Chandrayaan-3": "https://en.wikipedia.org/wiki/Chandrayaan-3",
+  "Chang'e 1": "https://en.wikipedia.org/wiki/Chang%27e_1",
+  "Chang'e 3": "https://en.wikipedia.org/wiki/Chang%27e_3",
+  "Chang'e 4": "https://en.wikipedia.org/wiki/Chang%27e_4",
+  "Chang'e 5": "https://en.wikipedia.org/wiki/Chang%27e_5",
+  "Chang'e 6": "https://en.wikipedia.org/wiki/Chang%27e_6",
+  "Artemis I": "https://en.wikipedia.org/wiki/Artemis_1",
+  "Artemis II": "https://en.wikipedia.org/wiki/Artemis_II",
+  "Artemis III": "https://en.wikipedia.org/wiki/Artemis_III",
+  "SLIM": "https://en.wikipedia.org/wiki/Smart_Lander_for_Investigating_Moon",
+  "SELENE (Kaguya)": "https://en.wikipedia.org/wiki/SELENE",
+  "LRO/LCROSS": "https://en.wikipedia.org/wiki/Lunar_Reconnaissance_Orbiter",
+  "Clementine": "https://en.wikipedia.org/wiki/Clementine_(spacecraft)",
+  "Luna 25": "https://en.wikipedia.org/wiki/Luna_25",
+  "IM-1 (Odysseus)": "https://en.wikipedia.org/wiki/IM-1",
+  "Firefly Blue Ghost M1": "https://en.wikipedia.org/wiki/Blue_Ghost_(spacecraft)",
+  "IM-2 (Athena)": "https://en.wikipedia.org/wiki/IM-2"
+};
+
+const ROVER_LINKS = {
+  "Lunokhod 1": "https://en.wikipedia.org/wiki/Lunokhod_1",
+  "Lunokhod 2": "https://en.wikipedia.org/wiki/Lunokhod_2",
+  "Apollo LRV-1": "https://en.wikipedia.org/wiki/Lunar_roving_vehicle",
+  "Yutu (Jade Rabbit)": "https://en.wikipedia.org/wiki/Yutu_(rover)",
+  "Yutu-2": "https://en.wikipedia.org/wiki/Yutu-2",
+  "Pragyan (Chandrayaan-3)": "https://en.wikipedia.org/wiki/Pragyan_(Chandrayaan-3)",
+  "VIPER": "https://en.wikipedia.org/wiki/VIPER_(rover)",
+  "Lunar Terrain Vehicle (LTV)": "https://en.wikipedia.org/wiki/Lunar_Terrain_Vehicle"
+};
+
+// Mission images from Wikipedia Commons (reliable URLs)
+const MISSION_IMAGES = {
+  "Apollo 11": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Aldrin_Apollo_11_original.jpg/320px-Aldrin_Apollo_11_original.jpg",
+  "Apollo 17": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Apollo_17_Cernan_on_Moon.jpg/320px-Apollo_17_Cernan_on_Moon.jpg",
+  "Apollo 8": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/NASA-Apollo8-Dec24-Earthrise.jpg/320px-NASA-Apollo8-Dec24-Earthrise.jpg",
+  "Chang'e 4": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Chang%27e_4_on_the_far_side_of_the_Moon_PIA23345.jpg/320px-Chang%27e_4_on_the_far_side_of_the_Moon_PIA23345.jpg",
+  "Chandrayaan-3": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/ISRO-Chandrayaan3-Vikram-Pragyan.jpg/320px-ISRO-Chandrayaan3-Vikram-Pragyan.jpg",
+  "SLIM": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/SLIM_spacecraft_model.jpg/320px-SLIM_spacecraft_model.jpg",
+  "Artemis I": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Artemis_I_Launch_%28NHQ202211160034%29.jpg/320px-Artemis_I_Launch_%28NHQ202211160034%29.jpg",
+  "LRO/LCROSS": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/LRO_spacecraft_model.png/320px-LRO_spacecraft_model.png",
+  "Luna 9": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Luna_9_lander.jpg/320px-Luna_9_lander.jpg",
+  "Clementine": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Clementine_satellite.jpg/320px-Clementine_satellite.jpg",
+};
+
+const ROVER_IMAGES = {
+  "Lunokhod 1": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Lunokhod_1_%281970%29.jpg/320px-Lunokhod_1_%281970%29.jpg",
+  "Lunokhod 2": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Lunokhod_2_Replica_Museum.jpg/320px-Lunokhod_2_Replica_Museum.jpg",
+  "Apollo LRV-1": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Apollo_15_Lunar_Rover.jpg/320px-Apollo_15_Lunar_Rover.jpg",
+  "Apollo LRV-3": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Gene_cernan_lunar_rover.jpg/320px-Gene_cernan_lunar_rover.jpg",
+  "Yutu (Jade Rabbit)": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Yutu_Rover_-.jpg/320px-Yutu_Rover_-.jpg",
+  "Yutu-2": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Yutu-2_rover_%28Chang%27e_4_mission%29.jpg/320px-Yutu-2_rover_%28Chang%27e_4_mission%29.jpg",
+  "Pragyan (Chandrayaan-3)": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/ISRO-Chandrayaan3-Vikram-Pragyan.jpg/320px-ISRO-Chandrayaan3-Vikram-Pragyan.jpg",
+  "VIPER": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/VIPER_lunar_rover.jpg/320px-VIPER_lunar_rover.jpg",
+  "LEV-2 / SORA-Q": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SORA-Q_model.jpg/320px-SORA-Q_model.jpg",
+};
+
+// ══════════════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════════════
+function getOutcomeClass(outcome) {
+  if (!outcome) return 'planned';
+  const o = outcome.toUpperCase();
+  if (o.includes('SUCCESS')) return 'success';
+  if (o.includes('UNSUCCESSFUL') || o.includes('FAIL') || o.includes('CRASH') || o.includes('LOST')) return 'fail';
+  if (o.includes('PARTIAL')) return 'partial';
+  if (o.includes('PLANNED') || o.includes('DEVELOPMENT') || o.includes('DELAYED') || o.includes('CANCELLED') || o.includes('IN DEV')) return 'planned';
+  if (o.includes('ACTIVE')) return 'success';
+  return 'planned';
+}
+function getBadgeClass(outcome) {
+  const oc = getOutcomeClass(outcome);
+  return oc === 'success' ? 'badge-success' : oc === 'fail' ? 'badge-fail' : oc === 'partial' ? 'badge-partial' : 'badge-planned';
+}
+function getBadgeIcon(outcome) {
+  const oc = getOutcomeClass(outcome);
+  return oc === 'success' ? '✅' : oc === 'fail' ? '❌' : oc === 'partial' ? '⚠️' : '🔵';
+}
+function getYear(dateStr) {
+  if (!dateStr) return null;
+  const m = String(dateStr).match(/(\d{4})/);
+  return m ? parseInt(m[1]) : null;
+}
+function parseDistance(d) {
+  if (!d || d === 'N/A' || d === '0 km') return 0;
+  const m = String(d).match(/([\d.]+)\s*(km|meter|m)/i);
+  if (!m) return 0;
+  let v = parseFloat(m[1]);
+  if (m[2].toLowerCase().startsWith('m')) v /= 1000;
+  return v;
+}
+function parseMass(m) {
+  if (!m) return 0;
+  const r = String(m).match(/([\d.]+)/);
+  return r ? parseFloat(r[1]) : 0;
+}
+function groupBy(arr, key) {
+  return arr.reduce((acc, item) => {
+    const k = item[key] || 'Unknown';
+    acc[k] = (acc[k] || 0) + 1;
+    return acc;
+  }, {});
+}
+function getCountryGroup(agency) {
+  if (!agency) return 'Other';
+  if (agency.includes('USA')) return 'USA';
+  if (agency.includes('USSR')) return 'USSR/Russia';
+  if (agency.includes('Russia')) return 'USSR/Russia';
+  if (agency.includes('China')) return 'China';
+  if (agency.includes('India')) return 'India';
+  if (agency.includes('Japan')) return 'Japan';
+  if (agency.includes('ESA')) return 'ESA';
+  if (agency.includes('UAE')) return 'UAE';
+  if (agency.includes('Israel')) return 'Israel';
+  if (agency.includes('South Korea')) return 'South Korea';
+  if (agency.includes('Canada')) return 'Canada';
+  return 'Other';
+}
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  buildKPIs();
+  buildFilters();
+  buildOverviewCharts();
+  renderMissionsTable();
+  buildRoversSection();
+  buildTimelineChart();
+  buildAnalyticsCharts();
+  buildNotableMissions();
+  buildCountryStats();
+  buildEraLists();
+  setupSearch();
+  computeHeaderStats();
+});
+
+function computeHeaderStats() {
+  const total = MISSIONS_DATA.length;
+  const success = MISSIONS_DATA.filter(m => getOutcomeClass(m.Outcome) === 'success').length;
+  const countries = new Set(MISSIONS_DATA.map(m => getCountryGroup(m['Country/Agency']))).size;
+  document.getElementById('hSuccessRate').textContent = Math.round(success/total*100) + '%';
+  document.getElementById('hCountries').textContent = countries;
+}
+
+// ══════════════════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════════════════
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// ══════════════════════════════════════════════════════
+// KPIs
+// ══════════════════════════════════════════════════════
+function buildKPIs() {
+  const total = MISSIONS_DATA.length;
+  const success = MISSIONS_DATA.filter(m => getOutcomeClass(m.Outcome) === 'success').length;
+  const partial = MISSIONS_DATA.filter(m => getOutcomeClass(m.Outcome) === 'partial').length;
+  const fail = MISSIONS_DATA.filter(m => getOutcomeClass(m.Outcome) === 'fail').length;
+  const planned = MISSIONS_DATA.filter(m => getOutcomeClass(m.Outcome) === 'planned').length;
+  const countries = new Set(MISSIONS_DATA.map(m => getCountryGroup(m['Country/Agency']))).size;
+  const years = MISSIONS_DATA.map(m => getYear(m['Launch Date'])).filter(Boolean);
+  const span = Math.max(...years) - Math.min(...years);
+  const activeRovers = ROVERS_DATA.filter(r => r.Status === 'ACTIVE').length;
+
+  const kpis = [
+    { icon: '🚀', value: total, label: 'Total Missions', sub: `${Math.min(...years)}–${Math.max(...years)}` },
+    { icon: '✅', value: success, label: 'Successful', sub: `${Math.round(success/total*100)}% success rate` },
+    { icon: '❌', value: fail, label: 'Failures', sub: `${Math.round(fail/total*100)}% of missions` },
+    { icon: '⚠️', value: partial, label: 'Partial Success', sub: '' },
+    { icon: '🔵', value: planned, label: 'Planned/Future', sub: 'upcoming missions' },
+    { icon: '🌍', value: countries, label: 'Nations/Agencies', sub: 'participated' },
+    { icon: '🤖', value: ROVERS_DATA.length, label: 'Lunar Rovers', sub: `${activeRovers} currently active` },
+    { icon: '📅', value: span + ' yrs', label: 'Exploration Span', sub: '1958 to today' },
+  ];
+  document.getElementById('kpiGrid').innerHTML = kpis.map(k => `
+    <div class="kpi-card">
+      <div class="kpi-icon">${k.icon}</div>
+      <div class="kpi-value">${k.value}</div>
+      <div class="kpi-label">${k.label}</div>
+      ${k.sub ? `<div class="kpi-sub">${k.sub}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// NOTABLE MISSIONS
+// ══════════════════════════════════════════════════════
+const NOTABLE = [
+  { name: "Luna 1", note: "First spacecraft to reach lunar vicinity", icon: "🛸" },
+  { name: "Luna 2", note: "First spacecraft to impact the Moon", icon: "💥" },
+  { name: "Luna 3", note: "First photos of the far side of the Moon", icon: "📷" },
+  { name: "Luna 9", note: "First soft landing on the Moon", icon: "🛬" },
+  { name: "Apollo 8", note: "First humans to orbit the Moon", icon: "🌕" },
+  { name: "Apollo 11", note: "First humans on the Moon", icon: "👨‍🚀" },
+  { name: "Chang'e 4", note: "First landing on the Moon's far side", icon: "🌑" },
+  { name: "Chandrayaan-3", note: "First landing near the lunar south pole", icon: "🏔️" },
+  { name: "Chang'e 6", note: "First far side sample return", icon: "🪨" },
+  { name: "Firefly Blue Ghost M1", note: "First fully successful commercial lunar lander", icon: "🔥" },
+];
+
+function buildNotableMissions() {
+  const html = NOTABLE.map(n => {
+    const m = MISSIONS_DATA.find(x => x['Mission Name'] === n.name) || {};
+    const imgUrl = MISSION_IMAGES[n.name];
+    return `
+      <div class="mission-card" onclick="openModal('${n.name.replace(/'/g,"\\'")}')">
+        <div class="mission-card-img">
+          ${imgUrl ? `<img src="${imgUrl}" alt="${n.name}" onerror="this.parentNode.innerHTML='<div class=\\"img-placeholder\\">${n.icon}</div>'">` : `<div class="img-placeholder">${n.icon}</div>`}
+        </div>
+        <div class="mission-card-body">
+          <div class="mission-card-name">${n.name}</div>
+          <div class="mission-card-meta">${n.note}</div>
+          <div class="mission-card-footer">
+            <span class="badge ${getBadgeClass(m.Outcome)}">${getBadgeIcon(m.Outcome)} ${m.Outcome || 'N/A'}</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">${m['Launch Date'] ? getYear(m['Launch Date']) : ''}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('notableMissions').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+// FILTERS
+// ══════════════════════════════════════════════════════
+function buildFilters() {
+  const outcomes = [...new Set(MISSIONS_DATA.map(m => m.Outcome).filter(Boolean))].sort();
+  const types = [...new Set(MISSIONS_DATA.map(m => m['Mission Type']).filter(Boolean))].sort();
+  const countries = [...new Set(MISSIONS_DATA.map(m => getCountryGroup(m['Country/Agency'])))].sort();
+
+  const fOutcome = document.getElementById('fOutcome');
+  outcomes.forEach(o => { const opt = document.createElement('option'); opt.value = o; opt.textContent = o; fOutcome.appendChild(opt); });
+
+  const fType = document.getElementById('fType');
+  types.forEach(t => { const opt = document.createElement('option'); opt.value = t; opt.textContent = t; fType.appendChild(opt); });
+
+  const fCountry = document.getElementById('fCountry');
+  countries.forEach(c => { const opt = document.createElement('option'); opt.value = c; opt.textContent = c; fCountry.appendChild(opt); });
+
+  // Rover country filter
+  const rCountries = [...new Set(ROVERS_DATA.map(r => getCountryGroup(r['Country/Agency'])))].sort();
+  const rfCountry = document.getElementById('rfCountry');
+  rCountries.forEach(c => { const opt = document.createElement('option'); opt.value = c; opt.textContent = c; rfCountry.appendChild(opt); });
+}
+
+function applyFilters() {
+  const outcome = document.getElementById('fOutcome').value;
+  const type = document.getElementById('fType').value;
+  const country = document.getElementById('fCountry').value;
+  const era = document.getElementById('fEra').value;
+
+  filteredMissions = MISSIONS_DATA.filter(m => {
+    if (outcome && m.Outcome !== outcome) return false;
+    if (type && m['Mission Type'] !== type) return false;
+    if (country && getCountryGroup(m['Country/Agency']) !== country) return false;
+    if (era) {
+      const y = getYear(m['Launch Date']);
+      const [s, e] = era.split('-').map(Number);
+      if (!y || y < s || y > e) return false;
+    }
+    return true;
+  });
+  missionPage = 1;
+  renderMissionsTable();
+  document.getElementById('tc-missions').textContent = filteredMissions.length;
+}
+
+function resetFilters() {
+  document.getElementById('fOutcome').value = '';
+  document.getElementById('fType').value = '';
+  document.getElementById('fCountry').value = '';
+  document.getElementById('fEra').value = '';
+  filteredMissions = [...MISSIONS_DATA];
+  missionPage = 1;
+  renderMissionsTable();
+  document.getElementById('tc-missions').textContent = filteredMissions.length;
+}
+
+function filterRovers() {
+  const type = document.getElementById('rfType').value;
+  const status = document.getElementById('rfStatus').value;
+  const country = document.getElementById('rfCountry').value;
+  filteredRovers = ROVERS_DATA.filter(r => {
+    if (type && !r.Type.includes(type)) return false;
+    if (status && r.Status !== status) return false;
+    if (country && getCountryGroup(r['Country/Agency']) !== country) return false;
+    return true;
+  });
+  renderRoversGrid();
+}
+
+function resetRoverFilters() {
+  document.getElementById('rfType').value = '';
+  document.getElementById('rfStatus').value = '';
+  document.getElementById('rfCountry').value = '';
+  filteredRovers = [...ROVERS_DATA];
+  renderRoversGrid();
+}
+
+// ══════════════════════════════════════════════════════
+// MISSIONS TABLE + CARDS
+// ══════════════════════════════════════════════════════
+function setView(v) {
+  missionView = v;
+  document.getElementById('viewTable').classList.toggle('active', v === 'table');
+  document.getElementById('viewCards').classList.toggle('active', v === 'cards');
+  document.getElementById('missionsTableWrapper').style.display = v === 'table' ? '' : 'none';
+  document.getElementById('missionsCardsWrapper').style.display = v === 'cards' ? '' : 'none';
+  renderMissionsTable();
+}
+
+function sortTable(col) {
+  if (sortCol === col) sortAsc = !sortAsc;
+  else { sortCol = col; sortAsc = true; }
+  document.querySelectorAll('thead th').forEach(th => th.classList.remove('sorted'));
+  document.querySelector(`thead th[data-col="${col}"]`)?.classList.add('sorted');
+  renderMissionsTable();
+}
+
+function renderMissionsTable() {
+  let sorted = [...filteredMissions].sort((a, b) => {
+    let va = a[sortCol], vb = b[sortCol];
+    if (sortCol === 'Launch Date') { va = getYear(va) || 0; vb = getYear(vb) || 0; }
+    if (typeof va === 'number') return sortAsc ? va - vb : vb - va;
+    return sortAsc ? String(va || '').localeCompare(String(vb || '')) : String(vb || '').localeCompare(String(va || ''));
+  });
+
+  const total = sorted.length;
+  const totalPages = Math.ceil(total / MISSIONS_PER_PAGE);
+  const start = (missionPage - 1) * MISSIONS_PER_PAGE;
+  const pageData = sorted.slice(start, start + MISSIONS_PER_PAGE);
+
+  document.getElementById('missionTableCount').textContent = `Showing ${start + 1}–${Math.min(start + MISSIONS_PER_PAGE, total)} of ${total} missions`;
+
+  if (missionView === 'table') {
+    const tbody = document.getElementById('missionsTableBody');
+    tbody.innerHTML = pageData.map(m => `
+      <tr onclick="openModal('${(m['Mission Name']||'').replace(/'/g,"\\'")}')">
+        <td style="color:var(--text-muted);font-size:0.78rem;">${m['S.No']}</td>
+        <td>
+          <div class="mission-name-cell">${m['Mission Name']}</div>
+          ${MISSION_LINKS[m['Mission Name']] ? `<a class="mission-link" href="${MISSION_LINKS[m['Mission Name']]}" target="_blank" onclick="event.stopPropagation()">🔗 Wikipedia</a>` : ''}
+        </td>
+        <td style="font-size:0.82rem;">${m['Country/Agency']}</td>
+        <td style="font-size:0.82rem;white-space:nowrap;">${m['Launch Date']}</td>
+        <td style="font-size:0.8rem;">${m['Mission Type']}</td>
+        <td><span class="badge ${getBadgeClass(m.Outcome)}">${getBadgeIcon(m.Outcome)} ${m.Outcome}</span></td>
+        <td style="font-size:0.78rem;color:var(--text-muted);">${m['Launch Vehicle'] || '–'}</td>
+        <td style="font-size:0.78rem;color:var(--text-muted);">${m['Cost (USD)'] || '–'}</td>
+        <td><button onclick="event.stopPropagation();openModal('${(m['Mission Name']||'').replace(/'/g,"\\'")}')\" style="background:none;border:1px solid var(--border);border-radius:6px;padding:3px 8px;font-size:0.72rem;cursor:pointer;color:var(--sky-blue);">View</button></td>
+      </tr>
+    `).join('');
+    renderPagination('missionsPagination', missionPage, totalPages, (p) => { missionPage = p; renderMissionsTable(); });
+  } else {
+    const grid = document.getElementById('missionsCardsGrid');
+    grid.innerHTML = pageData.map(m => {
+      const imgUrl = MISSION_IMAGES[m['Mission Name']];
+      const icon = m['Mission Type']?.includes('Human') || m['Mission Type']?.includes('Crewed') ? '👨‍🚀' : m['Mission Type']?.includes('Rover') ? '🤖' : m['Mission Type']?.includes('Sample') ? '🪨' : m['Mission Type']?.includes('Orbiter') ? '🛸' : m['Mission Type']?.includes('Lander') ? '🛬' : '🚀';
+      return `
+        <div class="mission-card" onclick="openModal('${(m['Mission Name']||'').replace(/'/g,"\\'")}')">
+          <div class="mission-card-img">
+            ${imgUrl ? `<img src="${imgUrl}" alt="${m['Mission Name']}" onerror="this.parentNode.innerHTML='<div class=\\"img-placeholder\\">${icon}</div>'">` : `<div class="img-placeholder">${icon}</div>`}
+          </div>
+          <div class="mission-card-body">
+            <div class="mission-card-name">${m['Mission Name']}</div>
+            <div class="mission-card-meta">${m['Country/Agency']} · ${getYear(m['Launch Date']) || '?'}</div>
+            <div style="font-size:0.78rem;color:var(--text-secondary);margin:0.2rem 0;">${m['Mission Type']}</div>
+            <div class="mission-card-footer">
+              <span class="badge ${getBadgeClass(m.Outcome)}">${getBadgeIcon(m.Outcome)} ${m.Outcome}</span>
+              <span style="font-size:0.72rem;color:var(--text-muted);">${m['Cost (USD)'] || ''}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    renderPagination('missionsCardsPagination', missionPage, totalPages, (p) => { missionPage = p; renderMissionsTable(); });
+  }
+}
+
+function renderPagination(containerId, current, total, onPage) {
+  const container = document.getElementById(containerId);
+  if (total <= 1) { container.innerHTML = ''; return; }
+  let html = `<button class="page-btn" onclick="(${onPage.toString()})(${current-1})" ${current<=1?'disabled':''}>‹</button>`;
+  for (let p = 1; p <= total; p++) {
+    if (p === 1 || p === total || (p >= current - 2 && p <= current + 2)) {
+      html += `<button class="page-btn ${p===current?'active':''}" onclick="(${onPage.toString()})(${p})">${p}</button>`;
+    } else if (p === current - 3 || p === current + 3) {
+      html += `<span style="color:var(--text-muted);padding:0 4px;">…</span>`;
+    }
+  }
+  html += `<button class="page-btn" onclick="(${onPage.toString()})(${current+1})" ${current>=total?'disabled':''}>›</button>`;
+  container.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+// MISSION MODAL
+// ══════════════════════════════════════════════════════
+function openModal(name) {
+  const m = MISSIONS_DATA.find(x => x['Mission Name'] === name);
+  if (!m) return;
+  document.getElementById('modalMissionName').textContent = m['Mission Name'];
+  document.getElementById('modalBadge').innerHTML = `<span class="badge ${getBadgeClass(m.Outcome)}" style="font-size:0.85rem;">${getBadgeIcon(m.Outcome)} ${m.Outcome}</span>`;
+
+  // Images
+  const imgUrl = MISSION_IMAGES[m['Mission Name']];
+  document.getElementById('modalImages').innerHTML = imgUrl ? `
+    <div class="modal-image">
+      <img src="${imgUrl}" alt="${m['Mission Name']}" onerror="this.src='';this.parentNode.style.display='none'">
+      <div class="img-caption">${m['Mission Name']} mission</div>
+    </div>
+  ` : '';
+
+  // Info grid
+  document.getElementById('modalInfoGrid').innerHTML = [
+    ['Country/Agency', m['Country/Agency']],
+    ['Launch Date', m['Launch Date']],
+    ['Arrival/Landing', m['Arrival/Landing Date']],
+    ['Mission Type', m['Mission Type']],
+    ['Launch Vehicle', m['Launch Vehicle']],
+    ['Duration', m['Mission Duration']],
+    ['Cost (USD)', m['Cost (USD)']],
+    ['Outcome', m['Outcome']],
+  ].map(([l,v]) => `<div class="modal-info-item"><div class="modal-info-label">${l}</div><div class="modal-info-value">${v||'–'}</div></div>`).join('');
+
+  document.getElementById('modalObjectives').textContent = m['Objectives'] || '–';
+  document.getElementById('modalInstruments').textContent = m['Special Systems/Instruments'] || '–';
+  document.getElementById('modalNotes').textContent = m['Notes'] || '–';
+
+  // Links
+  const wikiUrl = MISSION_LINKS[m['Mission Name']];
+  const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(m['Mission Name'] + ' moon mission')}`;
+  const nasaUrl = `https://nssdc.gsfc.nasa.gov/nmc/spacecraft/search.action?mission=${encodeURIComponent(m['Mission Name'])}`;
+  document.getElementById('modalLinks').innerHTML = `
+    ${wikiUrl ? `<a class="modal-link-btn primary" href="${wikiUrl}" target="_blank">📖 Wikipedia</a>` : ''}
+    <a class="modal-link-btn secondary" href="${searchUrl}" target="_blank">🔍 Google</a>
+    <a class="modal-link-btn secondary" href="${nasaUrl}" target="_blank">🚀 NASA NSSDCA</a>
+  `;
+
+  document.getElementById('missionModal').classList.add('open');
+}
+function closeModal(e) { if (e.target.id === 'missionModal') closeModalDirect(); }
+function closeModalDirect() { document.getElementById('missionModal').classList.remove('open'); }
+
+// ══════════════════════════════════════════════════════
+// ROVERS
+// ══════════════════════════════════════════════════════
+function buildRoversSection() {
+  const active = ROVERS_DATA.filter(r => r.Status === 'ACTIVE').length;
+  const completed = ROVERS_DATA.filter(r => r.Status === 'Completed').length;
+  const planned = ROVERS_DATA.filter(r => ['Planned','In Development'].includes(r.Status)).length;
+  document.getElementById('rActiveCount').textContent = active;
+  document.getElementById('rCompletedCount').textContent = completed;
+  document.getElementById('rPlannedCount').textContent = planned;
+  renderRoversGrid();
+  buildRoverCharts();
+}
+
+function renderRoversGrid() {
+  const grid = document.getElementById('roversGrid');
+  const maxDist = Math.max(...ROVERS_DATA.map(r => parseDistance(r['Distance Traveled'])));
+
+  const statusColor = {
+    'ACTIVE': '#3a9b8a', 'Completed': '#5a9b3a', 'Planned': '#4a7fa5',
+    'In Development': '#8040c0', 'Lost': '#c94444', 'Partial Success': '#c97b3a',
+    'Concept/Competition': '#8b7d6b'
+  };
+
+  grid.innerHTML = filteredRovers.map(r => {
+    const dist = parseDistance(r['Distance Traveled']);
+    const distPct = maxDist > 0 ? (dist / maxDist * 100) : 0;
+    const sColor = statusColor[r.Status] || '#8b7d6b';
+    const imgUrl = ROVER_IMAGES[r['Rover Name']];
+    const icon = r.Type?.includes('Crewed') ? '👨‍🚀' : r.Type?.includes('Walk') ? '🕷️' : r.Type?.includes('Hopp') ? '🦘' : '🤖';
+
+    return `
+      <div class="rover-card" onclick="openRoverModal(${r['S.No']})">
+        <div class="rover-card-top">
+          <div class="rover-card-img">
+            ${imgUrl ? `<img src="${imgUrl}" alt="${r['Rover Name']}" onerror="this.parentNode.innerHTML='${icon}'">` : icon}
+          </div>
+          <div class="rover-card-name">${r['Rover Name']}</div>
+          <div class="rover-card-mission">${r['Mission']} · ${r.Year}</div>
+          <div class="rover-status-badge" style="background:${sColor}20;color:${sColor};border:1px solid ${sColor}40;">${r.Status}</div>
+        </div>
+        <div class="rover-card-body">
+          <div class="rover-specs">
+            <div class="rover-spec">
+              <div class="rover-spec-label">Mass</div>
+              <div class="rover-spec-value">${r.Mass}</div>
+            </div>
+            <div class="rover-spec">
+              <div class="rover-spec-label">Distance</div>
+              <div class="rover-spec-value">${r['Distance Traveled']}</div>
+            </div>
+            <div class="rover-spec">
+              <div class="rover-spec-label">Duration</div>
+              <div class="rover-spec-value" style="font-size:0.75rem;">${r['Operational Duration']}</div>
+            </div>
+            <div class="rover-spec">
+              <div class="rover-spec-label">Power</div>
+              <div class="rover-spec-value" style="font-size:0.75rem;">${(r['Power Source']||'').split('+')[0].trim()}</div>
+            </div>
+          </div>
+          ${dist > 0 ? `
+          <div style="font-size:0.68rem;color:var(--text-muted);margin-top:0.5rem;">Distance traveled</div>
+          <div class="rover-distance-bar">
+            <div class="rover-distance-fill" style="width:${distPct}%"></div>
+          </div>` : ''}
+          <div style="margin-top:0.75rem;">
+            <div class="rover-spec-label">Landing Site</div>
+            <div style="font-size:0.78rem;color:var(--text-secondary);">${r['Landing Site']}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function openRoverModal(sno) {
+  const r = ROVERS_DATA.find(x => x['S.No'] === sno);
+  if (!r) return;
+  document.getElementById('roverModalName').textContent = r['Rover Name'];
+  const statusColor = { 'ACTIVE':'#3a9b8a','Completed':'#5a9b3a','Lost':'#c94444','In Development':'#8040c0','Planned':'#4a7fa5','Partial Success':'#c97b3a' };
+  const sc = statusColor[r.Status] || '#8b7d6b';
+  document.getElementById('roverModalBadge').innerHTML = `<span class="badge" style="background:${sc}20;color:${sc};font-size:0.85rem;">${r.Status}</span>`;
+
+  const imgUrl = ROVER_IMAGES[r['Rover Name']];
+  const wikiUrl = ROVER_LINKS[r['Rover Name']];
+  const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(r['Rover Name'] + ' lunar rover')}`;
+
+  document.getElementById('roverModalBody').innerHTML = `
+    ${imgUrl ? `<div class="modal-image-row"><div class="modal-image"><img src="${imgUrl}" alt="${r['Rover Name']}" style="height:220px;" onerror="this.style.display='none'"><div class="img-caption">${r['Rover Name']}</div></div></div>` : ''}
+    <div class="modal-info-grid">
+      ${[['Mission',r.Mission],['Country/Agency',r['Country/Agency']],['Year',r.Year],['Type',r.Type],['Mass',r.Mass],['Power Source',r['Power Source']],['Mobility',r['Mobility System']],['Landing Site',r['Landing Site']],['Duration',r['Operational Duration']],['Distance',r['Distance Traveled']],['Status',r.Status],['Cost',r.Cost]].map(([l,v])=>`<div class="modal-info-item"><div class="modal-info-label">${l}</div><div class="modal-info-value">${v||'–'}</div></div>`).join('')}
+    </div>
+    <div class="modal-section"><div class="modal-section-title">🔭 Key Instruments</div><div class="modal-section-text">${r['Key Instruments']||'–'}</div></div>
+    <div class="modal-section"><div class="modal-section-title">🎯 Objectives</div><div class="modal-section-text">${r.Objectives||'–'}</div></div>
+    <div class="modal-section"><div class="modal-section-title">📝 Notes</div><div class="modal-section-text">${r.Notes||'–'}</div></div>
+    <div class="modal-links">
+      ${wikiUrl ? `<a class="modal-link-btn primary" href="${wikiUrl}" target="_blank">📖 Wikipedia</a>` : ''}
+      <a class="modal-link-btn secondary" href="${searchUrl}" target="_blank">🔍 Google</a>
+    </div>
+  `;
+  document.getElementById('roverModal').classList.add('open');
+}
+function closeRoverModal(e) { if (e.target.id === 'roverModal') closeRoverModalDirect(); }
+function closeRoverModalDirect() { document.getElementById('roverModal').classList.remove('open'); }
+
+// ══════════════════════════════════════════════════════
+// CHARTS – Overview
+// ══════════════════════════════════════════════════════
+const CHART_COLORS = ['#c9973a','#4a7fa5','#3a9b6a','#c94444','#8040c0','#3a9b8a','#c97b3a','#7a5030','#5a6a9a','#6a9a5a'];
+
+function buildOverviewCharts() {
+  // By country
+  const countryGroups = {};
+  MISSIONS_DATA.forEach(m => {
+    const g = getCountryGroup(m['Country/Agency']);
+    countryGroups[g] = (countryGroups[g] || 0) + 1;
+  });
+  const cSorted = Object.entries(countryGroups).sort((a,b) => b[1]-a[1]);
+  new Chart(document.getElementById('chartCountry'), {
+    type: 'bar',
+    data: { labels: cSorted.map(x=>x[0]), datasets: [{ data: cSorted.map(x=>x[1]), backgroundColor: CHART_COLORS, borderRadius: 6 }] },
+    options: { plugins: { legend: { display: false } }, scales: { x: { grid: { display:false } }, y: { beginAtZero: true, grid: { color: '#f0e8d5' } } }, maintainAspectRatio: false }
+  });
+
+  // By outcome
+  const outcomes = { 'Success': 0, 'Unsuccessful': 0, 'Partial': 0, 'Planned/Dev': 0 };
+  MISSIONS_DATA.forEach(m => {
+    const oc = getOutcomeClass(m.Outcome);
+    if (oc === 'success') outcomes['Success']++;
+    else if (oc === 'fail') outcomes['Unsuccessful']++;
+    else if (oc === 'partial') outcomes['Partial']++;
+    else outcomes['Planned/Dev']++;
+  });
+  new Chart(document.getElementById('chartOutcome'), {
+    type: 'doughnut',
+    data: { labels: Object.keys(outcomes), datasets: [{ data: Object.values(outcomes), backgroundColor: ['#3a9b6a','#c94444','#c97b3a','#4a7fa5'], borderWidth: 2, borderColor: 'white' }] },
+    options: { plugins: { legend: { position:'bottom', labels: { font: { size: 11 } } } }, maintainAspectRatio: false, cutout: '60%' }
+  });
+
+  // By type (top 10)
+  const typeGroups = groupBy(MISSIONS_DATA, 'Mission Type');
+  const tSorted = Object.entries(typeGroups).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  new Chart(document.getElementById('chartTypes'), {
+    type: 'bar',
+    data: { labels: tSorted.map(x=>x[0]), datasets: [{ data: tSorted.map(x=>x[1]), backgroundColor: CHART_COLORS, borderRadius: 4 }] },
+    options: { indexAxis:'y', plugins:{legend:{display:false}}, scales: { x:{beginAtZero:true,grid:{color:'#f0e8d5'}}, y:{grid:{display:false},ticks:{font:{size:10}}} }, maintainAspectRatio:false }
+  });
+
+  // By decade
+  const decades = {};
+  MISSIONS_DATA.forEach(m => {
+    const y = getYear(m['Launch Date']);
+    if (y) { const d = Math.floor(y/10)*10; decades[d] = (decades[d]||0)+1; }
+  });
+  const dSorted = Object.entries(decades).sort((a,b)=>Number(a[0])-Number(b[0]));
+  new Chart(document.getElementById('chartDecade'), {
+    type: 'bar',
+    data: {
+      labels: dSorted.map(x=>x[0]+'s'),
+      datasets: [{ label:'Missions', data: dSorted.map(x=>x[1]), backgroundColor: dSorted.map((_,i) => CHART_COLORS[i%CHART_COLORS.length]), borderRadius:6 }]
+    },
+    options: { plugins:{legend:{display:false}}, scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#f0e8d5'}}}, maintainAspectRatio:false }
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// CHARTS – Rovers
+// ══════════════════════════════════════════════════════
+function buildRoverCharts() {
+  const distData = ROVERS_DATA.map(r => ({ name: r['Rover Name'].replace('Apollo Lunar Roving Vehicle','LRV'), dist: parseDistance(r['Distance Traveled']) })).filter(x=>x.dist>0).sort((a,b)=>b.dist-a.dist).slice(0,12);
+  new Chart(document.getElementById('chartRoverDist'), {
+    type:'bar',
+    data:{ labels:distData.map(x=>x.name), datasets:[{data:distData.map(x=>x.dist),backgroundColor:CHART_COLORS,borderRadius:4}] },
+    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#f0e8d5'},title:{display:true,text:'km'}},y:{grid:{display:false},ticks:{font:{size:10}}}},maintainAspectRatio:false}
+  });
+
+  const massData = ROVERS_DATA.map(r=>({name:r['Rover Name'].replace('Apollo Lunar Roving Vehicle','LRV'),mass:parseMass(r.Mass)})).filter(x=>x.mass>0).sort((a,b)=>b.mass-a.mass).slice(0,12);
+  new Chart(document.getElementById('chartRoverMass'), {
+    type:'bar',
+    data:{labels:massData.map(x=>x.name),datasets:[{data:massData.map(x=>x.mass),backgroundColor:CHART_COLORS,borderRadius:4}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#f0e8d5'},title:{display:true,text:'kg'}},y:{grid:{display:false},ticks:{font:{size:10}}}},maintainAspectRatio:false}
+  });
+
+  const powerGroups = {};
+  ROVERS_DATA.forEach(r=>{
+    const p = r['Power Source']||'Unknown';
+    const key = p.includes('Solar')&&p.includes('Batt') ? 'Solar + Battery' : p.includes('Solar') ? 'Solar Only' : p.includes('RTG') ? 'RTG' : p.includes('Batt') ? 'Battery Only' : 'Other';
+    powerGroups[key] = (powerGroups[key]||0)+1;
+  });
+  new Chart(document.getElementById('chartRoverPower'), {
+    type:'doughnut',
+    data:{labels:Object.keys(powerGroups),datasets:[{data:Object.values(powerGroups),backgroundColor:['#c9973a','#4a7fa5','#3a9b6a','#c94444','#8040c0'],borderWidth:2,borderColor:'white'}]},
+    options:{plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},maintainAspectRatio:false,cutout:'55%'}
+  });
+
+  const rCountry = {};
+  ROVERS_DATA.forEach(r=>{ const g=getCountryGroup(r['Country/Agency']); rCountry[g]=(rCountry[g]||0)+1; });
+  new Chart(document.getElementById('chartRoverCountry'), {
+    type:'pie',
+    data:{labels:Object.keys(rCountry),datasets:[{data:Object.values(rCountry),backgroundColor:CHART_COLORS,borderWidth:2,borderColor:'white'}]},
+    options:{plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},maintainAspectRatio:false}
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// TIMELINE CHART
+// ══════════════════════════════════════════════════════
+function buildTimelineChart() {
+  const datasets = {
+    success: { label:'Success', data:[], backgroundColor:'rgba(58,155,106,0.7)', pointBackgroundColor:'#3a9b6a' },
+    fail: { label:'Unsuccessful', data:[], backgroundColor:'rgba(201,68,68,0.7)', pointBackgroundColor:'#c94444' },
+    partial: { label:'Partial', data:[], backgroundColor:'rgba(201,123,58,0.7)', pointBackgroundColor:'#c97b3a' },
+    planned: { label:'Planned/Future', data:[], backgroundColor:'rgba(74,127,165,0.7)', pointBackgroundColor:'#4a7fa5' },
+  };
+
+  MISSIONS_DATA.forEach(m => {
+    const y = getYear(m['Launch Date']);
+    if (!y) return;
+    const oc = getOutcomeClass(m.Outcome);
+    const ds = datasets[oc] || datasets.planned;
+    ds.data.push({ x: y, y: oc === 'success' ? 1 : oc === 'fail' ? -1 : oc === 'partial' ? 0.5 : 0, mission: m['Mission Name'], outcome: m.Outcome });
+  });
+
+  new Chart(document.getElementById('chartTimeline'), {
+    type:'scatter',
+    data:{ datasets: Object.values(datasets).map(d => ({...d, pointRadius:6, pointHoverRadius:10})) },
+    options:{
+      scales:{
+        x:{ type:'linear', min:1955, max:2036, title:{display:true,text:'Year'}, grid:{color:'#f0e8d5'}, ticks:{stepSize:5} },
+        y:{ display:false, min:-2, max:2 }
+      },
+      plugins:{
+        legend:{ position:'bottom' },
+        tooltip:{
+          callbacks:{
+            label: ctx => `${ctx.raw.mission} (${ctx.raw.outcome})`
+          }
+        }
+      },
+      maintainAspectRatio:false
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// ERA LISTS
+// ══════════════════════════════════════════════════════
+function buildEraLists() {
+  const eras = [
+    { id:'era1960', start:1958, end:1969 },
+    { id:'era1970', start:1970, end:1979 },
+    { id:'era2000', start:2000, end:2099 },
+  ];
+  eras.forEach(({id,start,end}) => {
+    const ms = MISSIONS_DATA.filter(m => { const y=getYear(m['Launch Date']); return y&&y>=start&&y<=end; });
+    document.getElementById(id).innerHTML = ms.map(m=>`
+      <div style="display:flex;align-items:center;gap:0.5rem;padding:0.4rem 0;border-bottom:1px solid var(--regolith-100);cursor:pointer;" onclick="openModal('${(m['Mission Name']||'').replace(/'/g,"\\'")}')">
+        <span class="badge ${getBadgeClass(m.Outcome)}" style="min-width:8px;min-height:8px;padding:0;width:8px;height:8px;border-radius:50%;display:inline-block;"></span>
+        <span style="font-size:0.82rem;font-weight:600;">${m['Mission Name']}</span>
+        <span style="font-size:0.72rem;color:var(--text-muted);margin-left:auto;">${getYear(m['Launch Date'])}</span>
+      </div>
+    `).join('');
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// ANALYTICS CHARTS
+// ══════════════════════════════════════════════════════
+function buildAnalyticsCharts() {
+  // Missions per year
+  const perYear = {};
+  MISSIONS_DATA.forEach(m => {
+    const y = getYear(m['Launch Date']);
+    if (y) perYear[y] = (perYear[y]||0)+1;
+  });
+  const years = Object.keys(perYear).map(Number).sort((a,b)=>a-b);
+  new Chart(document.getElementById('chartYearly'), {
+    type:'bar',
+    data:{
+      labels:years,
+      datasets:[{
+        label:'Missions', data:years.map(y=>perYear[y]),
+        backgroundColor: years.map(y => y>=2020?'rgba(201,151,58,0.8)':y>=2000?'rgba(74,127,165,0.7)':y>=1990?'rgba(130,80,200,0.6)':'rgba(58,155,106,0.7)'),
+        borderRadius:3
+      }]
+    },
+    options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{maxRotation:45,font:{size:9}}},y:{beginAtZero:true,grid:{color:'#f0e8d5'}}},maintainAspectRatio:false}
+  });
+
+  // Success rate by country group
+  const countryStats = {};
+  MISSIONS_DATA.forEach(m => {
+    const g = getCountryGroup(m['Country/Agency']);
+    if (!countryStats[g]) countryStats[g] = {success:0,total:0};
+    countryStats[g].total++;
+    if (getOutcomeClass(m.Outcome)==='success') countryStats[g].success++;
+  });
+  const csArr = Object.entries(countryStats).filter(([,v])=>v.total>=3).sort((a,b)=>b[1].success/b[1].total - a[1].success/a[1].total);
+  new Chart(document.getElementById('chartSuccessRate'), {
+    type:'bar',
+    data:{
+      labels:csArr.map(([k])=>k),
+      datasets:[
+        {label:'Success Rate',data:csArr.map(([,v])=>Math.round(v.success/v.total*100)),backgroundColor:csArr.map(([,v])=>v.success/v.total>0.5?'#3a9b6a':'#c94444'),borderRadius:4}
+      ]
+    },
+    options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,max:100,title:{display:true,text:'%'},grid:{color:'#f0e8d5'}}},maintainAspectRatio:false}
+  });
+
+  // Mission type evolution (stacked by era)
+  const eras = [[1958,1969],[1970,1989],[1990,2009],[2010,2025]];
+  const topTypes = ['Orbiter','Lander','Sample Return','Lander/Rover','Human Orbiter/Lander','Impact'];
+  const typeEvoDatasets = topTypes.map((type,i)=>({
+    label:type,
+    data:eras.map(([s,e])=>MISSIONS_DATA.filter(m=>{const y=getYear(m['Launch Date']);return y&&y>=s&&y<=e&&(m['Mission Type']===type||m['Mission Type']?.includes(type));}).length),
+    backgroundColor:CHART_COLORS[i],
+    stack:'stack'
+  }));
+  new Chart(document.getElementById('chartTypeEvo'), {
+    type:'bar',
+    data:{labels:eras.map(([s,e])=>`${s}–${e}`),datasets:typeEvoDatasets},
+    options:{plugins:{legend:{position:'right',labels:{font:{size:10}}}},scales:{x:{grid:{display:false},stacked:true},y:{beginAtZero:true,stacked:true,grid:{color:'#f0e8d5'}}},maintainAspectRatio:false}
+  });
+
+  // Cost chart
+  const costMissions = MISSIONS_DATA.filter(m=>m['Cost (USD)']&&m['Cost (USD)']!=='N/A'&&m['Cost (USD)']!='TBD').map(m=>{
+    const match = m['Cost (USD)'].replace(/[$,~B]/g,'').match(/([\d.]+)([MB]?)/);
+    if(!match) return null;
+    let v = parseFloat(match[1]);
+    if(match[2]==='B') v*=1000;
+    return {name:m['Mission Name'],cost:v};
+  }).filter(Boolean).sort((a,b)=>b.cost-a.cost).slice(0,12);
+  new Chart(document.getElementById('chartCost'), {
+    type:'bar',
+    data:{labels:costMissions.map(x=>x.name),datasets:[{data:costMissions.map(x=>x.cost),backgroundColor:CHART_COLORS,borderRadius:4}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{display:true,text:'$M'},grid:{color:'#f0e8d5'}},y:{grid:{display:false},ticks:{font:{size:9}}}},maintainAspectRatio:false}
+  });
+
+  // Destination
+  const destGroups = {'Orbiter':0,'Lander':0,'Sample Return':0,'Impact':0,'Human/Crewed':0,'Flyby':0,'Commercial':0};
+  MISSIONS_DATA.forEach(m=>{
+    const t = m['Mission Type']||'';
+    if(t.includes('Human')||t.includes('Crewed')||t.includes('Rover')&&t.includes('Human')) destGroups['Human/Crewed']++;
+    else if(t.includes('Sample')) destGroups['Sample Return']++;
+    else if(t.includes('Commercial')) destGroups['Commercial']++;
+    else if(t.includes('Lander')||t.includes('Hopper')) destGroups['Lander']++;
+    else if(t.includes('Orbiter')) destGroups['Orbiter']++;
+    else if(t.includes('Impact')) destGroups['Impact']++;
+    else if(t.includes('Flyby')) destGroups['Flyby']++;
+    else destGroups['Lander']++;
+  });
+  new Chart(document.getElementById('chartDestination'), {
+    type:'polarArea',
+    data:{labels:Object.keys(destGroups),datasets:[{data:Object.values(destGroups),backgroundColor:CHART_COLORS.map(c=>c+'bb')}]},
+    options:{plugins:{legend:{position:'right',labels:{font:{size:10}}}},maintainAspectRatio:false}
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// COUNTRY STATS TABLE
+// ══════════════════════════════════════════════════════
+function buildCountryStats() {
+  const stats = {};
+  MISSIONS_DATA.forEach(m => {
+    const g = getCountryGroup(m['Country/Agency']);
+    if (!stats[g]) stats[g] = {success:0,fail:0,partial:0,planned:0,total:0,latest:0};
+    stats[g].total++;
+    const oc = getOutcomeClass(m.Outcome);
+    if(oc==='success') stats[g].success++;
+    else if(oc==='fail') stats[g].fail++;
+    else if(oc==='partial') stats[g].partial++;
+    else stats[g].planned++;
+    const y = getYear(m['Launch Date']);
+    if(y && y > stats[g].latest) stats[g].latest = y;
+  });
+
+  const sorted = Object.entries(stats).sort((a,b)=>b[1].total-a[1].total);
+  document.getElementById('countryStatsBody').innerHTML = sorted.map(([country,s])=>`
+    <tr>
+      <td style="font-weight:600;">${country}</td>
+      <td style="text-align:center;">${s.total}</td>
+      <td style="text-align:center;"><span class="badge badge-success">${s.success}</span></td>
+      <td style="text-align:center;"><span class="badge badge-fail">${s.fail}</span></td>
+      <td style="text-align:center;"><span class="badge badge-partial">${s.partial}</span></td>
+      <td style="text-align:center;"><span class="badge badge-planned">${s.planned}</span></td>
+      <td style="text-align:center;font-weight:700;color:${s.success/s.total>0.5?'var(--success-green)':'var(--fail-red)'};">${Math.round(s.success/s.total*100)}%</td>
+      <td style="font-size:0.8rem;color:var(--text-muted);">${s.latest || '–'}</td>
+    </tr>
+  `).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════════════════════
+function setupSearch() {
+  const input = document.getElementById('globalSearch');
+  const dropdown = document.getElementById('searchDropdown');
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    if (q.length < 2) { dropdown.style.display = 'none'; return; }
+
+    const mResults = MISSIONS_DATA.filter(m =>
+      m['Mission Name']?.toLowerCase().includes(q) ||
+      m['Country/Agency']?.toLowerCase().includes(q) ||
+      m['Mission Type']?.toLowerCase().includes(q) ||
+      String(getYear(m['Launch Date'])||'').includes(q)
+    ).slice(0,8);
+
+    const rResults = ROVERS_DATA.filter(r =>
+      r['Rover Name']?.toLowerCase().includes(q) ||
+      r.Mission?.toLowerCase().includes(q) ||
+      r['Country/Agency']?.toLowerCase().includes(q)
+    ).slice(0,4);
+
+    if (mResults.length === 0 && rResults.length === 0) { dropdown.style.display = 'none'; return; }
+
+    dropdown.innerHTML = [
+      ...mResults.map(m => `
+        <div class="search-result-item" onclick="openModal('${(m['Mission Name']||'').replace(/'/g,"\\'")}');document.getElementById('searchDropdown').style.display='none'">
+          <div class="sr-name">${m['Mission Name']} <span class="sr-badge ${getBadgeClass(m.Outcome)}">${m.Outcome}</span></div>
+          <div class="sr-meta">🚀 ${m['Country/Agency']} · ${getYear(m['Launch Date'])||'?'} · ${m['Mission Type']}</div>
+        </div>
+      `),
+      ...rResults.map(r => `
+        <div class="search-result-item" onclick="showTab('rovers');openRoverModal(${r['S.No']});document.getElementById('searchDropdown').style.display='none'">
+          <div class="sr-name">🤖 ${r['Rover Name']} <span class="sr-badge badge-planned">${r.Status}</span></div>
+          <div class="sr-meta">${r['Country/Agency']} · ${r.Year} · ${r['Distance Traveled']}</div>
+        </div>
+      `)
+    ].join('');
+    dropdown.style.display = 'block';
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.header-search')) dropdown.style.display = 'none';
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// AI ASSISTANT
+// ══════════════════════════════════════════════════════
+function toggleAI() {
+  const w = document.getElementById('aiWindow');
+  w.classList.toggle('open');
+}
+
+function askAI(q) {
+  document.getElementById('aiInput').value = q;
+  sendAI();
+}
+
+function sendAI() {
+  const input = document.getElementById('aiInput');
+  const q = input.value.trim();
+  if (!q) return;
+  input.value = '';
+
+  const msgs = document.getElementById('aiMessages');
+
+  // Add user message
+  msgs.innerHTML += `<div class="ai-message user"><div class="ai-msg-bubble">${q}</div></div>`;
+
+  // Typing indicator
+  const typingId = 'typing-' + Date.now();
+  msgs.innerHTML += `<div class="ai-message assistant" id="${typingId}"><div class="ai-msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div></div>`;
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    document.getElementById(typingId)?.remove();
+    const answer = generateAIResponse(q);
+    msgs.innerHTML += `<div class="ai-message assistant"><div class="ai-msg-bubble">${answer}</div></div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 800 + Math.random() * 600);
+}
+
+function generateAIResponse(q) {
+  const ql = q.toLowerCase();
+  const total = MISSIONS_DATA.length;
+  const success = MISSIONS_DATA.filter(m=>getOutcomeClass(m.Outcome)==='success').length;
+  const fail = MISSIONS_DATA.filter(m=>getOutcomeClass(m.Outcome)==='fail').length;
+  const partial = MISSIONS_DATA.filter(m=>getOutcomeClass(m.Outcome)==='partial').length;
+
+  if (ql.includes('success rate') || ql.includes('how many success')) {
+    return `📊 <strong>Overall Success Rate: ${Math.round(success/total*100)}%</strong><br>
+    Out of ${total} missions:<br>
+    ✅ <strong>${success}</strong> Successful<br>
+    ❌ <strong>${fail}</strong> Failures<br>
+    ⚠️ <strong>${partial}</strong> Partial Success<br><br>
+    The early Space Race had many failures. Success rates improved dramatically after the 1970s.`;
+  }
+
+  if (ql.includes('most missions') || ql.includes('top country') || ql.includes('launched the most')) {
+    const groups = {};
+    MISSIONS_DATA.forEach(m=>{const g=getCountryGroup(m['Country/Agency']);groups[g]=(groups[g]||0)+1;});
+    const sorted = Object.entries(groups).sort((a,b)=>b[1]-a[1]);
+    return `🌍 <strong>Missions by Country/Agency:</strong><br>${sorted.slice(0,5).map(([ c, n], i)=>`${i+1}. ${c}: <strong>${n}</strong> missions`).join('<br>')}<br><br>The USA leads overall, though China is rapidly catching up in recent years.`;
+  }
+
+  if (ql.includes('farthest') || ql.includes('most distance') || ql.includes('longest')) {
+    const top = ROVERS_DATA.map(r=>({name:r['Rover Name'],dist:parseDistance(r['Distance Traveled'])})).filter(x=>x.dist>0).sort((a,b)=>b.dist-a.dist)[0];
+    return `🏆 The rover that traveled the <strong>farthest</strong> is:<br><strong>${top?.name}</strong> with <strong>${top?.dist} km</strong>!<br><br>Honorable mentions: Lunokhod 2 (39 km), Apollo LRV-3 (35.7 km), Apollo LRV-1 (27.9 km).`;
+  }
+
+  if (ql.includes('artemis')) {
+    const artemis = MISSIONS_DATA.filter(m=>m['Mission Name']?.includes('Artemis'));
+    return `🚀 <strong>Artemis Program Missions:</strong><br>${artemis.map(m=>`• <strong>${m['Mission Name']}</strong> (${getYear(m['Launch Date'])||'?'}): ${m.Outcome}`).join('<br>')}<br><br>Artemis III will be the first crewed Moon landing since Apollo 17 in 1972.`;
+  }
+
+  if (ql.includes('lunokhod') && ql.includes('yutu')) {
+    return `⚖️ <strong>Lunokhod 2 vs Yutu-2 Comparison:</strong><br>
+    📏 <strong>Distance:</strong> Yutu-2 (1.455+ km) vs Lunokhod 2 (39 km) — Lunokhod 2 won on distance<br>
+    ⏱️ <strong>Duration:</strong> Yutu-2 (7+ years, still active!) vs Lunokhod 2 (117 days)<br>
+    ⚖️ <strong>Mass:</strong> Lunokhod 2 (840 kg) vs Yutu-2 (140 kg)<br>
+    🌍 <strong>Location:</strong> Yutu-2 is on the far side (first ever!) vs Lunokhod 2 near-side<br><br>
+    Yutu-2 is the longest-operating rover in history! But Lunokhod 2 covered more ground.`;
+  }
+
+  if (ql.includes('china') || ql.includes('chang\'e')) {
+    const china = MISSIONS_DATA.filter(m=>m['Country/Agency']?.includes('China'));
+    return `🇨🇳 <strong>China's Lunar Program:</strong><br>${china.map(m=>`• <strong>${m['Mission Name']}</strong> (${getYear(m['Launch Date'])||'?'}): ${m.Outcome}`).join('<br>')}<br><br>China has an impressive <strong>100% success rate</strong> on launched missions and is planning more missions to the south pole.`;
+  }
+
+  if (ql.includes('india') || ql.includes('chandrayaan') || ql.includes('isro')) {
+    const india = MISSIONS_DATA.filter(m=>m['Country/Agency']?.includes('India'));
+    return `🇮🇳 <strong>India's Lunar Program (ISRO):</strong><br>${india.map(m=>`• <strong>${m['Mission Name']}</strong> (${getYear(m['Launch Date'])||'?'}): ${m.Outcome}`).join('<br>')}<br><br>Chandrayaan-3 was a landmark success — landing near the south pole for just ~$75M, cheaper than many Hollywood films!`;
+  }
+
+  if (ql.includes('south pole') || ql.includes('water ice')) {
+    const sp = MISSIONS_DATA.filter(m=>(m['Notes']||m['Objectives']||'').toLowerCase().includes('south pole'));
+    return `🏔️ <strong>South Pole Missions:</strong><br>${sp.slice(0,6).map(m=>`• <strong>${m['Mission Name']}</strong> (${getYear(m['Launch Date'])||'?'}): ${m.Outcome}`).join('<br>')}<br><br>The lunar south pole is crucial because permanently shadowed craters may contain <strong>water ice</strong>, vital for future human settlements.`;
+  }
+
+  if (ql.includes('rover') && (ql.includes('how many') || ql.includes('total'))) {
+    const active = ROVERS_DATA.filter(r=>r.Status==='ACTIVE').length;
+    const comp = ROVERS_DATA.filter(r=>r.Status==='Completed').length;
+    return `🤖 <strong>Lunar Rover Statistics:</strong><br>
+    Total rovers in dataset: <strong>${ROVERS_DATA.length}</strong><br>
+    Currently Active: <strong>${active}</strong> (Yutu-2!)<br>
+    Completed: <strong>${comp}</strong><br>
+    Lost/Failed: <strong>${ROVERS_DATA.filter(r=>r.Status==='Lost').length}</strong><br>
+    Planned/Development: <strong>${ROVERS_DATA.filter(r=>['Planned','In Development'].includes(r.Status)).length}</strong>`;
+  }
+
+  if (ql.includes('first') && ql.includes('landing')) {
+    return `🛬 <strong>First Lunar Landings:</strong><br>
+    🤖 <strong>First robotic soft landing:</strong> Luna 9 (USSR, Feb 1966)<br>
+    👨‍🚀 <strong>First crewed landing:</strong> Apollo 11 (USA, Jul 1969) — Armstrong & Aldrin<br>
+    🌑 <strong>First far side landing:</strong> Chang'e 4 (China, Jan 2019)<br>
+    🏔️ <strong>First south pole landing:</strong> Chandrayaan-3 (India, Aug 2023)<br>
+    💼 <strong>First commercial landing:</strong> Firefly Blue Ghost M1 (USA, Mar 2025)`;
+  }
+
+  if (ql.includes('expensive') || ql.includes('cost') || ql.includes('budget')) {
+    const expensive = MISSIONS_DATA.filter(m=>m['Cost (USD)']&&m['Cost (USD)']!=='N/A').map(m=>{
+      const match = m['Cost (USD)'].replace(/[$,~]/g,'').match(/([\d.]+)([MB]?)/);
+      if(!match) return null;
+      let v=parseFloat(match[1]);
+      if(match[2]==='B') v*=1000;
+      return {name:m['Mission Name'],cost:v,costStr:m['Cost (USD)']};
+    }).filter(Boolean).sort((a,b)=>b.cost-a.cost).slice(0,5);
+    return `💰 <strong>Most Expensive Missions:</strong><br>${expensive.map((m,i)=>`${i+1}. <strong>${m.name}</strong>: ${m.costStr}`).join('<br>')}<br><br>In contrast, India's Chandrayaan-3 cost only ~$75M for a successful south pole landing!`;
+  }
+
+  if (ql.includes('ussr') || ql.includes('soviet') || ql.includes('luna')) {
+    const ussr = MISSIONS_DATA.filter(m=>m['Country/Agency']==='USSR');
+    const succS = ussr.filter(m=>getOutcomeClass(m.Outcome)==='success').length;
+    return `☭ <strong>Soviet/USSR Lunar Program:</strong><br>
+    Total missions: <strong>${ussr.length}</strong><br>
+    Successes: <strong>${succS}</strong> (${Math.round(succS/ussr.length*100)}%)<br><br>
+    Key achievements:<br>
+    • Luna 1: First to reach lunar vicinity (1959)<br>
+    • Luna 2: First to impact Moon (1959)<br>
+    • Luna 9: First soft landing (1966)<br>
+    • Lunokhod 1: First lunar rover (1970)<br>
+    • Luna 16: First robotic sample return (1970)`;
+  }
+
+  // Generic fallback with stats
+  const keywords = q.split(' ').filter(w=>w.length>3);
+  const related = MISSIONS_DATA.filter(m=>keywords.some(k=>
+    (m['Mission Name']||'').toLowerCase().includes(k) ||
+    (m['Notes']||'').toLowerCase().includes(k) ||
+    (m['Objectives']||'').toLowerCase().includes(k)
+  )).slice(0,4);
+
+  if (related.length > 0) {
+    return `🔍 Found <strong>${related.length}</strong> related missions:<br>${related.map(m=>`• <strong>${m['Mission Name']}</strong> (${getYear(m['Launch Date'])||'?'}): ${m.Outcome} — ${(m['Objectives']||'').slice(0,80)}…`).join('<br>')}<br><br>Try clicking on a mission in the <strong>All Missions</strong> tab for full details!`;
+  }
+
+  return `🤔 I have data on <strong>${total} moon missions</strong> and <strong>${ROVERS_DATA.length} rovers</strong>. Try asking:<br>
+  • "What was the overall success rate?"<br>
+  • "Which country launched the most missions?"<br>
+  • "Tell me about China's lunar program"<br>
+  • "Compare Lunokhod and Yutu-2"<br>
+  • "Which rover traveled the farthest?"<br>
+  • "What are the Artemis missions?"`;
+}
+</script>
+</body>
+</html>
