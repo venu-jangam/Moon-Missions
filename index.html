@@ -459,7 +459,11 @@
   }
   .badge-success { background:rgba(58,155,106,0.12); color:#2d7a55; }
   .badge-fail { background:rgba(201,68,68,0.1); color:#a03030; }
+  .badge-fail-launch { background:rgba(220,50,50,0.12); color:#b32020; border: 1px solid rgba(220,50,50,0.3); }
+  .badge-fail-landing { background:rgba(180,68,68,0.12); color:#903030; }
+  .badge-fail-midcourse { background:rgba(201,100,68,0.12); color:#a04030; }
   .badge-partial { background:rgba(201,123,58,0.1); color:#9a5e20; }
+  .badge-partial-degraded { background:rgba(201,160,58,0.15); color:#9a7e20; border: 1px solid rgba(201,160,58,0.4); }
   .badge-planned { background:rgba(74,127,165,0.1); color:#3a6585; }
   .badge-active { background:rgba(58,155,138,0.12); color:#2d7a6f; }
   .badge-development { background:rgba(130,80,200,0.1); color:#7040b0; }
@@ -1057,7 +1061,7 @@
   <div class="tab-panel" id="panel-missions">
     <!-- Filters -->
     <div class="filter-bar">
-      <span class="filter-label">🔽 Filter by:</span>
+      <span class="filter-label">🔍 Filter by:</span>
       <select class="filter-select" id="fOutcome" onchange="applyFilters()">
         <option value="">All Outcomes</option>
       </select>
@@ -1076,8 +1080,44 @@
         <option value="2013-2019">New Space (2013–19)</option>
         <option value="2020-2030">Artemis Era (2020+)</option>
       </select>
-      <button class="filter-reset" onclick="resetFilters()">✕ Reset</button>
+      <button class="filter-reset" onclick="resetFilters()">🔄 Reset</button>
     </div>
+
+    <!-- Outcome Legend Banner -->
+    <details class="legend-card" style="background:var(--regolith-50); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1rem 1.2rem; margin-bottom:1.5rem;" open>
+      <summary style="font-weight:700; font-size:0.9rem; cursor:pointer; color:var(--text-primary); display:flex; align-items:center; justify-content:space-between;">
+        <span>📊 Mission Outcome Success Criteria & Categorization Legend</span>
+        <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">Click to expand/collapse</span>
+      </summary>
+      <div class="legend-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1rem; margin-top:1rem; font-size:0.82rem;">
+        <div style="background:white; padding:0.8rem; border-radius:8px; border-left:4px solid #2d7a55;">
+          <div style="font-weight:700; color:#2d7a55; margin-bottom:4px;">✅ FULL SUCCESS</div>
+          <div>Primary objectives achieved nominally.</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;"><strong>Example:</strong> SLIM (Nominal landing & ops)</div>
+        </div>
+        <div style="background:white; padding:0.8rem; border-radius:8px; border-left:4px solid #9a5e20;">
+          <div style="font-weight:700; color:#9a5e20; margin-bottom:4px;">⚠️ PARTIAL SUCCESS</div>
+          <ul style="margin:4px 0 0 1rem; padding:0; font-size:0.75rem;">
+            <li><strong>Partial:</strong> Primary met, secondary failed (Chandrayaan-2 Orbiter)</li>
+            <li><strong>Degraded:</strong> Functional, reduced ops (IM-1 Tilted)</li>
+            <li><strong>Component:</strong> Subsystem science done (Peregrine)</li>
+          </ul>
+        </div>
+        <div style="background:white; padding:0.8rem; border-radius:8px; border-left:4px solid #a03030;">
+          <div style="font-weight:700; color:#a03030; margin-bottom:4px;">❌ FAILURE</div>
+          <ul style="margin:4px 0 0 1rem; padding:0; font-size:0.75rem;">
+            <li><strong>Launch:</strong> Booster anomaly</li>
+            <li><strong>Mid-Course:</strong> Propulsion/trajectory loss (Luna 25)</li>
+            <li><strong>Landing:</strong> Hard impact on surface (iSpace 1&2)</li>
+            <li><strong>Orbital:</strong> Descent crash (Chandrayaan-2 Lander)</li>
+          </ul>
+        </div>
+        <div style="background:white; padding:0.8rem; border-radius:8px; border-left:4px solid #3a6585;">
+          <div style="font-weight:700; color:#3a6585; margin-bottom:4px;">🗓️ PLANNED / FUTURE</div>
+          <div>Upcoming scheduled missions.</div>
+        </div>
+      </div>
+    </details>
 
     <!-- Table -->
     <div class="table-container">
@@ -1467,22 +1507,64 @@ const ROVER_IMAGES = {
 // HELPERS
 // ══════════════════════════════════════════════════════
 function getOutcomeClass(outcome) {
+  if (typeof outcome === 'object') {
+    const c = outcome['Outcome Category'];
+    if (c === 'FULL SUCCESS') return 'success';
+    if (c === 'PARTIAL SUCCESS') return 'partial';
+    if (c === 'FAILURE') return 'fail';
+    return 'planned';
+  }
   if (!outcome) return 'planned';
   const o = outcome.toUpperCase();
-  if (o.includes('SUCCESS')) return 'success';
+  if (o.includes('SUCCESS') || o.includes('ACTIVE')) return 'success';
   if (o.includes('UNSUCCESSFUL') || o.includes('FAIL') || o.includes('CRASH') || o.includes('LOST')) return 'fail';
   if (o.includes('PARTIAL')) return 'partial';
   if (o.includes('PLANNED') || o.includes('DEVELOPMENT') || o.includes('DELAYED') || o.includes('CANCELLED') || o.includes('IN DEV')) return 'planned';
-  if (o.includes('ACTIVE')) return 'success';
   return 'planned';
 }
+
 function getBadgeClass(outcome) {
+  if (typeof outcome === 'object') {
+    const c = outcome['Outcome Category'];
+    const sc = outcome['Outcome Subcategory'];
+    if (c === 'FULL SUCCESS') return 'badge-success';
+    if (c === 'PARTIAL SUCCESS') {
+      if (sc === 'Degraded') return 'badge-partial-degraded';
+      return 'badge-partial';
+    }
+    if (c === 'FAILURE') {
+      if (sc === 'Launch') return 'badge-fail-launch';
+      if (sc === 'Landing') return 'badge-fail-landing';
+      if (sc === 'Mid-course') return 'badge-fail-midcourse';
+      return 'badge-fail';
+    }
+    return 'badge-planned';
+  }
   const oc = getOutcomeClass(outcome);
   return oc === 'success' ? 'badge-success' : oc === 'fail' ? 'badge-fail' : oc === 'partial' ? 'badge-partial' : 'badge-planned';
 }
+
 function getBadgeIcon(outcome) {
+  if (typeof outcome === 'object') {
+    const c = outcome['Outcome Category'];
+    if (c === 'FULL SUCCESS') return '✅';
+    if (c === 'PARTIAL SUCCESS') return '⚠️';
+    if (c === 'FAILURE') return '❌';
+    return '🗓️';
+  }
   const oc = getOutcomeClass(outcome);
   return oc === 'success' ? '✅' : oc === 'fail' ? '❌' : oc === 'partial' ? '⚠️' : '🔵';
+}
+
+function getBadgeHTML(m) {
+  if (!m) return '';
+  const badgeCls = getBadgeClass(m);
+  const icon = getBadgeIcon(m);
+  const tooltipText = m['Outcome Details'] ? String(m['Outcome Details']).replace(/"/g, '&quot;') : '';
+  const label = m['Outcome Subcategory'] && m['Outcome Subcategory'] !== 'N/A' && m['Outcome Subcategory'] !== 'Nominal' 
+    ? `${m['Outcome Category'] === 'PARTIAL SUCCESS' ? 'Partial' : 'Failed'}: ${m['Outcome Subcategory']}` 
+    : m['Outcome Category'] || m.Outcome;
+  return `<span class="badge ${badgeCls}" title="${tooltipText}">${icon} ${label}</span>`;
 }
 function getYear(dateStr) {
   if (!dateStr) return null;
@@ -1628,7 +1710,7 @@ function buildNotableMissions() {
           <div class="mission-card-name">${n.name}</div>
           <div class="mission-card-meta">${n.note}</div>
           <div class="mission-card-footer">
-            <span class="badge ${getBadgeClass(m.Outcome)}">${getBadgeIcon(m.Outcome)} ${m.Outcome || 'N/A'}</span>
+            ${getBadgeHTML(m)}
             <div style="display:flex;gap:10px;align-items:center;">
               <button class="compare-btn-el ${isCompareActive('mission', n.name) ? 'active' : ''}" data-id="mission-${n.name}" onclick="toggleCompare('mission', '${n.name.replace(/'/g,"\\'")}', event)" title="Compare">⚖️</button>
               <span style="font-size:0.75rem;color:var(--text-muted);">${m['Launch Date'] ? getYear(m['Launch Date']) : ''}</span>
@@ -1645,12 +1727,30 @@ function buildNotableMissions() {
 // FILTERS
 // ══════════════════════════════════════════════════════
 function buildFilters() {
-  const outcomes = [...new Set(MISSIONS_DATA.map(m => m.Outcome).filter(Boolean))].sort();
   const types = [...new Set(MISSIONS_DATA.map(m => m['Mission Type']).filter(Boolean))].sort();
   const countries = [...new Set(MISSIONS_DATA.map(m => getCountryGroup(m['Country/Agency'])))].sort();
 
   const fOutcome = document.getElementById('fOutcome');
-  outcomes.forEach(o => { const opt = document.createElement('option'); opt.value = o; opt.textContent = o; fOutcome.appendChild(opt); });
+  fOutcome.innerHTML = `
+    <option value="">All Outcomes</option>
+    <optgroup label="Primary Categories">
+      <option value="cat:FULL SUCCESS">✅ Full Success</option>
+      <option value="cat:PARTIAL SUCCESS">⚠️ Partial Success</option>
+      <option value="cat:FAILURE">❌ Failure</option>
+      <option value="cat:PLANNED/FUTURE">🗓️ Planned / Future</option>
+    </optgroup>
+    <optgroup label="Partial Sub-categories">
+      <option value="sub:Degraded">⚠️ Degraded Success (e.g. Tilted)</option>
+      <option value="sub:Component">⚠️ Component Success</option>
+      <option value="sub:Orbiter Success">⚠️ Orbiter Success</option>
+    </optgroup>
+    <optgroup label="Failure Sub-categories">
+      <option value="sub:Launch">❌ Launch / Booster Failure</option>
+      <option value="sub:Mid-course">❌ Mid-Course Anomaly</option>
+      <option value="sub:Landing">❌ Landing / Hard Impact</option>
+      <option value="sub:Orbital">❌ Orbital Failure</option>
+    </optgroup>
+  `;
 
   const fType = document.getElementById('fType');
   types.forEach(t => { const opt = document.createElement('option'); opt.value = t; opt.textContent = t; fType.appendChild(opt); });
@@ -1661,6 +1761,7 @@ function buildFilters() {
   // Rover country filter
   const rCountries = [...new Set(ROVERS_DATA.map(r => getCountryGroup(r['Country/Agency'])))].sort();
   const rfCountry = document.getElementById('rfCountry');
+  rfCountry.innerHTML = '<option value="">All Countries</option>';
   rCountries.forEach(c => { const opt = document.createElement('option'); opt.value = c; opt.textContent = c; rfCountry.appendChild(opt); });
 }
 
@@ -1671,7 +1772,17 @@ function applyFilters() {
   const era = document.getElementById('fEra').value;
 
   filteredMissions = MISSIONS_DATA.filter(m => {
-    if (outcome && m.Outcome !== outcome) return false;
+    if (outcome) {
+      if (outcome.startsWith('cat:')) {
+        const catVal = outcome.replace('cat:', '');
+        if (m['Outcome Category'] !== catVal) return false;
+      } else if (outcome.startsWith('sub:')) {
+        const subVal = outcome.replace('sub:', '');
+        if (m['Outcome Subcategory'] !== subVal) return false;
+      } else if (m.Outcome !== outcome && m['Outcome Category'] !== outcome) {
+        return false;
+      }
+    }
     if (type && m['Mission Type'] !== type) return false;
     if (country && getCountryGroup(m['Country/Agency']) !== country) return false;
     if (era) {
@@ -1765,7 +1876,7 @@ function renderMissionsTable() {
         <td style="font-size:0.82rem;">${m['Country/Agency']}</td>
         <td style="font-size:0.82rem;white-space:nowrap;">${m['Launch Date']}</td>
         <td style="font-size:0.8rem;">${m['Mission Type']}</td>
-        <td><span class="badge ${getBadgeClass(m.Outcome)}">${getBadgeIcon(m.Outcome)} ${m.Outcome}</span></td>
+        <td>${getBadgeHTML(m)}</td>
         <td style="font-size:0.78rem;color:var(--text-muted);">${m['Launch Vehicle'] || '–'}</td>
         <td style="font-size:0.78rem;color:var(--text-muted);">${m['Cost (USD)'] || '–'}</td>
         <td>
@@ -1792,7 +1903,7 @@ function renderMissionsTable() {
             <div class="mission-card-meta">${m['Country/Agency']} · ${getYear(m['Launch Date']) || '?'}</div>
             <div style="font-size:0.78rem;color:var(--text-secondary);margin:0.2rem 0;">${m['Mission Type']}</div>
             <div class="mission-card-footer">
-              <span class="badge ${getBadgeClass(m.Outcome)}">${getBadgeIcon(m.Outcome)} ${m.Outcome}</span>
+              ${getBadgeHTML(m)}
               <div style="display:flex;gap:10px;align-items:center;">
                 <button class="compare-btn-el ${isCompareActive('mission', m['Mission Name']) ? 'active' : ''}" data-id="mission-${m['Mission Name']}" onclick="toggleCompare('mission', '${(m['Mission Name']||'').replace(/'/g,"\\'")}', event)" title="Compare">⚖️</button>
                 <span style="font-size:0.72rem;color:var(--text-muted);">${m['Cost (USD)'] || ''}</span>
@@ -1828,7 +1939,7 @@ function openModal(name) {
   const m = MISSIONS_DATA.find(x => x['Mission Name'] === name);
   if (!m) return;
   document.getElementById('modalMissionName').textContent = m['Mission Name'];
-  document.getElementById('modalBadge').innerHTML = `<span class="badge ${getBadgeClass(m.Outcome)}" style="font-size:0.85rem;">${getBadgeIcon(m.Outcome)} ${m.Outcome}</span>`;
+  document.getElementById('modalBadge').innerHTML = getBadgeHTML(m);
 
   // Images
   const imgUrl = MISSION_IMAGES[m['Mission Name']];
@@ -1840,7 +1951,8 @@ function openModal(name) {
   ` : '';
 
   // Info grid
-  document.getElementById('modalInfoGrid').innerHTML = [
+  // Info grid
+  const infoItems = [
     ['Country/Agency', m['Country/Agency']],
     ['Launch Date', m['Launch Date']],
     ['Arrival/Landing', m['Arrival/Landing Date']],
@@ -1848,8 +1960,24 @@ function openModal(name) {
     ['Launch Vehicle', m['Launch Vehicle']],
     ['Duration', m['Mission Duration']],
     ['Cost (USD)', m['Cost (USD)']],
-    ['Outcome', m['Outcome']],
-  ].map(([l,v]) => `<div class="modal-info-item"><div class="modal-info-label">${l}</div><div class="modal-info-value">${v||'–'}</div></div>`).join('');
+    ['Outcome Category', m['Outcome Category'] || m.Outcome],
+    ['Outcome Subcategory', m['Outcome Subcategory'] || 'Nominal'],
+    ['Outcome Details', m['Outcome Details'] || m.Notes],
+  ];
+
+  if (m['Anomaly Type'] && m['Anomaly Type'] !== 'N/A') {
+    infoItems.push(['Anomaly Type', m['Anomaly Type']]);
+  }
+  if (m['Orbiter Success']) {
+    infoItems.push(['Orbiter Success', m['Orbiter Success']]);
+  }
+  if (m['Lander Success']) {
+    infoItems.push(['Lander Success', m['Lander Success']]);
+  }
+
+  document.getElementById('modalInfoGrid').innerHTML = infoItems.map(([l,v]) => 
+    `<div class="modal-info-item"><div class="modal-info-label">${l}</div><div class="modal-info-value">${v||'–'}</div></div>`
+  ).join('');
 
   document.getElementById('modalObjectives').textContent = m['Objectives'] || '–';
   document.getElementById('modalInstruments').textContent = m['Special Systems/Instruments'] || '–';
@@ -2128,7 +2256,7 @@ function buildEraLists() {
     const ms = MISSIONS_DATA.filter(m => { const y=getYear(m['Launch Date']); return y&&y>=start&&y<=end; });
     document.getElementById(id).innerHTML = ms.map(m=>`
       <div style="display:flex;align-items:center;gap:0.5rem;padding:0.4rem 0;border-bottom:1px solid var(--regolith-100);cursor:pointer;" onclick="openModal('${(m['Mission Name']||'').replace(/'/g,"\\'")}')">
-        <span class="badge ${getBadgeClass(m.Outcome)}" style="min-width:8px;min-height:8px;padding:0;width:8px;height:8px;border-radius:50%;display:inline-block;"></span>
+        <span class="badge ${getBadgeClass(m)}" style="min-width:8px;min-height:8px;padding:0;width:8px;height:8px;border-radius:50%;display:inline-block;"></span>
         <span style="font-size:0.82rem;font-weight:600;">${m['Mission Name']}</span>
         <span style="font-size:0.72rem;color:var(--text-muted);margin-left:auto;">${getYear(m['Launch Date'])}</span>
       </div>
@@ -2291,7 +2419,7 @@ function setupSearch() {
     dropdown.innerHTML = [
       ...mResults.map(m => `
         <div class="search-result-item" onclick="openModal('${(m['Mission Name']||'').replace(/'/g,"\\'")}');document.getElementById('searchDropdown').style.display='none'">
-          <div class="sr-name">${m['Mission Name']} <span class="sr-badge ${getBadgeClass(m.Outcome)}">${m.Outcome}</span></div>
+          <div class="sr-name">${m['Mission Name']} <span style="transform: scale(0.85); transform-origin: left center; display: inline-block; margin-left: 5px;">${getBadgeHTML(m)}</span></div>
           <div class="sr-meta">🚀 ${m['Country/Agency']} · ${getYear(m['Launch Date'])||'?'} · ${m['Mission Type']}</div>
         </div>
       `),

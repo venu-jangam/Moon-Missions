@@ -12,7 +12,11 @@
     "Objectives": "First attempted lunar mission; test lunar orbit capabilities",
     "Special Systems/Instruments": "Thor-Able rocket",
     "Cost (USD)": "~$10M",
-    "Notes": "First US lunar attempt, exploded at T+77s"
+    "Notes": "First US lunar attempt, exploded at T+77s",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "First US lunar attempt, exploded at T+77s",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 2,
@@ -27,7 +31,11 @@
     "Objectives": "First Soviet lunar attempt; impact the Moon",
     "Special Systems/Instruments": "R-7 ICBM derived launcher",
     "Cost (USD)": "~$5M",
-    "Notes": "Launch failure at T+92s"
+    "Notes": "Launch failure at T+92s",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "Launch failure at T+92s",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 3,
@@ -42,7 +50,11 @@
     "Objectives": "Lunar orbit test; measure radiation",
     "Special Systems/Instruments": "Thor-Able rocket, magnetometer",
     "Cost (USD)": "~$10M",
-    "Notes": "Reached 113,800 km but fell back to Earth"
+    "Notes": "Reached 113,800 km but fell back to Earth",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Reached 113,800 km but fell back to Earth",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 4,
@@ -57,7 +69,11 @@
     "Objectives": "Lunar impact attempt",
     "Special Systems/Instruments": "R-7 derived launcher",
     "Cost (USD)": "~$5M",
-    "Notes": "Launch failure at T+104s"
+    "Notes": "Launch failure at T+104s",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "Launch failure at T+104s",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 5,
@@ -72,7 +88,11 @@
     "Objectives": "Lunar orbit attempt",
     "Special Systems/Instruments": "Thor-Able rocket",
     "Cost (USD)": "~$10M",
-    "Notes": "Third stage failed to ignite"
+    "Notes": "Third stage failed to ignite",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Third stage failed to ignite",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 6,
@@ -87,7 +107,11 @@
     "Objectives": "Lunar impact attempt",
     "Special Systems/Instruments": "R-7 derived launcher",
     "Cost (USD)": "~$5M",
-    "Notes": "Launch failure at T+254s"
+    "Notes": "Launch failure at T+254s",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "Launch failure at T+254s",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 7,
@@ -102,7 +126,11 @@
     "Objectives": "Lunar flyby attempt",
     "Special Systems/Instruments": "Juno II rocket, radiation detector",
     "Cost (USD)": "~$8M",
-    "Notes": "First stage shutdown early, reached 102,360 km"
+    "Notes": "First stage shutdown early, reached 102,360 km",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "First stage shutdown early, reached 102,360 km",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 8,
@@ -117,7 +145,11 @@
     "Objectives": "First lunar impact attempt; measure radiation, magnetic fields",
     "Special Systems/Instruments": "R-7 derived, magnetometer, geiger counters, scintillation counters",
     "Cost (USD)": "~$10M",
-    "Notes": "Missed Moon by 5,995 km; first spacecraft to reach escape velocity; discovered solar wind"
+    "Notes": "Missed Moon by 5,995 km; first spacecraft to reach escape velocity; discovered solar wind",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Missed Moon by 5,995 km; first spacecraft to reach escape velocity; discovered solar wind",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 9,
@@ -132,7 +164,11 @@
     "Objectives": "Lunar flyby; radiation measurements",
     "Special Systems/Instruments": "Juno II, photoelectric sensor",
     "Cost (USD)": "~$8M",
-    "Notes": "Passed Moon at 60,000 km; returned radiation data; entered solar orbit"
+    "Notes": "Passed Moon at 60,000 km; returned radiation data; entered solar orbit",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Passed Moon at 60,000 km; returned radiation data; entered solar orbit",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 10,
@@ -147,7 +183,11 @@
     "Objectives": "Lunar impact attempt",
     "Special Systems/Instruments": "R-7 derived",
     "Cost (USD)": "~$5M",
-    "Notes": "Guidance system failure"
+    "Notes": "Guidance system failure",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Guidance system failure",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 11,
@@ -162,7 +202,11 @@
     "Objectives": "First spacecraft to impact the Moon; measure radiation, magnetic fields",
     "Special Systems/Instruments": "R-7 derived, magnetometer, geiger counters, micrometeorite detectors",
     "Cost (USD)": "~$10M",
-    "Notes": "FIRST spacecraft to reach surface of another celestial body; discovered no lunar magnetic field"
+    "Notes": "FIRST spacecraft to reach surface of another celestial body; discovered no lunar magnetic field",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST spacecraft to reach surface of another celestial body; discovered no lunar magnetic field",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 12,
@@ -177,7 +221,11 @@
     "Objectives": "Lunar orbiter attempt",
     "Special Systems/Instruments": "Atlas-Able rocket",
     "Cost (USD)": "~$15M",
-    "Notes": "Payload shroud destroyed at T+45s"
+    "Notes": "Payload shroud destroyed at T+45s",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "Payload shroud destroyed at T+45s",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 13,
@@ -192,7 +240,11 @@
     "Objectives": "First photographs of lunar far side",
     "Special Systems/Instruments": "R-7 derived, Yenisey-2 camera system, film return capsule",
     "Cost (USD)": "~$15M",
-    "Notes": "FIRST images of Moon's far side; photographed 70% of far side"
+    "Notes": "FIRST images of Moon's far side; photographed 70% of far side",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST images of Moon's far side; photographed 70% of far side",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 14,
@@ -207,7 +259,11 @@
     "Objectives": "Lunar orbiter attempt",
     "Special Systems/Instruments": "Atlas-Able rocket, TV camera",
     "Cost (USD)": "~$15M",
-    "Notes": "Payload shroud failed, vehicle destroyed"
+    "Notes": "Payload shroud failed, vehicle destroyed",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Payload shroud failed, vehicle destroyed",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 15,
@@ -222,7 +278,11 @@
     "Objectives": "Lunar orbiter attempt",
     "Special Systems/Instruments": "Atlas-Able rocket",
     "Cost (USD)": "~$15M",
-    "Notes": "Second stage premature cutoff"
+    "Notes": "Second stage premature cutoff",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Second stage premature cutoff",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 16,
@@ -237,7 +297,11 @@
     "Objectives": "Lunar orbiter attempt",
     "Special Systems/Instruments": "Atlas-Able rocket",
     "Cost (USD)": "~$15M",
-    "Notes": "First stage explosion"
+    "Notes": "First stage explosion",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "First stage explosion",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 17,
@@ -252,7 +316,11 @@
     "Objectives": "Test parking orbit technology",
     "Special Systems/Instruments": "Atlas-Agena B, TV system test",
     "Cost (USD)": "~$12M",
-    "Notes": "Agena restart failure, reentered Earth atmosphere"
+    "Notes": "Agena restart failure, reentered Earth atmosphere",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Agena restart failure, reentered Earth atmosphere",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 18,
@@ -267,7 +335,11 @@
     "Objectives": "Test parking orbit technology",
     "Special Systems/Instruments": "Atlas-Agena B",
     "Cost (USD)": "~$12M",
-    "Notes": "Agena restart failure, reentered Earth atmosphere"
+    "Notes": "Agena restart failure, reentered Earth atmosphere",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Agena restart failure, reentered Earth atmosphere",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 19,
@@ -282,7 +354,11 @@
     "Objectives": "Lunar impact; TV imaging until impact",
     "Special Systems/Instruments": "Atlas-Agena B, TV camera, gamma ray spectrometer, seismometer",
     "Cost (USD)": "~$25M",
-    "Notes": "Missed Moon by 36,800 km due to guidance error; entered solar orbit"
+    "Notes": "Missed Moon by 36,800 km due to guidance error; entered solar orbit",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Orbital",
+    "Outcome Details": "Missed Moon by 36,800 km due to guidance error; entered solar orbit",
+    "Anomaly Type": "Navigation/Propulsion"
   },
   {
     "S.No": 20,
@@ -297,7 +373,11 @@
     "Objectives": "Lunar impact; TV imaging",
     "Special Systems/Instruments": "Atlas-Agena B, TV camera, gamma ray spectrometer, seismometer",
     "Cost (USD)": "~$25M",
-    "Notes": "Impact on far side; no data returned due to computer/timer failure; first US spacecraft to reach Moon"
+    "Notes": "Impact on far side; no data returned due to computer/timer failure; first US spacecraft to reach Moon",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Impact on far side; no data returned due to computer/timer failure; first US spacecraft to reach Moon",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 21,
@@ -312,7 +392,11 @@
     "Objectives": "Lunar impact; TV imaging",
     "Special Systems/Instruments": "Atlas-Agena B, TV camera, gamma ray spectrometer",
     "Cost (USD)": "~$25M",
-    "Notes": "Solar panel failed, missed Moon by 720 km"
+    "Notes": "Solar panel failed, missed Moon by 720 km",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Solar panel failed, missed Moon by 720 km",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 22,
@@ -327,7 +411,11 @@
     "Objectives": "First Soviet soft landing attempt",
     "Special Systems/Instruments": "R-7 derived, landing system",
     "Cost (USD)": "~$15M",
-    "Notes": "Failed to leave Earth orbit"
+    "Notes": "Failed to leave Earth orbit",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Orbital",
+    "Outcome Details": "Failed to leave Earth orbit",
+    "Anomaly Type": "Navigation/Propulsion"
   },
   {
     "S.No": 23,
@@ -342,7 +430,11 @@
     "Objectives": "Soft landing attempt",
     "Special Systems/Instruments": "R-7 derived",
     "Cost (USD)": "~$15M",
-    "Notes": "Failed to leave Earth orbit"
+    "Notes": "Failed to leave Earth orbit",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Orbital",
+    "Outcome Details": "Failed to leave Earth orbit",
+    "Anomaly Type": "Navigation/Propulsion"
   },
   {
     "S.No": 24,
@@ -357,7 +449,11 @@
     "Objectives": "Soft landing attempt",
     "Special Systems/Instruments": "R-7 derived, landing system",
     "Cost (USD)": "~$15M",
-    "Notes": "Missed Moon by 8,336 km; entered solar orbit"
+    "Notes": "Missed Moon by 8,336 km; entered solar orbit",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Orbital",
+    "Outcome Details": "Missed Moon by 8,336 km; entered solar orbit",
+    "Anomaly Type": "Navigation/Propulsion"
   },
   {
     "S.No": 25,
@@ -372,7 +468,11 @@
     "Objectives": "Lunar impact imaging",
     "Special Systems/Instruments": "Atlas-Agena B, 6 TV cameras",
     "Cost (USD)": "~$25M",
-    "Notes": "Impact in Sea of Tranquility; TV cameras failed, no images"
+    "Notes": "Impact in Sea of Tranquility; TV cameras failed, no images",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Impact in Sea of Tranquility; TV cameras failed, no images",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 26,
@@ -387,7 +487,11 @@
     "Objectives": "Soft landing attempt",
     "Special Systems/Instruments": "R-7 derived",
     "Cost (USD)": "~$15M",
-    "Notes": "Launch vehicle failure"
+    "Notes": "Launch vehicle failure",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "Launch vehicle failure",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 27,
@@ -402,7 +506,11 @@
     "Objectives": "Soft landing attempt",
     "Special Systems/Instruments": "R-7 derived",
     "Cost (USD)": "~$15M",
-    "Notes": "Launch vehicle failure"
+    "Notes": "Launch vehicle failure",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "Launch vehicle failure",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 28,
@@ -417,7 +525,11 @@
     "Objectives": "Lunar impact imaging; close-up photography",
     "Special Systems/Instruments": "Atlas-Agena B, 6 TV cameras (4 wide angle, 2 narrow)",
     "Cost (USD)": "~$25M",
-    "Notes": "FIRST US close-up images of Moon; 4,308 images returned; impacted in Mare Nubium"
+    "Notes": "FIRST US close-up images of Moon; 4,308 images returned; impacted in Mare Nubium",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST US close-up images of Moon; 4,308 images returned; impacted in Mare Nubium",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 29,
@@ -432,7 +544,11 @@
     "Objectives": "Lunar impact imaging",
     "Special Systems/Instruments": "Atlas-Agena B, 6 TV cameras",
     "Cost (USD)": "~$25M",
-    "Notes": "7,137 images returned; impacted in Mare Tranquillitatis (Apollo 11 landing site)"
+    "Notes": "7,137 images returned; impacted in Mare Tranquillitatis (Apollo 11 landing site)",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "7,137 images returned; impacted in Mare Tranquillitatis (Apollo 11 landing site)",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 30,
@@ -447,7 +563,11 @@
     "Objectives": "Lunar impact imaging",
     "Special Systems/Instruments": "Atlas-Agena B, 6 TV cameras",
     "Cost (USD)": "~$25M",
-    "Notes": "5,814 images returned; impacted in crater Alphonsus; first live TV from Moon"
+    "Notes": "5,814 images returned; impacted in crater Alphonsus; first live TV from Moon",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "5,814 images returned; impacted in crater Alphonsus; first live TV from Moon",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 31,
@@ -462,7 +582,11 @@
     "Objectives": "First soft landing attempt",
     "Special Systems/Instruments": "R-7 derived, landing system, TV camera",
     "Cost (USD)": "~$15M",
-    "Notes": "Retro-rockets failed; crashed in Mare Nubium"
+    "Notes": "Retro-rockets failed; crashed in Mare Nubium",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Retro-rockets failed; crashed in Mare Nubium",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 32,
@@ -477,7 +601,11 @@
     "Objectives": "Soft landing attempt",
     "Special Systems/Instruments": "R-7 derived",
     "Cost (USD)": "~$15M",
-    "Notes": "Engine failed to shut off; missed Moon by 161,000 km"
+    "Notes": "Engine failed to shut off; missed Moon by 161,000 km",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Engine failed to shut off; missed Moon by 161,000 km",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 33,
@@ -492,7 +620,11 @@
     "Objectives": "Lunar flyby; far side photography",
     "Special Systems/Instruments": "R-7 derived, Yenisey-2 camera system",
     "Cost (USD)": "~$15M",
-    "Notes": "25 images of far side returned; entered solar orbit"
+    "Notes": "25 images of far side returned; entered solar orbit",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "25 images of far side returned; entered solar orbit",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 34,
@@ -507,7 +639,11 @@
     "Objectives": "Soft landing attempt",
     "Special Systems/Instruments": "R-7 derived, landing system",
     "Cost (USD)": "~$15M",
-    "Notes": "Retro-rockets fired too early; crashed in Oceanus Procellarum"
+    "Notes": "Retro-rockets fired too early; crashed in Oceanus Procellarum",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Retro-rockets fired too early; crashed in Oceanus Procellarum",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 35,
@@ -522,7 +658,11 @@
     "Objectives": "Soft landing attempt",
     "Special Systems/Instruments": "R-7 derived, landing system",
     "Cost (USD)": "~$15M",
-    "Notes": "Retro-rockets fired too late; crashed in Oceanus Procellarum"
+    "Notes": "Retro-rockets fired too late; crashed in Oceanus Procellarum",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Retro-rockets fired too late; crashed in Oceanus Procellarum",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 36,
@@ -537,7 +677,11 @@
     "Objectives": "First soft landing on Moon; surface photography",
     "Special Systems/Instruments": "R-7 derived, airbag landing system, TV camera, radiation detector",
     "Cost (USD)": "~$20M",
-    "Notes": "FIRST soft landing on another celestial body; 3 panoramas from Oceanus Procellarum; proved surface could support weight"
+    "Notes": "FIRST soft landing on another celestial body; 3 panoramas from Oceanus Procellarum; proved surface could support weight",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST soft landing on another celestial body; 3 panoramas from Oceanus Procellarum; proved surface could support weight",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 37,
@@ -552,7 +696,11 @@
     "Objectives": "Lunar orbiter attempt",
     "Special Systems/Instruments": "R-7 derived",
     "Cost (USD)": "~$15M",
-    "Notes": "Failed to leave Earth orbit"
+    "Notes": "Failed to leave Earth orbit",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Orbital",
+    "Outcome Details": "Failed to leave Earth orbit",
+    "Anomaly Type": "Navigation/Propulsion"
   },
   {
     "S.No": 38,
@@ -567,7 +715,11 @@
     "Objectives": "First lunar orbiter; gamma ray spectroscopy",
     "Special Systems/Instruments": "R-7 derived, gamma ray spectrometer, magnetometer, meteoroid detector",
     "Cost (USD)": "~$20M",
-    "Notes": "FIRST spacecraft to orbit Moon; operated 56 days; detected mass concentrations (mascons)"
+    "Notes": "FIRST spacecraft to orbit Moon; operated 56 days; detected mass concentrations (mascons)",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST spacecraft to orbit Moon; operated 56 days; detected mass concentrations (mascons)",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 39,
@@ -582,7 +734,11 @@
     "Objectives": "First US soft landing; surface photography",
     "Special Systems/Instruments": "Atlas-Centaur, TV camera, strain gauge landing sensor",
     "Cost (USD)": "~$45M",
-    "Notes": "FIRST US Moon landing; 11,240 images over 6 weeks; landed in Oceanus Procellarum"
+    "Notes": "FIRST US Moon landing; 11,240 images over 6 weeks; landed in Oceanus Procellarum",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST US Moon landing; 11,240 images over 6 weeks; landed in Oceanus Procellarum",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 40,
@@ -597,7 +753,11 @@
     "Objectives": "Lunar orbiter; gamma ray spectroscopy",
     "Special Systems/Instruments": "R-7 derived, gamma ray spectrometer, magnetometer",
     "Cost (USD)": "~$20M",
-    "Notes": "Operated 38 days in lunar orbit"
+    "Notes": "Operated 38 days in lunar orbit",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Operated 38 days in lunar orbit",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 41,
@@ -612,7 +772,11 @@
     "Objectives": "Soft landing attempt",
     "Special Systems/Instruments": "Atlas-Centaur, TV camera",
     "Cost (USD)": "~$45M",
-    "Notes": "Vernier engine failed; crashed near Copernicus crater"
+    "Notes": "Vernier engine failed; crashed near Copernicus crater",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Vernier engine failed; crashed near Copernicus crater",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 42,
@@ -627,7 +791,11 @@
     "Objectives": "Lunar orbiter; surface photography",
     "Special Systems/Instruments": "R-7 derived, TV camera system, gamma ray spectrometer",
     "Cost (USD)": "~$20M",
-    "Notes": "1,100 images returned; operated 86 days"
+    "Notes": "1,100 images returned; operated 86 days",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "1,100 images returned; operated 86 days",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 43,
@@ -642,7 +810,11 @@
     "Objectives": "Lunar photography for Apollo site selection",
     "Special Systems/Instruments": "Atlas-Agena D, dual lens camera system (80mm/610mm)",
     "Cost (USD)": "~$50M",
-    "Notes": "First US lunar orbiter; 42 high-res and 187 medium-res images; first image of Earth from lunar orbit; intentional impact 10/29/1966"
+    "Notes": "First US lunar orbiter; 42 high-res and 187 medium-res images; first image of Earth from lunar orbit; intentional impact 10/29/1966",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "First US lunar orbiter; 42 high-res and 187 medium-res images; first image of Earth from lunar orbit; intentional impact 10/29/1966",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 44,
@@ -657,7 +829,11 @@
     "Objectives": "Lunar photography; Apollo site selection",
     "Special Systems/Instruments": "Atlas-Agena D, dual lens camera system",
     "Cost (USD)": "~$50M",
-    "Notes": "800+ images including famous Copernicus oblique view; intentional impact 10/11/1967"
+    "Notes": "800+ images including famous Copernicus oblique view; intentional impact 10/11/1967",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "800+ images including famous Copernicus oblique view; intentional impact 10/11/1967",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 45,
@@ -672,7 +848,11 @@
     "Objectives": "Soft landing; surface properties study",
     "Special Systems/Instruments": "R-7 derived, 2 TV cameras, soil density meter, radiation densitometer, penetrometer",
     "Cost (USD)": "~$20M",
-    "Notes": "Landed in Oceanus Procellarum; soil density 0.8 g/cm3; 5 panoramas over 6 days"
+    "Notes": "Landed in Oceanus Procellarum; soil density 0.8 g/cm3; 5 panoramas over 6 days",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Landed in Oceanus Procellarum; soil density 0.8 g/cm3; 5 panoramas over 6 days",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 46,
@@ -687,7 +867,11 @@
     "Objectives": "Apollo site photography",
     "Special Systems/Instruments": "Atlas-Agena D, dual lens camera system",
     "Cost (USD)": "~$50M",
-    "Notes": "Camera failure after 75% of mission; 626 images returned"
+    "Notes": "Camera failure after 75% of mission; 626 images returned",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Camera failure after 75% of mission; 626 images returned",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 47,
@@ -702,7 +886,11 @@
     "Objectives": "Soft landing; surface sampling; Apollo site verification",
     "Special Systems/Instruments": "Atlas-Centaur, TV camera, surface sampler (scoop)",
     "Cost (USD)": "~$45M",
-    "Notes": "Landed in Oceanus Procellarum; first surface sampling; visited by Apollo 12 astronauts Nov 1969"
+    "Notes": "Landed in Oceanus Procellarum; first surface sampling; visited by Apollo 12 astronauts Nov 1969",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Landed in Oceanus Procellarum; first surface sampling; visited by Apollo 12 astronauts Nov 1969",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 48,
@@ -717,7 +905,11 @@
     "Objectives": "Global lunar mapping from polar orbit",
     "Special Systems/Instruments": "Atlas-Agena D, dual lens camera system",
     "Cost (USD)": "~$50M",
-    "Notes": "Camera failure after 2/3 of mission; first polar orbit; 419 images"
+    "Notes": "Camera failure after 2/3 of mission; first polar orbit; 419 images",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Camera failure after 2/3 of mission; first polar orbit; 419 images",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 49,
@@ -732,7 +924,11 @@
     "Objectives": "Soft landing attempt",
     "Special Systems/Instruments": "Atlas-Centaur, TV camera, surface sampler",
     "Cost (USD)": "~$45M",
-    "Notes": "Radio contact lost 2.5 min before landing; likely exploded"
+    "Notes": "Radio contact lost 2.5 min before landing; likely exploded",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "Radio contact lost 2.5 min before landing; likely exploded",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 50,
@@ -747,7 +943,11 @@
     "Objectives": "Lunar orbiter; magnetometer, plasma studies",
     "Special Systems/Instruments": "Delta E1, magnetometer, plasma probe, energetic particle detector",
     "Cost (USD)": "~$15M",
-    "Notes": "Operated 6 years from elliptical orbit"
+    "Notes": "Operated 6 years from elliptical orbit",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Operated 6 years from elliptical orbit",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 51,
@@ -762,7 +962,11 @@
     "Objectives": "Apollo site photography; gravity mapping",
     "Special Systems/Instruments": "Atlas-Agena D, dual lens camera system",
     "Cost (USD)": "~$50M",
-    "Notes": "212 images; mapped 99% of Moon; intentional impact 1/31/1968"
+    "Notes": "212 images; mapped 99% of Moon; intentional impact 1/31/1968",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "212 images; mapped 99% of Moon; intentional impact 1/31/1968",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 52,
@@ -777,7 +981,11 @@
     "Objectives": "Soft landing; surface chemistry analysis",
     "Special Systems/Instruments": "Atlas-Centaur, TV camera, alpha scattering instrument (chemistry)",
     "Cost (USD)": "~$45M",
-    "Notes": "Landed in Mare Tranquillitatis; first in-situ chemical analysis; soil = basaltic rock"
+    "Notes": "Landed in Mare Tranquillitatis; first in-situ chemical analysis; soil = basaltic rock",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Landed in Mare Tranquillitatis; first in-situ chemical analysis; soil = basaltic rock",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 53,
@@ -792,7 +1000,11 @@
     "Objectives": "Soft landing; surface chemistry; first lunar liftoff",
     "Special Systems/Instruments": "Atlas-Centaur, TV camera, alpha scattering instrument",
     "Cost (USD)": "~$45M",
-    "Notes": "Landed in Sinus Medii; first rocket launch from Moon surface (10 ft hop); 30,000 images"
+    "Notes": "Landed in Sinus Medii; first rocket launch from Moon surface (10 ft hop); 30,000 images",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Landed in Sinus Medii; first rocket launch from Moon surface (10 ft hop); 30,000 images",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 54,
@@ -807,7 +1019,11 @@
     "Objectives": "Soft landing; highland terrain study",
     "Special Systems/Instruments": "Atlas-Centaur, TV camera, alpha scatterer, surface sampler, magnetometer",
     "Cost (USD)": "~$45M",
-    "Notes": "Landed near Tycho crater (highlands); 21,000 images; detected water ice hints in soil"
+    "Notes": "Landed near Tycho crater (highlands); 21,000 images; detected water ice hints in soil",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Landed near Tycho crater (highlands); 21,000 images; detected water ice hints in soil",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 55,
@@ -822,7 +1038,11 @@
     "Objectives": "Lunar orbiter; communications test for crewed missions",
     "Special Systems/Instruments": "R-7 derived, radio equipment",
     "Cost (USD)": "~$20M",
-    "Notes": "Operated in lunar orbit; tested communications for Zond/crewed missions"
+    "Notes": "Operated in lunar orbit; tested communications for Zond/crewed missions",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Operated in lunar orbit; tested communications for Zond/crewed missions",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 56,
@@ -837,7 +1057,11 @@
     "Objectives": "First Lunokhod rover delivery attempt",
     "Special Systems/Instruments": "Proton rocket, Lunokhod rover, landing stage",
     "Cost (USD)": "~$30M",
-    "Notes": "Launch vehicle disintegrated at T+51s"
+    "Notes": "Launch vehicle disintegrated at T+51s",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "Launch vehicle disintegrated at T+51s",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 57,
@@ -852,7 +1076,11 @@
     "Objectives": "First crewed lunar orbit; Earthrise photo",
     "Special Systems/Instruments": "Saturn V, Command Module, Service Module; 3 astronauts (Borman, Lovell, Anders)",
     "Cost (USD)": "~$185M",
-    "Notes": "First humans to orbit Moon; 10 lunar orbits; iconic 'Earthrise' photograph; Christmas Eve broadcast"
+    "Notes": "First humans to orbit Moon; 10 lunar orbits; iconic 'Earthrise' photograph; Christmas Eve broadcast",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "First humans to orbit Moon; 10 lunar orbits; iconic 'Earthrise' photograph; Christmas Eve broadcast",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 58,
@@ -867,7 +1095,11 @@
     "Objectives": "Lunar module descent test; dress rehearsal for landing",
     "Special Systems/Instruments": "Saturn V, CM, SM, LM 'Snoopy'; 3 astronauts (Stafford, Young, Cernan)",
     "Cost (USD)": "~$185M",
-    "Notes": "LM descended to 15.6 km above surface; tested all systems for landing"
+    "Notes": "LM descended to 15.6 km above surface; tested all systems for landing",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "LM descended to 15.6 km above surface; tested all systems for landing",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 59,
@@ -882,7 +1114,11 @@
     "Objectives": "FIRST human Moon landing; sample return",
     "Special Systems/Instruments": "Saturn V, CM 'Columbia', LM 'Eagle'; Armstrong, Aldrin, Collins",
     "Cost (USD)": "~$185M",
-    "Notes": "FIRST humans on Moon; 'One small step'; 21.5 kg samples; Sea of Tranquillity; flag planted; seismic experiment"
+    "Notes": "FIRST humans on Moon; 'One small step'; 21.5 kg samples; Sea of Tranquillity; flag planted; seismic experiment",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST humans on Moon; 'One small step'; 21.5 kg samples; Sea of Tranquillity; flag planted; seismic experiment",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 60,
@@ -897,7 +1133,11 @@
     "Objectives": "Robotic sample return (raced Apollo 11)",
     "Special Systems/Instruments": "Proton rocket, lander, ascent stage, return capsule",
     "Cost (USD)": "~$40M",
-    "Notes": "Crashed during descent in Mare Crisium while Apollo 11 was on surface"
+    "Notes": "Crashed during descent in Mare Crisium while Apollo 11 was on surface",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Crashed during descent in Mare Crisium while Apollo 11 was on surface",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 61,
@@ -912,7 +1152,11 @@
     "Objectives": "Crewed spacecraft test; circumlunar flight",
     "Special Systems/Instruments": "Proton, Soyuz 7K-L1 spacecraft, biological payload (turtles)",
     "Cost (USD)": "~$30M",
-    "Notes": "Successful circumlunar return; 4 turtles survived; color photos of Earth and Moon"
+    "Notes": "Successful circumlunar return; 4 turtles survived; color photos of Earth and Moon",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Successful circumlunar return; 4 turtles survived; color photos of Earth and Moon",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 62,
@@ -927,7 +1171,11 @@
     "Objectives": "Second human landing; precision landing; Surveyor 3 visit",
     "Special Systems/Instruments": "Saturn V, CM 'Yankee Clipper', LM 'Intrepid'; Conrad, Gordon, Bean",
     "Cost (USD)": "~$185M",
-    "Notes": "Pinpoint landing near Surveyor 3; 34 kg samples; first color TV from surface; retrieved Surveyor 3 parts"
+    "Notes": "Pinpoint landing near Surveyor 3; 34 kg samples; first color TV from surface; retrieved Surveyor 3 parts",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Pinpoint landing near Surveyor 3; 34 kg samples; first color TV from surface; retrieved Surveyor 3 parts",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 63,
@@ -942,7 +1190,11 @@
     "Objectives": "Third human landing attempt (aborted)",
     "Special Systems/Instruments": "Saturn V, CM, LM 'Aquarius'; Lovell, Swigert, Haise",
     "Cost (USD)": "~$185M",
-    "Notes": "Oxygen tank explosion; crew safely returned using LM as lifeboat; flew around Moon; 'successful failure'"
+    "Notes": "Oxygen tank explosion; crew safely returned using LM as lifeboat; flew around Moon; 'successful failure'",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Oxygen tank explosion; crew safely returned using LM as lifeboat; flew around Moon; 'successful failure'",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 64,
@@ -957,7 +1209,11 @@
     "Objectives": "FIRST robotic sample return from beyond Earth",
     "Special Systems/Instruments": "Proton rocket, drill, sample return capsule; 101g returned",
     "Cost (USD)": "~$50M",
-    "Notes": "FIRST robotic sample return; 101g from Mare Fecunditatis; drilled 35cm deep"
+    "Notes": "FIRST robotic sample return; 101g from Mare Fecunditatis; drilled 35cm deep",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST robotic sample return; 101g from Mare Fecunditatis; drilled 35cm deep",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 65,
@@ -972,7 +1228,11 @@
     "Objectives": "Crewed spacecraft test; circumlunar flight",
     "Special Systems/Instruments": "Proton, Soyuz 7K-L1, biological payload",
     "Cost (USD)": "~$30M",
-    "Notes": "Successful circumlunar; turtles and flies survived; splashdown in Indian Ocean"
+    "Notes": "Successful circumlunar; turtles and flies survived; splashdown in Indian Ocean",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Successful circumlunar; turtles and flies survived; splashdown in Indian Ocean",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 66,
@@ -987,7 +1247,11 @@
     "Objectives": "FIRST robotic rover on another world",
     "Special Systems/Instruments": "Proton rocket, Lunokhod 1 rover (756kg), TV cameras, X-ray spectrometer, penetrometer",
     "Cost (USD)": "~$60M",
-    "Notes": "Lunokhod 1: 322 days, 10.54 km, 20,000+ TV panoramas, 200+ soil analyses; landed in Mare Imbrium"
+    "Notes": "Lunokhod 1: 322 days, 10.54 km, 20,000+ TV panoramas, 200+ soil analyses; landed in Mare Imbrium",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Lunokhod 1: 322 days, 10.54 km, 20,000+ TV panoramas, 200+ soil analyses; landed in Mare Imbrium",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 67,
@@ -1002,7 +1266,11 @@
     "Objectives": "Third human landing; Fra Mauro formation",
     "Special Systems/Instruments": "Saturn V, CM 'Kitty Hawk', LM 'Antares'; Shepard, Mitchell, Roosa",
     "Cost (USD)": "~$185M",
-    "Notes": "First to hit golf balls on Moon; 43 kg samples; Fra Mauro formation; first use of MET (hand cart)"
+    "Notes": "First to hit golf balls on Moon; 43 kg samples; Fra Mauro formation; first use of MET (hand cart)",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "First to hit golf balls on Moon; 43 kg samples; Fra Mauro formation; first use of MET (hand cart)",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 68,
@@ -1017,7 +1285,11 @@
     "Objectives": "Fourth human landing; FIRST Lunar Roving Vehicle; Hadley Rille",
     "Special Systems/Instruments": "Saturn V, CM 'Endeavour', LM 'Falcon', LRV; Scott, Irwin, Worden",
     "Cost (USD)": "~$200M",
-    "Notes": "FIRST LRV used; 27.9 km driven; 77 kg samples; Hadley-Apennine; first deep-space EVA (return); Genesis Rock"
+    "Notes": "FIRST LRV used; 27.9 km driven; 77 kg samples; Hadley-Apennine; first deep-space EVA (return); Genesis Rock",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST LRV used; 27.9 km driven; 77 kg samples; Hadley-Apennine; first deep-space EVA (return); Genesis Rock",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 69,
@@ -1032,7 +1304,11 @@
     "Objectives": "Lunar subsatellite; particles and fields",
     "Special Systems/Instruments": "Magnetometer, S-band transponder",
     "Cost (USD)": "~$5M",
-    "Notes": "Deployed by Apollo 15; studied lunar gravity and magnetism; crashed after 1 year"
+    "Notes": "Deployed by Apollo 15; studied lunar gravity and magnetism; crashed after 1 year",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Deployed by Apollo 15; studied lunar gravity and magnetism; crashed after 1 year",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 70,
@@ -1047,7 +1323,11 @@
     "Objectives": "Sample return attempt",
     "Special Systems/Instruments": "Proton rocket, drill, return capsule",
     "Cost (USD)": "~$50M",
-    "Notes": "Crashed during landing in Mare Fecunditatis"
+    "Notes": "Crashed during landing in Mare Fecunditatis",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Crashed during landing in Mare Fecunditatis",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 71,
@@ -1062,7 +1342,11 @@
     "Objectives": "Lunar orbiter; gravity mapping",
     "Special Systems/Instruments": "Proton rocket, gamma ray spectrometer, magnetometer, radar altimeter",
     "Cost (USD)": "~$30M",
-    "Notes": "Operated ~1 year; detailed gravity mapping"
+    "Notes": "Operated ~1 year; detailed gravity mapping",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Operated ~1 year; detailed gravity mapping",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 72,
@@ -1077,7 +1361,11 @@
     "Objectives": "Robotic sample return",
     "Special Systems/Instruments": "Proton rocket, drill, return capsule; 55g returned",
     "Cost (USD)": "~$50M",
-    "Notes": "55g samples from Apollonius highlands; similar to Luna 16 site"
+    "Notes": "55g samples from Apollonius highlands; similar to Luna 16 site",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "55g samples from Apollonius highlands; similar to Luna 16 site",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 73,
@@ -1092,7 +1380,11 @@
     "Objectives": "Fifth human landing; Descartes Highlands",
     "Special Systems/Instruments": "Saturn V, CM 'Casper', LM 'Orion', LRV; Young, Duke, Mattingly",
     "Cost (USD)": "~$200M",
-    "Notes": "26.9 km driven; 95.7 kg samples; Descartes Highlands; cosmic ray detector; first telescope on Moon (UV camera)"
+    "Notes": "26.9 km driven; 95.7 kg samples; Descartes Highlands; cosmic ray detector; first telescope on Moon (UV camera)",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "26.9 km driven; 95.7 kg samples; Descartes Highlands; cosmic ray detector; first telescope on Moon (UV camera)",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 74,
@@ -1107,7 +1399,11 @@
     "Objectives": "Lunar subsatellite",
     "Special Systems/Instruments": "Magnetometer, particle detectors",
     "Cost (USD)": "~$5M",
-    "Notes": "Orbit decayed prematurely due to lunar mascon influence"
+    "Notes": "Orbit decayed prematurely due to lunar mascon influence",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Orbit decayed prematurely due to lunar mascon influence",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 75,
@@ -1122,7 +1418,11 @@
     "Objectives": "Crewed lunar orbiter test",
     "Special Systems/Instruments": "N1 rocket, Soyuz 7K-LOK spacecraft",
     "Cost (USD)": "~$100M",
-    "Notes": "N1 first stage failure; launch pad destroyed"
+    "Notes": "N1 first stage failure; launch pad destroyed",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "N1 first stage failure; launch pad destroyed",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 76,
@@ -1137,7 +1437,11 @@
     "Objectives": "Sixth and FINAL human Moon landing; Taurus-Littrow",
     "Special Systems/Instruments": "Saturn V, CM 'America', LM 'Challenger', LRV; Cernan, Schmitt (geologist), Evans",
     "Cost (USD)": "~$200M",
-    "Notes": "LAST human Moon landing (as of 2026); 35.7 km driven; 110.5 kg samples; ONLY scientist (geologist) on Moon; deepest drilling (3m); lunar rover max speed 17.7 km/h"
+    "Notes": "LAST human Moon landing (as of 2026); 35.7 km driven; 110.5 kg samples; ONLY scientist (geologist) on Moon; deepest drilling (3m); lunar rover max speed 17.7 km/h",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "LAST human Moon landing (as of 2026); 35.7 km driven; 110.5 kg samples; ONLY scientist (geologist) on Moon; deepest drilling (3m); lunar rover max speed 17.7 km/h",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 77,
@@ -1152,7 +1456,11 @@
     "Objectives": "Second Soviet lunar rover",
     "Special Systems/Instruments": "Proton rocket, Lunokhod 2 rover (840kg), 4 TV cameras, X-ray spectrometer, solar X-ray telescope",
     "Cost (USD)": "~$60M",
-    "Notes": "Lunokhod 2: 117 days, 39 km (LONGEST rover distance until Yutu-2), 86 panoramas; landed in Le Monnier crater"
+    "Notes": "Lunokhod 2: 117 days, 39 km (LONGEST rover distance until Yutu-2), 86 panoramas; landed in Le Monnier crater",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Lunokhod 2: 117 days, 39 km (LONGEST rover distance until Yutu-2), 86 panoramas; landed in Le Monnier crater",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 78,
@@ -1167,7 +1475,11 @@
     "Objectives": "Radio astronomy from lunar orbit",
     "Special Systems/Instruments": "Delta rocket, 230m V-shaped antenna, radio receivers (0.025-13.1 MHz)",
     "Cost (USD)": "~$25M",
-    "Notes": "Largest man-made antenna system; operated 4+ years in lunar orbit"
+    "Notes": "Largest man-made antenna system; operated 4+ years in lunar orbit",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Largest man-made antenna system; operated 4+ years in lunar orbit",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 79,
@@ -1182,7 +1494,11 @@
     "Objectives": "Lunar flyby en route to Mercury",
     "Special Systems/Instruments": "Atlas-Centaur, TV cameras, UV spectrometer",
     "Cost (USD)": "~$100M (total)",
-    "Notes": "Lunar flyby for gravity assist; mapped north pole; continued to Mercury"
+    "Notes": "Lunar flyby for gravity assist; mapped north pole; continued to Mercury",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Lunar flyby for gravity assist; mapped north pole; continued to Mercury",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 80,
@@ -1197,7 +1513,11 @@
     "Objectives": "Lunar orbiter; photography; communications",
     "Special Systems/Instruments": "Proton rocket, imaging system, altimeter",
     "Cost (USD)": "~$30M",
-    "Notes": "Operated 18 months; detailed imaging from 30-200 km orbit"
+    "Notes": "Operated 18 months; detailed imaging from 30-200 km orbit",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Operated 18 months; detailed imaging from 30-200 km orbit",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 81,
@@ -1212,7 +1532,11 @@
     "Objectives": "Sample return attempt",
     "Special Systems/Instruments": "Proton rocket, drill, return capsule",
     "Cost (USD)": "~$50M",
-    "Notes": "Landed but drill damaged on landing; no sample obtained"
+    "Notes": "Landed but drill damaged on landing; no sample obtained",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Landed but drill damaged on landing; no sample obtained",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 82,
@@ -1227,7 +1551,11 @@
     "Objectives": "LAST Soviet lunar sample return",
     "Special Systems/Instruments": "Proton rocket, drill (2m depth), return capsule; 170.1g returned",
     "Cost (USD)": "~$50M",
-    "Notes": "170.1g samples from Mare Crisium; drilled 2m deep; LAST Soviet/Russian Moon mission until Luna 25 (2023)"
+    "Notes": "170.1g samples from Mare Crisium; drilled 2m deep; LAST Soviet/Russian Moon mission until Luna 25 (2023)",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "170.1g samples from Mare Crisium; drilled 2m deep; LAST Soviet/Russian Moon mission until Luna 25 (2023)",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 83,
@@ -1242,7 +1570,11 @@
     "Objectives": "Lunar flyby and orbiter; test technologies",
     "Special Systems/Instruments": "M-3SII rocket, dust counter, plasma instruments; first Japanese lunar mission",
     "Cost (USD)": "~$80M",
-    "Notes": "First Japanese lunar mission; first aerobraking into lunar orbit; intentional impact 4/10/1993"
+    "Notes": "First Japanese lunar mission; first aerobraking into lunar orbit; intentional impact 4/10/1993",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "First Japanese lunar mission; first aerobraking into lunar orbit; intentional impact 4/10/1993",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 84,
@@ -1257,7 +1589,11 @@
     "Objectives": "Lunar orbiter attempt",
     "Special Systems/Instruments": "Small orbiter",
     "Cost (USD)": "~$10M",
-    "Notes": "Communications failed after deployment; orbital insertion unconfirmed"
+    "Notes": "Communications failed after deployment; orbital insertion unconfirmed",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Communications failed after deployment; orbital insertion unconfirmed",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 85,
@@ -1272,7 +1608,11 @@
     "Objectives": "Lunar mapping; mineralogy; test sensor technologies",
     "Special Systems/Instruments": "Titan II rocket, UV/visible camera, near-IR camera, LIDAR, laser altimeter",
     "Cost (USD)": "~$80M",
-    "Notes": "Global mineralogical map; evidence of water ice at south pole; first digital lunar map"
+    "Notes": "Global mineralogical map; evidence of water ice at south pole; first digital lunar map",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Global mineralogical map; evidence of water ice at south pole; first digital lunar map",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 86,
@@ -1287,7 +1627,11 @@
     "Objectives": "Commercial satellite lunar flyby (rescue mission)",
     "Special Systems/Instruments": "Proton rocket, communications satellite",
     "Cost (USD)": "~$250M (total)",
-    "Notes": "Failed GEO insertion; used Moon gravity assists to reach usable orbit; first commercial lunar flyby"
+    "Notes": "Failed GEO insertion; used Moon gravity assists to reach usable orbit; first commercial lunar flyby",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Failed GEO insertion; used Moon gravity assists to reach usable orbit; first commercial lunar flyby",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 87,
@@ -1302,7 +1646,11 @@
     "Objectives": "Lunar mapping; search for water ice; gravity field",
     "Special Systems/Instruments": "Athena II rocket, gamma ray spectrometer, neutron spectrometer, magnetometer, electron reflectometer, alpha particle spectrometer",
     "Cost (USD)": "~$63M",
-    "Notes": "Confirmed water ice at poles; global gravity map; intentional impact near south pole 7/31/1999 to search for water vapor (none detected)"
+    "Notes": "Confirmed water ice at poles; global gravity map; intentional impact near south pole 7/31/1999 to search for water vapor (none detected)",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Confirmed water ice at poles; global gravity map; intentional impact near south pole 7/31/1999 to search for water vapor (none detected)",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 88,
@@ -1317,7 +1665,11 @@
     "Objectives": "Lunar orbiter; test ion propulsion; mineralogical mapping",
     "Special Systems/Instruments": "Ariane 5, ion engine (Hall effect thruster), D-CIXS X-ray spectrometer, SIR infrared spectrometer, AMIE camera",
     "Cost (USD)": "~$110M",
-    "Notes": "FIRST European lunar mission; ion propulsion; smallest and cheapest lunar mission to date; intentional impact 9/3/2006"
+    "Notes": "FIRST European lunar mission; ion propulsion; smallest and cheapest lunar mission to date; intentional impact 9/3/2006",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST European lunar mission; ion propulsion; smallest and cheapest lunar mission to date; intentional impact 9/3/2006",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 89,
@@ -1332,7 +1684,11 @@
     "Objectives": "India's first lunar mission; map surface; search for water; test impact",
     "Special Systems/Instruments": "PSLV rocket, 11 instruments (5 Indian + 6 international), Moon Impact Probe (MIP)",
     "Cost (USD)": "~$56M",
-    "Notes": "DISCOVERED water molecules on Moon (with NASA M3); 1,380 kg; MIP impacted near Shackleton crater; India's first deep space mission"
+    "Notes": "DISCOVERED water molecules on Moon (with NASA M3); 1,380 kg; MIP impacted near Shackleton crater; India's first deep space mission",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "DISCOVERED water molecules on Moon (with NASA M3); 1,380 kg; MIP impacted near Shackleton crater; India's first deep space mission",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 90,
@@ -1347,7 +1703,11 @@
     "Objectives": "China's first lunar mission; comprehensive mapping",
     "Special Systems/Instruments": "Long March 3A, CCD stereo camera, laser altimeter, imaging spectrometer, gamma/X-ray spectrometers, microwave radiometer, high-energy particle detector, solar wind monitor",
     "Cost (USD)": "~$187M",
-    "Notes": "FIRST Chinese mission beyond Earth orbit; most complete lunar map at the time; intentional impact 3/1/2009"
+    "Notes": "FIRST Chinese mission beyond Earth orbit; most complete lunar map at the time; intentional impact 3/1/2009",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST Chinese mission beyond Earth orbit; most complete lunar map at the time; intentional impact 3/1/2009",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 91,
@@ -1362,7 +1722,11 @@
     "Objectives": "High-resolution mapping; scout landing sites for Chang'e 3",
     "Special Systems/Instruments": "Long March 3C, CCD stereo camera (1.5m resolution), laser altimeter, gamma/X-ray spectrometers, microwave radiometer",
     "Cost (USD)": "~$170M",
-    "Notes": "0.5m resolution images; left lunar orbit for L2 point; flew by asteroid Toutatis in 2012; now in solar orbit"
+    "Notes": "0.5m resolution images; left lunar orbit for L2 point; flew by asteroid Toutatis in 2012; now in solar orbit",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "0.5m resolution images; left lunar orbit for L2 point; flew by asteroid Toutatis in 2012; now in solar orbit",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 92,
@@ -1377,7 +1741,11 @@
     "Objectives": "Japan's first major lunar mission; comprehensive study",
     "Special Systems/Instruments": "H-IIA rocket, main orbiter + 2 subsatellites (Okina & Ouna), terrain camera, multiband imager, spectral profiler, lunar radar sounder, laser altimeter, X-ray/gamma ray spectrometers, magnetic field sensor, charged particle sensor, plasma analyzer, radio science, HDTV camera",
     "Cost (USD)": "~$480M",
-    "Notes": "Most detailed gravity map until GRAIL; HDTV videos of Earthrise; confirmed mantle below crust; intentional impact 6/10/2009"
+    "Notes": "Most detailed gravity map until GRAIL; HDTV videos of Earthrise; confirmed mantle below crust; intentional impact 6/10/2009",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Most detailed gravity map until GRAIL; HDTV videos of Earthrise; confirmed mantle below crust; intentional impact 6/10/2009",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 93,
@@ -1392,7 +1760,11 @@
     "Objectives": "Communications relay for Kaguya far side",
     "Special Systems/Instruments": "Radio transponder",
     "Cost (USD)": "~$10M",
-    "Notes": "Relayed communications from Kaguya far side operations"
+    "Notes": "Relayed communications from Kaguya far side operations",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Relayed communications from Kaguya far side operations",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 94,
@@ -1407,7 +1779,11 @@
     "Objectives": "Very Long Baseline Interferometry for gravity mapping",
     "Special Systems/Instruments": "Radio sources for VLBI gravity mapping",
     "Cost (USD)": "~$10M",
-    "Notes": "Provided precise gravity field data when combined with Okina"
+    "Notes": "Provided precise gravity field data when combined with Okina",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Provided precise gravity field data when combined with Okina",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 95,
@@ -1422,7 +1798,11 @@
     "Objectives": "Search for water ice in permanently shadowed crater",
     "Special Systems/Instruments": "Atlas V, shepherding spacecraft + Centaur upper stage impactor, 9 science instruments (near-IR, visible, thermal cameras, spectrometers, photometer)",
     "Cost (USD)": "~$79M",
-    "Notes": "Impacted Cabeus crater near south pole; CONFIRMED water ice presence (~5% by weight); 24 gigatons of water estimated in crater"
+    "Notes": "Impacted Cabeus crater near south pole; CONFIRMED water ice presence (~5% by weight); 24 gigatons of water estimated in crater",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Impacted Cabeus crater near south pole; CONFIRMED water ice presence (~5% by weight); 24 gigatons of water estimated in crater",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 96,
@@ -1437,7 +1817,11 @@
     "Objectives": "Comprehensive lunar mapping; Apollo site imaging; resource identification; radiation environment",
     "Special Systems/Instruments": "Atlas V, LOLA (laser altimeter), LROC (cameras), LAMP (UV), Diviner (thermal), CRaTER (radiation), Mini-RF (radar), LEND (neutron detector)",
     "Cost (USD)": "~$504M (launch + 1st year)",
-    "Notes": "Still operating as of 2026; mapped Apollo landing sites; identified water ice deposits; detailed topographic maps; critical for Artemis planning"
+    "Notes": "Still operating as of 2026; mapped Apollo landing sites; identified water ice deposits; detailed topographic maps; critical for Artemis planning",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Still operating as of 2026; mapped Apollo landing sites; identified water ice deposits; detailed topographic maps; critical for Artemis planning",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 97,
@@ -1452,7 +1836,11 @@
     "Objectives": "Intentional impact for scientific analysis",
     "Special Systems/Instruments": "Same as orbiter mission",
     "Cost (USD)": "~$187M (total)",
-    "Notes": "Intentionally impacted on Moon 3/1/2009 after orbital mission completion"
+    "Notes": "Intentionally impacted on Moon 3/1/2009 after orbital mission completion",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Intentionally impacted on Moon 3/1/2009 after orbital mission completion",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 98,
@@ -1467,7 +1855,11 @@
     "Objectives": "Study lunar space environment; magnetotail",
     "Special Systems/Instruments": "Delta II, magnetometers, electric field instruments, particle detectors",
     "Cost (USD)": "~$30M (extended)",
-    "Notes": "Originally Earth orbiter; moved to lunar orbit 2011; still studying lunar space environment"
+    "Notes": "Originally Earth orbiter; moved to lunar orbit 2011; still studying lunar space environment",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Originally Earth orbiter; moved to lunar orbit 2011; still studying lunar space environment",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 99,
@@ -1482,7 +1874,11 @@
     "Objectives": "Study lunar space environment; magnetotail",
     "Special Systems/Instruments": "Delta II, magnetometers, electric field instruments, particle detectors",
     "Cost (USD)": "~$30M (extended)",
-    "Notes": "Sister spacecraft to P1; both still active in lunar orbit"
+    "Notes": "Sister spacecraft to P1; both still active in lunar orbit",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Sister spacecraft to P1; both still active in lunar orbit",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 100,
@@ -1497,7 +1893,11 @@
     "Objectives": "High-precision gravity mapping",
     "Special Systems/Instruments": "Delta II, two spacecraft (Ebb & Flow), Ka-band ranging system, MoonKAM (education camera)",
     "Cost (USD)": "~$496M",
-    "Notes": "Highest resolution gravity map of Moon; revealed fractures in crust; intentional impact 12/17/2012"
+    "Notes": "Highest resolution gravity map of Moon; revealed fractures in crust; intentional impact 12/17/2012",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Highest resolution gravity map of Moon; revealed fractures in crust; intentional impact 12/17/2012",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 101,
@@ -1512,7 +1912,11 @@
     "Objectives": "Study lunar atmosphere and dust environment",
     "Special Systems/Instruments": "Minotaur V, NMS (neutral mass spectrometer), UVS (UV spectrometer), LDEX (dust detector), LLCD (laser comm demo)",
     "Cost (USD)": "~$280M",
-    "Notes": "Characterized lunar exosphere; LLCD demonstrated 622 Mbps laser communication; intentional impact 4/18/2014"
+    "Notes": "Characterized lunar exosphere; LLCD demonstrated 622 Mbps laser communication; intentional impact 4/18/2014",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Characterized lunar exosphere; LLCD demonstrated 622 Mbps laser communication; intentional impact 4/18/2014",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 102,
@@ -1527,7 +1931,11 @@
     "Objectives": "FIRST Chinese soft landing; FIRST lunar landing in 37 years; rover deployment",
     "Special Systems/Instruments": "Long March 3B, lander (3,780 kg), Yutu rover (140 kg), 8 instruments including UV telescope, EUV camera, ground-penetrating radar",
     "Cost (USD)": "~$300M",
-    "Notes": "FIRST soft landing since 1976; Yutu rover: 42 days mobile, 973 days total, 114.8m; lander still sending data as of 2026; discovered new basalt type"
+    "Notes": "FIRST soft landing since 1976; Yutu rover: 42 days mobile, 973 days total, 114.8m; lander still sending data as of 2026; discovered new basalt type",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST soft landing since 1976; Yutu rover: 42 days mobile, 973 days total, 114.8m; lander still sending data as of 2026; discovered new basalt type",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 103,
@@ -1542,7 +1950,11 @@
     "Objectives": "FIRST landing on far side of Moon; rover exploration",
     "Special Systems/Instruments": "Long March 3B, lander, Yutu-2 rover (140 kg), low-frequency radio spectrometer, lunar neutron dosimeter, neutral atom detector; relay via Queqiao satellite",
     "Cost (USD)": "~$320M",
-    "Notes": "FIRST far side landing; Yutu-2: LONGEST operating lunar rover (7+ years), 1.455+ km; discovered gel-like substance; new mineral Changesite-(Y)"
+    "Notes": "FIRST far side landing; Yutu-2: LONGEST operating lunar rover (7+ years), 1.455+ km; discovered gel-like substance; new mineral Changesite-(Y)",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST far side landing; Yutu-2: LONGEST operating lunar rover (7+ years), 1.455+ km; discovered gel-like substance; new mineral Changesite-(Y)",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 104,
@@ -1557,7 +1969,11 @@
     "Objectives": "Communications relay for Chang'e 4 far side mission",
     "Special Systems/Instruments": "Long March 4C, relay satellite at Earth-Moon L2 halo orbit, low-frequency radio astronomy instrument",
     "Cost (USD)": "~$50M",
-    "Notes": "FIRST relay satellite at Earth-Moon L2; enables far side communications; also conducting radio astronomy"
+    "Notes": "FIRST relay satellite at Earth-Moon L2; enables far side communications; also conducting radio astronomy",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "FIRST relay satellite at Earth-Moon L2; enables far side communications; also conducting radio astronomy",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 105,
@@ -1572,7 +1988,11 @@
     "Objectives": "Lunar orbiter; radio astronomy",
     "Special Systems/Instruments": "Small satellite, radio astronomy payload",
     "Cost (USD)": "~$2M",
-    "Notes": "Communications lost after launch"
+    "Notes": "Communications lost after launch",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Launch",
+    "Outcome Details": "Communications lost after launch",
+    "Anomaly Type": "Launch Vehicle"
   },
   {
     "S.No": 106,
@@ -1587,7 +2007,11 @@
     "Objectives": "Lunar orbiter; radio astronomy; amateur radio",
     "Special Systems/Instruments": "Small satellite (47 kg), radio astronomy, camera",
     "Cost (USD)": "~$2M",
-    "Notes": "Took first image of lunar far side and Earth together; crashed into Moon 7/31/2019"
+    "Notes": "Took first image of lunar far side and Earth together; crashed into Moon 7/31/2019",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Took first image of lunar far side and Earth together; crashed into Moon 7/31/2019",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 107,
@@ -1602,7 +2026,11 @@
     "Objectives": "FIRST Israeli lunar mission; FIRST privately funded lunar landing attempt",
     "Special Systems/Instruments": "Falcon 9, lander (150 kg), magnetometer, laser retroreflector, time capsule",
     "Cost (USD)": "~$100M",
-    "Notes": "Entered lunar orbit but crashed during landing due to main engine failure; first privately funded Moon mission"
+    "Notes": "Entered lunar orbit but crashed during landing due to main engine failure; first privately funded Moon mission",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Entered lunar orbit but crashed during landing due to main engine failure; first privately funded Moon mission",
+    "Anomaly Type": "Impact"
   },
   {
     "S.No": 108,
@@ -1617,7 +2045,13 @@
     "Objectives": "India's second lunar mission; orbiter + lander/rover attempt",
     "Special Systems/Instruments": "GSLV Mk III, orbiter (2,379 kg) with 8 instruments; Vikram lander + Pragyan rover (lander failed)",
     "Cost (USD)": "~$142M (total)",
-    "Notes": "Orbiter: 96% mission success; 8 instruments including OHRC (high-res camera), IIRS, CLASS; Vikram lander crashed 9/6/2019"
+    "Notes": "Orbiter: 96% mission success; 8 instruments including OHRC (high-res camera), IIRS, CLASS; Vikram lander crashed 9/6/2019",
+    "Orbiter Success": "Yes",
+    "Lander Success": "No",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Orbiter Success",
+    "Outcome Details": "Orbiter nominal, but Lander had hard impact on surface",
+    "Anomaly Type": "Lander Descent Anomaly"
   },
   {
     "S.No": 109,
@@ -1632,7 +2066,13 @@
     "Objectives": "Soft landing attempt near south pole",
     "Special Systems/Instruments": "GSLV Mk III, Vikram lander (1,471 kg), Pragyan rover (27 kg), 4 instruments on lander, 2 on rover",
     "Cost (USD)": "~$142M (total)",
-    "Notes": "Crashed 2.1 km from surface due to braking thruster anomaly; high-res images located debris"
+    "Notes": "Crashed 2.1 km from surface due to braking thruster anomaly; high-res images located debris",
+    "Orbiter Success": "Yes",
+    "Lander Success": "No",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Orbiter Success",
+    "Outcome Details": "Orbiter nominal, but Lander had hard impact on surface",
+    "Anomaly Type": "Lander Descent Anomaly"
   },
   {
     "S.No": 110,
@@ -1647,7 +2087,13 @@
     "Objectives": "Rover for surface exploration",
     "Special Systems/Instruments": "27 kg, APXS, LIBS instruments",
     "Cost (USD)": "~$142M (total)",
-    "Notes": "Lost with Vikram lander crash"
+    "Notes": "Lost with Vikram lander crash",
+    "Orbiter Success": "Yes",
+    "Lander Success": "No",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Orbiter Success",
+    "Outcome Details": "Orbiter nominal, but Lander had hard impact on surface",
+    "Anomaly Type": "Lander Descent Anomaly"
   },
   {
     "S.No": 111,
@@ -1662,7 +2108,11 @@
     "Objectives": "Complex robotic sample return mission",
     "Special Systems/Instruments": "Long March 5, orbiter + lander + ascender + returner (8.2t total); drill, scoop sampler, panorama camera, lunar mineral spectrometer, ground-penetrating radar",
     "Cost (USD)": "~$450M",
-    "Notes": "1,731g samples returned from Mons Rumker (youngest lunar samples ever); FIRST new lunar samples since 1976; third country to achieve sample return"
+    "Notes": "1,731g samples returned from Mons Rumker (youngest lunar samples ever); FIRST new lunar samples since 1976; third country to achieve sample return",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "1,731g samples returned from Mons Rumker (youngest lunar samples ever); FIRST new lunar samples since 1976; third country to achieve sample return",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 112,
@@ -1677,7 +2127,11 @@
     "Objectives": "Test Near Rectilinear Halo Orbit for Gateway",
     "Special Systems/Instruments": "Electron rocket, Lunar Photon stage, 12U CubeSat; C-band comm payload",
     "Cost (USD)": "~$30M",
-    "Notes": "FIRST spacecraft in NRHO; testing orbit for future Gateway station; still operating"
+    "Notes": "FIRST spacecraft in NRHO; testing orbit for future Gateway station; still operating",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Orbital",
+    "Outcome Details": "FIRST spacecraft in NRHO; testing orbit for future Gateway station; still operating",
+    "Anomaly Type": "Navigation/Propulsion"
   },
   {
     "S.No": 113,
@@ -1692,7 +2146,11 @@
     "Objectives": "South Korea's FIRST lunar mission; technology demonstration",
     "Special Systems/Instruments": "Falcon 9, 678 kg orbiter, 6 payloads: LUTI (terrain camera), PolCam, ShadowCam (NASA), KMAG, KGRS, DTNPL; BLT trajectory",
     "Cost (USD)": "~$180M",
-    "Notes": "Extended mission to 2027; excellent observation capabilities; testing interplanetary internet"
+    "Notes": "Extended mission to 2027; excellent observation capabilities; testing interplanetary internet",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Extended mission to 2027; excellent observation capabilities; testing interplanetary internet",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 114,
@@ -1707,7 +2165,11 @@
     "Objectives": "FIRST Japanese private lunar landing; FIRST Arab lunar rover",
     "Special Systems/Instruments": "Falcon 9, Series 1 lander (340 kg), Rashid rover (10 kg), SORA-Q (JAXA/TOMY)",
     "Cost (USD)": "~$90M (ispace)",
-    "Notes": "Software error caused altitude miscalculation; crashed from 5km; UAE's first lunar attempt"
+    "Notes": "Software error caused altitude miscalculation; crashed from 5km; UAE's first lunar attempt",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Hard impact, lander lost",
+    "Anomaly Type": "Altitude Miscalculation"
   },
   {
     "S.No": 115,
@@ -1722,7 +2184,11 @@
     "Objectives": "Russia's FIRST lunar mission since 1976; south pole landing attempt",
     "Special Systems/Instruments": "Soyuz 2.1b, lander (1,750 kg), 8 instruments: ADRON-LR, ARIES-L, LASMA-LR, LIS-TV-RPM, PmL, THERMO-L, STS-L, MIDAS",
     "Cost (USD)": "~$200M",
-    "Notes": "Accelerometer unit failed; engines fired 127s instead of 84s; crashed near Boguslavsky crater; first Russian lunar attempt since 1976"
+    "Notes": "Accelerometer unit failed; engines fired 127s instead of 84s; crashed near Boguslavsky crater; first Russian lunar attempt since 1976",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Propulsion anomaly led to forced deorbit",
+    "Anomaly Type": "Propulsion"
   },
   {
     "S.No": 116,
@@ -1737,7 +2203,11 @@
     "Objectives": "India's FIRST successful soft landing; FIRST near south pole landing",
     "Special Systems/Instruments": "GSLV Mk III, Vikram lander (1,749 kg), 4 instruments: ChaSTE, ILSA, RAMBHA-LP, LRU; lessons from Ch-2 failure incorporated",
     "Cost (USD)": "~$75M",
-    "Notes": "FIRST landing near lunar south pole (69.37°S); 4th country to soft-land; 'Vikram' means 'valor'"
+    "Notes": "FIRST landing near lunar south pole (69.37°S); 4th country to soft-land; 'Vikram' means 'valor'",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST landing near lunar south pole (69.37°S); 4th country to soft-land; 'Vikram' means 'valor'",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 117,
@@ -1752,7 +2222,11 @@
     "Objectives": "FIRST successful Indian lunar rover; south pole exploration",
     "Special Systems/Instruments": "26 kg rover, APXS (Alpha Particle X-ray Spectrometer), LIBS (Laser-Induced Breakdown Spectroscope)",
     "Cost (USD)": "~$75M (total)",
-    "Notes": "101.4m traverse; detected Sulfur, Al, Ca, Fe, Cr, Ti, Mn, Si, O; surface temp 70°C; slept during lunar night, didn't wake"
+    "Notes": "101.4m traverse; detected Sulfur, Al, Ca, Fe, Cr, Ti, Mn, Si, O; surface temp 70°C; slept during lunar night, didn't wake",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "101.4m traverse; detected Sulfur, Al, Ca, Fe, Cr, Ti, Mn, Si, O; surface temp 70°C; slept during lunar night, didn't wake",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 118,
@@ -1767,7 +2241,11 @@
     "Objectives": "Japan's FIRST lunar landing; precision landing demonstration",
     "Special Systems/Instruments": "H-IIA rocket, SLIM lander (210 kg), LEV-1 rover (2.1 kg), LEV-2/SORA-Q (250g); pinpoint landing within 100m target",
     "Cost (USD)": "~$120M",
-    "Notes": "FIFTH country to soft-land; landed within 55m of target (pinpoint precision); tipped on nose; 2 rovers deployed; mission ended Aug 2024"
+    "Notes": "FIFTH country to soft-land; landed within 55m of target (pinpoint precision); tipped on nose; 2 rovers deployed; mission ended Aug 2024",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Nominal landing & ops",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 119,
@@ -1782,7 +2260,11 @@
     "Objectives": "FIRST commercial soft landing on Moon; FIRST US landing since 1972",
     "Special Systems/Instruments": "Falcon 9, Nova-C lander (1,900 kg), 6 NASA CLPS payloads + 6 commercial payloads; methalox propulsion",
     "Cost (USD)": "~$118M (NASA contract)",
-    "Notes": "Landed tilted ~30° at Malapert A (80.13°S); 6 NASA payloads operated; broke landing leg; first liquid methane/LOX landing on celestial body"
+    "Notes": "Landed tilted ~30° at Malapert A (80.13°S); 6 NASA payloads operated; broke landing leg; first liquid methane/LOX landing on celestial body",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Degraded",
+    "Outcome Details": "Tilted landing, reduced functionality",
+    "Anomaly Type": "Landing Attitude"
   },
   {
     "S.No": 120,
@@ -1797,7 +2279,11 @@
     "Objectives": "FIRST Vulcan Centaur launch; commercial lunar landing attempt",
     "Special Systems/Instruments": "Vulcan Centaur, Peregrine lander, 20 payloads (5 NASA CLPS + 15 commercial), 1.2t total",
     "Cost (USD)": "$108M (NASA contract)",
-    "Notes": "PCV2 valve failure caused propellant tank rupture; controlled reentry over South Pacific 1/18/2024"
+    "Notes": "PCV2 valve failure caused propellant tank rupture; controlled reentry over South Pacific 1/18/2024",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Partial science accomplished before failure",
+    "Anomaly Type": "Propulsion Anomaly"
   },
   {
     "S.No": 121,
@@ -1812,7 +2298,11 @@
     "Objectives": "FIRST samples from far side of Moon",
     "Special Systems/Instruments": "Long March 5, orbiter+lander+ascender+returner (8.35t); Queqiao-2 relay; 2kg samples; DORN (France), NILS (Sweden), INRRI; Jinchan rover",
     "Cost (USD)": "~$500M",
-    "Notes": "~2kg samples from Apollo crater, SPA basin; FIRST far side samples; Jinchan rover (5kg) deployed; ICUBE-Q (Pakistan) cubesat"
+    "Notes": "~2kg samples from Apollo crater, SPA basin; FIRST far side samples; Jinchan rover (5kg) deployed; ICUBE-Q (Pakistan) cubesat",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "~2kg samples from Apollo crater, SPA basin; FIRST far side samples; Jinchan rover (5kg) deployed; ICUBE-Q (Pakistan) cubesat",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 122,
@@ -1827,7 +2317,11 @@
     "Objectives": "Relay satellite for Chang'e 6 and future missions",
     "Special Systems/Instruments": "Long March 8, elliptical lunar orbit relay, extreme UV camera",
     "Cost (USD)": "~$60M",
-    "Notes": "Supports Chang'e 6, 7, 8 missions; communication relay for far side and polar regions"
+    "Notes": "Supports Chang'e 6, 7, 8 missions; communication relay for far side and polar regions",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Supports Chang'e 6, 7, 8 missions; communication relay for far side and polar regions",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 123,
@@ -1842,7 +2336,11 @@
     "Objectives": "Pakistan's FIRST lunar mission",
     "Special Systems/Instruments": "CubeSat, camera, magnetometer (rideshare with Chang'e 6)",
     "Cost (USD)": "~$5M",
-    "Notes": "Released into lunar orbit; Pakistan's first lunar mission"
+    "Notes": "Released into lunar orbit; Pakistan's first lunar mission",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Released into lunar orbit; Pakistan's first lunar mission",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 124,
@@ -1857,7 +2355,11 @@
     "Objectives": "FIRST fully successful commercial Moon landing",
     "Special Systems/Instruments": "Falcon 9, Blue Ghost lander (1,517 kg), 10 NASA CLPS payloads, 94 kg science; Nammo LEROS engines",
     "Cost (USD)": "$93.3M (NASA contract)",
-    "Notes": "FIRST fully successful commercial landing; 119 GB data; 51 GB science; 5 hours into lunar night; lunar eclipse imagery; longest commercial surface ops"
+    "Notes": "FIRST fully successful commercial landing; 119 GB data; 51 GB science; 5 hours into lunar night; lunar eclipse imagery; longest commercial surface ops",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "FIRST fully successful commercial landing; 119 GB data; 51 GB science; 5 hours into lunar night; lunar eclipse imagery; longest commercial surface ops",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 125,
@@ -1872,7 +2374,11 @@
     "Objectives": "Second Nova-C landing; south pole ice mining demo",
     "Special Systems/Instruments": "Falcon 9, Nova-C Athena (1,908 kg), PRIME-1 (TRIDENT drill + MSolo), μNova hopper, MAPP rover, Nokia 4G network",
     "Cost (USD)": "$47M (NASA contract)",
-    "Notes": "Landed on side in crater; incorrect orientation prevented rover deployment and some ops; 13 hours of operation; downlinked 4x IM-1 data"
+    "Notes": "Landed on side in crater; incorrect orientation prevented rover deployment and some ops; 13 hours of operation; downlinked 4x IM-1 data",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Landed on side in crater; incorrect orientation prevented rover deployment and some ops; 13 hours of operation; downlinked 4x IM-1 data",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 126,
@@ -1887,7 +2393,11 @@
     "Objectives": "Second ispace landing attempt; micro rover",
     "Special Systems/Instruments": "Falcon 9, Series 1 lander, TENACIOUS micro rover, UNESCO memory disk (275 languages)",
     "Cost (USD)": "~$100M",
-    "Notes": "Lost communication during descent; hard landing suspected in Mare Frigoris"
+    "Notes": "Lost communication during descent; hard landing suspected in Mare Frigoris",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Landing",
+    "Outcome Details": "Hard impact, lander lost",
+    "Anomaly Type": "Altitude Miscalculation"
   },
   {
     "S.No": 127,
@@ -1902,7 +2412,11 @@
     "Objectives": "Search for water ice at south pole; ILRS precursor",
     "Special Systems/Instruments": "Orbiter + lander + rover + mini-flying probe; 18 science payloads; international partners (Egypt, Bahrain, Thailand, Russia, Italy, Switzerland); hyperspectral camera; Shackleton crater target",
     "Cost (USD)": "~$400M",
-    "Notes": "Will search for water ice in permanently shadowed regions; high-precision landing (<100m); before NASA VIPER"
+    "Notes": "Will search for water ice in permanently shadowed regions; high-precision landing (<100m); before NASA VIPER",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Will search for water ice in permanently shadowed regions; high-precision landing (<100m); before NASA VIPER",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 128,
@@ -1917,7 +2431,11 @@
     "Objectives": "Farside landing in Schrödinger crater",
     "Special Systems/Instruments": "Spee-3D Series 2 lander, 95 kg NASA PRISM payloads; 2 relay satellites (Blue Canyon); seismometers, heat flow probe, drill, magnetotelluric sounder",
     "Cost (USD)": "$73M (NASA contract)",
-    "Notes": "BOLDEST CLPS mission; only 2nd farside landing after Chang'e 4; study Moon's internal structure; prepare for Artemis"
+    "Notes": "BOLDEST CLPS mission; only 2nd farside landing after Chang'e 4; study Moon's internal structure; prepare for Artemis",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "BOLDEST CLPS mission; only 2nd farside landing after Chang'e 4; study Moon's internal structure; prepare for Artemis",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 129,
@@ -1932,7 +2450,11 @@
     "Objectives": "Far side operations; Elytra Dark orbital vehicle",
     "Special Systems/Instruments": "Blue Ghost lander + Elytra Dark orbital vehicle; lunar orbit and far side surface operations",
     "Cost (USD)": "~$93M",
-    "Notes": "Annual lunar missions planned by Firefly; far side data collection"
+    "Notes": "Annual lunar missions planned by Firefly; far side data collection",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Annual lunar missions planned by Firefly; far side data collection",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 130,
@@ -1947,7 +2469,11 @@
     "Objectives": "Third Nova-C landing",
     "Special Systems/Instruments": "Nova-C lander, NASA CLPS payloads; Reiner Gamma landing site (magnetic anomaly)",
     "Cost (USD)": "~$47M",
-    "Notes": "Reiner Gamma swirl region study"
+    "Notes": "Reiner Gamma swirl region study",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Reiner Gamma swirl region study",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 131,
@@ -1962,7 +2488,11 @@
     "Objectives": "Fourth Nova-C landing",
     "Special Systems/Instruments": "Nova-C lander, 6 NASA science instruments; lunar south pole",
     "Cost (USD)": "$116.9M (NASA award)",
-    "Notes": "Lunar south pole region exploration"
+    "Notes": "Lunar south pole region exploration",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Lunar south pole region exploration",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 132,
@@ -1977,7 +2507,11 @@
     "Objectives": "Large cargo lander; originally for VIPER",
     "Special Systems/Instruments": "Griffin lander (4,500 kg capacity), 14 engines; much larger than Peregrine",
     "Cost (USD)": ">$200M",
-    "Notes": "VIPER rover reassigned to Blue Origin; Griffin mission delayed pending redesign after Peregrine failure"
+    "Notes": "VIPER rover reassigned to Blue Origin; Griffin mission delayed pending redesign after Peregrine failure",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "VIPER rover reassigned to Blue Origin; Griffin mission delayed pending redesign after Peregrine failure",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 133,
@@ -1992,7 +2526,11 @@
     "Objectives": "Search for water ice at lunar south pole",
     "Special Systems/Instruments": "Blue Moon MK1 lander, VIPER rover (450 kg); neutron spectrometer, NIR spectrometer, mass spectrometer, 1m drill; solar powered",
     "Cost (USD)": "$190M (Blue Origin contract) + $450M (VIPER development)",
-    "Notes": "CANCELLED July 2024, REVIVED Sept 2025; will map ice distribution; critical for Artemis crewed missions"
+    "Notes": "CANCELLED July 2024, REVIVED Sept 2025; will map ice distribution; critical for Artemis crewed missions",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "CANCELLED July 2024, REVIVED Sept 2025; will map ice distribution; critical for Artemis crewed missions",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 134,
@@ -2007,7 +2545,11 @@
     "Objectives": "FIRST crewed lunar landing since Apollo 17",
     "Special Systems/Instruments": "SLS, Orion, Starship HLS; 2 astronauts to surface; SpaceX lander; new spacesuits (AxEMU); south pole region",
     "Cost (USD)": "~$4.1B per launch + HLS dev",
-    "Notes": "FIRST woman and person of color on Moon; 6.5 days on surface; up to 4 EVAs; water ice search"
+    "Notes": "FIRST woman and person of color on Moon; 6.5 days on surface; up to 4 EVAs; water ice search",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "FIRST woman and person of color on Moon; 6.5 days on surface; up to 4 EVAs; water ice search",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 135,
@@ -2022,7 +2564,11 @@
     "Objectives": "Second Artemis landing; Gateway first crew",
     "Special Systems/Instruments": "SLS, Orion, Starship HLS, Gateway (PPE+HALO); 4 astronauts; lunar surface + Gateway",
     "Cost (USD)": "~$4.1B per launch",
-    "Notes": "FIRST Gateway crewed mission; new spacesuits; extended surface operations"
+    "Notes": "FIRST Gateway crewed mission; new spacesuits; extended surface operations",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "FIRST Gateway crewed mission; new spacesuits; extended surface operations",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 136,
@@ -2037,7 +2583,11 @@
     "Objectives": "Third Artemis landing; Blue Origin lander debut",
     "Special Systems/Instruments": "SLS, Orion, Blue Moon HLS (Blue Origin); 4 astronauts; Lunar Terrain Vehicle",
     "Cost (USD)": "~$4.1B per launch",
-    "Notes": "FIRST Blue Moon landing; LTV deployment; resource prospecting"
+    "Notes": "FIRST Blue Moon landing; LTV deployment; resource prospecting",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "FIRST Blue Moon landing; LTV deployment; resource prospecting",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 137,
@@ -2052,7 +2602,11 @@
     "Objectives": "Sustained lunar surface presence",
     "Special Systems/Instruments": "SLS, Orion, HLS, Gateway, LTV, habitation modules",
     "Cost (USD)": "~$4.1B per launch",
-    "Notes": "Building lunar base camp; long-duration stays"
+    "Notes": "Building lunar base camp; long-duration stays",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Building lunar base camp; long-duration stays",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 138,
@@ -2067,7 +2621,11 @@
     "Objectives": "Lunar orbiting space station",
     "Special Systems/Instruments": "Power and Propulsion Element (PPE) + Habitation and Logistics Outpost (HALO); 40-50 kW power; ion propulsion; international partners",
     "Cost (USD)": "~$2B+",
-    "Notes": "Critical for Artemis sustained presence; logistics hub; deep space research"
+    "Notes": "Critical for Artemis sustained presence; logistics hub; deep space research",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Critical for Artemis sustained presence; logistics hub; deep space research",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 139,
@@ -2082,7 +2640,11 @@
     "Objectives": "Lunar orbiter; map resources; scout landing sites",
     "Special Systems/Instruments": "2,250 kg orbiter; gamma spectrometer, neutron detector, radar, terrain camera, plasma instruments; polar orbit 50-500 km",
     "Cost (USD)": "~$300M (129.7B rubles for Luna 26+27)",
-    "Notes": "Replaces foreign components after Luna 25 failure; delayed from 2027; essential for future Russian landings"
+    "Notes": "Replaces foreign components after Luna 25 failure; delayed from 2027; essential for future Russian landings",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Replaces foreign components after Luna 25 failure; delayed from 2027; essential for future Russian landings",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 140,
@@ -2097,7 +2659,11 @@
     "Objectives": "Lunar south pole landing; drill for water ice",
     "Special Systems/Instruments": "2,200 kg lander, 810 kg science payload; Luna-Resurs-1; drill, spectrometers, cameras; European LARA landing radar (now uncertain)",
     "Cost (USD)": "~$300M",
-    "Notes": "North pole landing; replace European components after sanctions"
+    "Notes": "North pole landing; replace European components after sanctions",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "North pole landing; replace European components after sanctions",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 141,
@@ -2112,7 +2678,11 @@
     "Objectives": "Second polar landing",
     "Special Systems/Instruments": "Same configuration as Luna 27A; backup/complimentary mission",
     "Cost (USD)": "~$300M",
-    "Notes": "South pole landing; redundant approach after Luna 25 failure"
+    "Notes": "South pole landing; redundant approach after Luna 25 failure",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "South pole landing; redundant approach after Luna 25 failure",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 142,
@@ -2127,7 +2697,11 @@
     "Objectives": "Frozen sample return from south pole",
     "Special Systems/Instruments": "3,000 kg; lander + ascent vehicle + return capsule; miniature rover for sample selection; Luna-29 relay support",
     "Cost (USD)": "~$500M",
-    "Notes": "Frozen samples to preserve volatiles; most ambitious Russian lunar mission"
+    "Notes": "Frozen samples to preserve volatiles; most ambitious Russian lunar mission",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Frozen samples to preserve volatiles; most ambitious Russian lunar mission",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 143,
@@ -2142,7 +2716,11 @@
     "Objectives": "Lunar orbital station/relay",
     "Special Systems/Instruments": "Relay orbiter for Luna 28 and Luna 30 surface missions; communications infrastructure",
     "Cost (USD)": "~$200M",
-    "Notes": "Critical communications backbone for future Russian surface missions"
+    "Notes": "Critical communications backbone for future Russian surface missions",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Critical communications backbone for future Russian surface missions",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 144,
@@ -2157,7 +2735,11 @@
     "Objectives": "Heavy rover mission; long-term research",
     "Special Systems/Instruments": "3,000 kg lander + heavy rover; long-range mobility; extensive instrumentation",
     "Cost (USD)": "~$500M",
-    "Notes": "Most ambitious Russian lunar surface mission; heavy rover for extensive exploration"
+    "Notes": "Most ambitious Russian lunar surface mission; heavy rover for extensive exploration",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Most ambitious Russian lunar surface mission; heavy rover for extensive exploration",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 145,
@@ -2172,7 +2754,11 @@
     "Objectives": "India's FIRST lunar sample return",
     "Special Systems/Instruments": "5 spacecraft: propulsion + descender + ascender + transfer + re-entry module; 2 launches (LVM-3 + PSLV); docking in lunar orbit (SPADEX test)",
     "Cost (USD)": "~$200M",
-    "Notes": "Will join US, USSR, China in sample return capability; most complex ISRO mission to date"
+    "Notes": "Will join US, USSR, China in sample return capability; most complex ISRO mission to date",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Will join US, USSR, China in sample return capability; most complex ISRO mission to date",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 146,
@@ -2187,7 +2773,11 @@
     "Objectives": "Follow-up lunar landing mission",
     "Special Systems/Instruments": "Design complete; objectives undisclosed",
     "Cost (USD)": "~$100M",
-    "Notes": "Follow-on to Chandrayaan-4"
+    "Notes": "Follow-on to Chandrayaan-4",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Follow-on to Chandrayaan-4",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 147,
@@ -2202,7 +2792,11 @@
     "Objectives": "In-situ resource utilization testing; 3D printing with lunar soil",
     "Special Systems/Instruments": "Lander, rover, hopper, robots; 3D printing demo; closed ecosystem experiment; power/beam communication; 11 international partners including Pakistan (rover), Türkey",
     "Cost (USD)": "~$400M",
-    "Notes": "Critical for ILRS construction; testing lunar base technologies; Pakistan rover"
+    "Notes": "Critical for ILRS construction; testing lunar base technologies; Pakistan rover",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Critical for ILRS construction; testing lunar base technologies; Pakistan rover",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 148,
@@ -2217,7 +2811,11 @@
     "Objectives": "International lunar research base at south pole",
     "Special Systems/Instruments": "Robotic construction phase 2031-2035; crewed missions from 2030; power, communications, habitation, in-situ resource utilization",
     "Cost (USD)": "~$10B+ (estimated)",
-    "Notes": "China's answer to Artemis; 25+ partner countries; long-term human presence"
+    "Notes": "China's answer to Artemis; 25+ partner countries; long-term human presence",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "China's answer to Artemis; 25+ partner countries; long-term human presence",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 149,
@@ -2232,7 +2830,11 @@
     "Objectives": "China's FIRST human Moon landing",
     "Special Systems/Instruments": "Long March 10 rocket (new heavy lift), Mengzhou crew spacecraft, Lanyue lander; 2 astronauts on surface",
     "Cost (USD)": "~$5B+",
-    "Notes": "3-person crew; 2 EVAs; lunar samples return; major milestone in space race"
+    "Notes": "3-person crew; 2 EVAs; lunar samples return; major milestone in space race",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "3-person crew; 2 EVAs; lunar samples return; major milestone in space race",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 150,
@@ -2247,7 +2849,11 @@
     "Objectives": "Unpressurized crew rover for Artemis",
     "Special Systems/Instruments": "Intuitive Machines ($1.692B), Lunar Outpost, Venturi Astrolab; 800 kg cargo; 20 km range; 8-hour ops; survive lunar night; ±20° grades",
     "Cost (USD)": "~$1.7B (development)",
-    "Notes": "Critical for Artemis surface mobility; delivered before crew arrival; also operates remotely"
+    "Notes": "Critical for Artemis surface mobility; delivered before crew arrival; also operates remotely",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Critical for Artemis surface mobility; delivered before crew arrival; also operates remotely",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 151,
@@ -2262,7 +2868,11 @@
     "Objectives": "Large cargo lunar landing",
     "Special Systems/Instruments": "Griffin lander (4,500 kg capacity); 14 propulsion engines; much larger than Peregrine",
     "Cost (USD)": ">$150M",
-    "Notes": "Follow-on to Peregrine lessons; large payload capacity for NASA and commercial customers"
+    "Notes": "Follow-on to Peregrine lessons; large payload capacity for NASA and commercial customers",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Follow-on to Peregrine lessons; large payload capacity for NASA and commercial customers",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 152,
@@ -2277,7 +2887,11 @@
     "Objectives": "Lunar south pole water exploration",
     "Special Systems/Instruments": "New ULTRA lander design (integrated US+Japanese models); water resource development focus",
     "Cost (USD)": "~$100M",
-    "Notes": "Annual lunar transport service; pivot to water/ISRU after M1/M2 failures"
+    "Notes": "Annual lunar transport service; pivot to water/ISRU after M1/M2 failures",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Annual lunar transport service; pivot to water/ISRU after M1/M2 failures",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 153,
@@ -2292,7 +2906,11 @@
     "Objectives": "Commercial lunar satellite constellation",
     "Special Systems/Instruments": "Lunar orbiting satellites for communications and navigation; Alpine & Lupine relay satellites",
     "Cost (USD)": "~$50M",
-    "Notes": "Lunar communications infrastructure; commercial satellite services"
+    "Notes": "Lunar communications infrastructure; commercial satellite services",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Lunar communications infrastructure; commercial satellite services",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 154,
@@ -2307,7 +2925,11 @@
     "Objectives": "Was planned CLPS landing mission",
     "Special Systems/Instruments": "XL-1 lander",
     "Cost (USD)": "N/A",
-    "Notes": "Company filed for bankruptcy; mission unlikely"
+    "Notes": "Company filed for bankruptcy; mission unlikely",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Company filed for bankruptcy; mission unlikely",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 155,
@@ -2322,7 +2944,11 @@
     "Objectives": "Was planned CLPS landing",
     "Special Systems/Instruments": "Sparrow lander",
     "Cost (USD)": "N/A",
-    "Notes": "Contract cancelled by NASA due to technical and financial issues"
+    "Notes": "Contract cancelled by NASA due to technical and financial issues",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Contract cancelled by NASA due to technical and financial issues",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 156,
@@ -2337,7 +2963,11 @@
     "Objectives": "Earth observation from lunar orbit; SHAPE payload",
     "Special Systems/Instruments": "Propulsion module with SHAPE (Spectro-polarimetry of HAbitable Planet Earth) instrument; Earth spectral study",
     "Cost (USD)": "~$75M (total)",
-    "Notes": "Moved to Earth orbit after delivering Vikram; studying Earth as exoplanet analog"
+    "Notes": "Moved to Earth orbit after delivering Vikram; studying Earth as exoplanet analog",
+    "Outcome Category": "FULL SUCCESS",
+    "Outcome Subcategory": "Nominal",
+    "Outcome Details": "Moved to Earth orbit after delivering Vikram; studying Earth as exoplanet analog",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 157,
@@ -2352,7 +2982,11 @@
     "Objectives": "Lunar surface radio astronomy",
     "Special Systems/Instruments": "Radio astronomy instrument for lunar surface; study early universe",
     "Cost (USD)": "~$15M",
-    "Notes": "Delayed; will study cosmic dark ages from radio-quiet lunar surface"
+    "Notes": "Delayed; will study cosmic dark ages from radio-quiet lunar surface",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Delayed; will study cosmic dark ages from radio-quiet lunar surface",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 158,
@@ -2367,7 +3001,11 @@
     "Objectives": "Study lunar swirl Reiner Gamma",
     "Special Systems/Instruments": "Lander + rover; magnetic field mapping; plasma studies",
     "Cost (USD)": "~$20M",
-    "Notes": "Understanding lunar magnetic anomalies"
+    "Notes": "Understanding lunar magnetic anomalies",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Understanding lunar magnetic anomalies",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 159,
@@ -2382,7 +3020,11 @@
     "Objectives": "Autonomous multi-rover demonstration",
     "Special Systems/Instruments": "Three small rovers operating autonomously; swarm robotics test",
     "Cost (USD)": "~$15M",
-    "Notes": "Technology demo for future multi-rover missions"
+    "Notes": "Technology demo for future multi-rover missions",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Technology demo for future multi-rover missions",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 160,
@@ -2397,7 +3039,11 @@
     "Objectives": "Small autonomous polar rover",
     "Special Systems/Instruments": "Small autonomous rover for polar exploration",
     "Cost (USD)": "~$5M",
-    "Notes": "Technology demonstration"
+    "Notes": "Technology demonstration",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Technology demonstration",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 161,
@@ -2412,7 +3058,11 @@
     "Objectives": "Small commercial lunar rover",
     "Special Systems/Instruments": "Small rover for lunar surface mobility",
     "Cost (USD)": "~$3M",
-    "Notes": "Commercial lunar mobility services"
+    "Notes": "Commercial lunar mobility services",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Commercial lunar mobility services",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 162,
@@ -2427,7 +3077,11 @@
     "Objectives": "Walking lunar rover",
     "Special Systems/Instruments": "Unique walking mechanism rover; spider-like design",
     "Cost (USD)": "~$5M",
-    "Notes": "Novel mobility concept for lunar exploration"
+    "Notes": "Novel mobility concept for lunar exploration",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Novel mobility concept for lunar exploration",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 163,
@@ -2442,7 +3096,11 @@
     "Objectives": "UAE's second lunar rover attempt",
     "Special Systems/Instruments": "Improved rover design; lessons from Rashid failure",
     "Cost (USD)": "~$20M",
-    "Notes": "Follow-up to Rashid rover lost on Hakuto-R M1"
+    "Notes": "Follow-up to Rashid rover lost on Hakuto-R M1",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Follow-up to Rashid rover lost on Hakuto-R M1",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 164,
@@ -2457,7 +3115,11 @@
     "Objectives": "Commercial micro rover services",
     "Special Systems/Instruments": "Improved micro rover designs",
     "Cost (USD)": "~$5M",
-    "Notes": "Low-cost lunar surface mobility"
+    "Notes": "Low-cost lunar surface mobility",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Low-cost lunar surface mobility",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 165,
@@ -2472,7 +3134,11 @@
     "Objectives": "Canada's first lunar rover",
     "Special Systems/Instruments": "Small rover with Canadian technology; ice prospecting",
     "Cost (USD)": "~$25M",
-    "Notes": "Canadian contribution to Artemis"
+    "Notes": "Canadian contribution to Artemis",
+    "Outcome Category": "PLANNED/FUTURE",
+    "Outcome Subcategory": "Upcoming",
+    "Outcome Details": "Canadian contribution to Artemis",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 166,
@@ -2487,7 +3153,11 @@
     "Objectives": "Was planned CLPS mission",
     "Special Systems/Instruments": "XL-1 lander with various payloads",
     "Cost (USD)": "N/A",
-    "Notes": "Company bankrupt; assets sold; mission status unclear"
+    "Notes": "Company bankrupt; assets sold; mission status unclear",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Company bankrupt; assets sold; mission status unclear",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 167,
@@ -2502,7 +3172,11 @@
     "Objectives": "European private lunar landing attempt",
     "Special Systems/Instruments": "ALINA lander + 2 Audi lunar quattro rovers",
     "Cost (USD)": "N/A",
-    "Notes": "Company dissolved; mission cancelled"
+    "Notes": "Company dissolved; mission cancelled",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Company dissolved; mission cancelled",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 168,
@@ -2517,7 +3191,11 @@
     "Objectives": "Indian private lunar landing attempt",
     "Special Systems/Instruments": "HHK-1 lander",
     "Cost (USD)": "N/A",
-    "Notes": "Failed to secure funding; mission cancelled"
+    "Notes": "Failed to secure funding; mission cancelled",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Failed to secure funding; mission cancelled",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 169,
@@ -2532,7 +3210,11 @@
     "Objectives": "Standardized small lunar rover",
     "Special Systems/Instruments": "2 kg class rover; scalable design",
     "Cost (USD)": "~$2M",
-    "Notes": "Mass-producible small rover platform"
+    "Notes": "Mass-producible small rover platform",
+    "Outcome Category": "FAILURE",
+    "Outcome Subcategory": "Mid-course",
+    "Outcome Details": "Mass-producible small rover platform",
+    "Anomaly Type": "System Failure"
   },
   {
     "S.No": 170,
@@ -2547,7 +3229,11 @@
     "Objectives": "Commercial lunar rover",
     "Special Systems/Instruments": "MAPP rover (5 kg), RESOURCE camera, AstroAnt mini-rover",
     "Cost (USD)": "~$5M",
-    "Notes": "Deployed on IM-2; limited operations due to lander orientation issue"
+    "Notes": "Deployed on IM-2; limited operations due to lander orientation issue",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Deployed on IM-2; limited operations due to lander orientation issue",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 171,
@@ -2562,7 +3248,11 @@
     "Objectives": "Lunar surface hopper",
     "Special Systems/Instruments": "μNova hopper drone, PLWS (water snooper), LRAD radiometer",
     "Cost (USD)": "~$10M",
-    "Notes": "Designed to hop into permanently shadowed craters; limited ops due to lander issue"
+    "Notes": "Designed to hop into permanently shadowed craters; limited ops due to lander issue",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Designed to hop into permanently shadowed craters; limited ops due to lander issue",
+    "Anomaly Type": "N/A"
   },
   {
     "S.No": 172,
@@ -2577,6 +3267,10 @@
     "Objectives": "Walking rover demonstration",
     "Special Systems/Instruments": "Small walking rover; spider-like mobility",
     "Cost (USD)": "~$3M",
-    "Notes": "Deployed on IM-2; limited ops"
+    "Notes": "Deployed on IM-2; limited ops",
+    "Outcome Category": "PARTIAL SUCCESS",
+    "Outcome Subcategory": "Component",
+    "Outcome Details": "Deployed on IM-2; limited ops",
+    "Anomaly Type": "N/A"
   }
 ]
